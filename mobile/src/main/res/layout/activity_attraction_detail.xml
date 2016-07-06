@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="xyz.aungpyaephyo.padc.myanmarattractions.activities.AttractionDetailActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/detail_backdrop_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="@dimen/margin_medium_2"
+            app:expandedTitleMarginStart="@dimen/margin_medium_2"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/iv_attraction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                tools:src="@drawable/drawer_background" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/tv_attraction_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:fontFamily="sans-serif-light"
+            android:lineSpacingMultiplier="1.2"
+            tools:text="Mandalay was the last Royal Capital of Myanmar and is located nearly 700 km north of Yangon between the mighty Ayeyarwaddy River and the Shan plateau. Mandalay is considered the centre of Burmese culture, a city of artisans and a trading centre of goods in all directions. The geometric laid out streets, the many bicycles riders, the 8 km long moth and wall around the former Royal Palace, the pagodas and monasteries abound and the sacred Mandalay Hill towering over it all, are some of its most visible features. In the vicinity of Mandalay are the former royal capitals and religious centers of Amarapura, Mingun, Inwa (Ava) and Sagaing, each worth visiting. Mandalay is another gateway to Myanmar and has direct air links with Bangkok, Singapore, Kunming and Chiang Mai.\n\n Mandalay was the last Royal Capital of Myanmar and is located nearly 700 km north of Yangon between the mighty Ayeyarwaddy River and the Shan plateau. Mandalay is considered the centre of Burmese culture, a city of artisans and a trading centre of goods in all directions. The geometric laid out streets, the many bicycles riders, the 8 km long moth and wall around the former Royal Palace, the pagodas and monasteries abound and the sacred Mandalay Hill towering over it all, are some of its most visible features. In the vicinity of Mandalay are the former royal capitals and religious centers of Amarapura, Mingun, Inwa (Ava) and Sagaing, each worth visiting. Mandalay is another gateway to Myanmar and has direct air links with Bangkok, Singapore, Kunming and Chiang Mai."
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_regular_2x"
+            android:padding="@dimen/margin_medium_2"
+            />
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_share_24dp"
+        android:tint="@android:color/white"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|end|right"
+        />
+
+</android.support.design.widget.CoordinatorLayout>

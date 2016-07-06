@@ -6,7 +6,7 @@ import android.content.Context;
 /**
  * Created by aung on 7/6/16.
  */
-public class MyanamrAttractionsApp extends Application {
+public class MyanmarAttractionsApp extends Application {
 
     private static Context context;
 

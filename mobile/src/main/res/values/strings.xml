@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">PADC-MyanmarAttractions</string>
     <string name="action_settings">Settings</string>
+
+    <string name="home_screen_title">Myanmar\'s Attractions</string>
+
+    <string name="attraction_list_detail_transition_name">attraction_list_detail_transition_name</string>
+    <string name="action_share">Share</string>
+
 </resources>
