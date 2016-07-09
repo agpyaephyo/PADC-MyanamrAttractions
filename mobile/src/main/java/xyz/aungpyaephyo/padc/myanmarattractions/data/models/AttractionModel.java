@@ -26,6 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.AttractionDataAgent;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.HttpUrlConnectionDataAgent;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.OfflineDataAgent;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.OkHttpDataAgent;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.responses.AttractionListResponse;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.CommonInstances;
@@ -50,10 +54,11 @@ public class AttractionModel {
     private static AttractionModel objInstance;
 
     private List<AttractionVO> mAttractionList;
+    private AttractionDataAgent dataAgent;
 
     private AttractionModel() {
         mAttractionList = new ArrayList<>();
-        initializeAttractions(INIT_TYPE_HTTP_URL_CONNECTION);
+        initializeAttractions(INIT_TYPE_OK_HTTP);
     }
 
     public static AttractionModel getInstance() {
@@ -66,125 +71,18 @@ public class AttractionModel {
     private void initializeAttractions(int initType) {
         switch (initType) {
             case INIT_TYPE_OFFLINE:
-                initializeAttractionsOffline();
+                dataAgent = new OfflineDataAgent();
+                dataAgent.loadAttractions();
                 break;
             case INIT_TYPE_HTTP_URL_CONNECTION:
-                new AsyncTask<Void, Void, Void>() {
-
-                    @Override
-                    protected Void doInBackground(Void... voids) {
-                        initializeAttractionsHttpUrlConnection();
-                        return null;
-                    }
-                }.execute();
+                dataAgent = new HttpUrlConnectionDataAgent();
+                dataAgent.loadAttractions();
+                break;
+            case INIT_TYPE_OK_HTTP:
+                dataAgent = new OkHttpDataAgent();
+                dataAgent.loadAttractions();
                 break;
         }
-    }
-
-    private List<AttractionVO> initializeAttractionsOffline() {
-        mAttractionList = new ArrayList<>();
-
-        try {
-            String attractions = JsonUtils.getInstance().loadDummyData(ATTRACTION_LIST);
-            Type listType = new TypeToken<List<AttractionVO>>() {
-            }.getType();
-            mAttractionList = CommonInstances.getGsonInstance().fromJson(attractions, listType);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return mAttractionList;
-    }
-
-    private void initializeAttractionsHttpUrlConnection() {
-        URL url;
-        BufferedReader reader = null;
-        StringBuilder stringBuilder;
-
-        try {
-            // create the HttpURLConnection
-            url = new URL(ATTRCTION_LIST_URL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // just want to do an HTTP POST here
-            connection.setRequestMethod("POST");
-
-            // uncomment this if you want to write output to this url
-            //connection.setDoOutput(true);
-
-            // give it 15 seconds to respond
-            connection.setReadTimeout(15 * 1000);
-
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
-
-            //put the request parameter into NameValuePair list.
-            List<NameValuePair> params = new ArrayList<>();
-            params.add(new BasicNameValuePair("access_token", ACCESS_TOKEN));
-
-            //write the parameters from NameValuePair list into connection obj.
-            OutputStream outputStream = connection.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(
-                    new OutputStreamWriter(outputStream, "UTF-8"));
-            writer.write(getQuery(params));
-            writer.flush();
-            writer.close();
-            outputStream.close();
-
-            connection.connect();
-
-            // read the output from the server
-            reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            stringBuilder = new StringBuilder();
-
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line + "\n");
-            }
-
-            String responseString = stringBuilder.toString();
-            AttractionListResponse response = CommonInstances.getGsonInstance().fromJson(responseString, AttractionListResponse.class);
-            mAttractionList = response.getAttractionList();
-
-            if(mAttractionList != null || mAttractionList.size() > 0) {
-                //TODO Notify that the data is ready.
-                Intent intent = new Intent(BROADCAST_DATA_LOADED);
-                intent.putExtra("key-for-extra", "extra-in-broadcast");
-                LocalBroadcastManager.getInstance(MyanmarAttractionsApp.getContext()).sendBroadcast(intent);
-            }
-
-        } catch (Exception e) {
-            Log.e(MyanmarAttractionsApp.TAG, e.getMessage());
-        } finally {
-            // close the reader; this can throw an exception too, so
-            // wrap it in another try/catch block.
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException ioe) {
-                    ioe.printStackTrace();
-                }
-            }
-        }
-    }
-
-    private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-
-        for (NameValuePair pair : params) {
-            if (first)
-                first = false;
-            else
-                result.append("&");
-
-            result.append(URLEncoder.encode(pair.getName(), "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
-        }
-
-        return result.toString();
     }
 
     public List<AttractionVO> getAttractionList() {
@@ -198,5 +96,17 @@ public class AttractionModel {
         }
 
         return null;
+    }
+
+    public void notifyAttractionsLoaded(List<AttractionVO> attractionList) {
+        //Notify that the data is ready.
+        mAttractionList = attractionList;
+        Intent intent = new Intent(BROADCAST_DATA_LOADED);
+        intent.putExtra("key-for-extra", "extra-in-broadcast");
+        LocalBroadcastManager.getInstance(MyanmarAttractionsApp.getContext()).sendBroadcast(intent);
+    }
+
+    public void notifyErrorInLoadingAttractions(String message) {
+
     }
 }
