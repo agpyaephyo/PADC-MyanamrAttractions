@@ -25,10 +25,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.adapters.AttractionAdapter;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
+import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 
 public class HomeActivity extends AppCompatActivity implements AttractionViewHolder.ControllerAttractionItem {
@@ -50,6 +52,7 @@ public class HomeActivity extends AppCompatActivity implements AttractionViewHol
             //TODO instructions when the new data is ready.
             String extra = intent.getStringExtra("key-for-extra");
             Toast.makeText(getApplicationContext(), "Extra : "+extra, Toast.LENGTH_SHORT).show();
+
             List<AttractionVO> newAttractionList = AttractionModel.getInstance().getAttractionList();
             mAttractionAdapter.setNewData(newAttractionList);
         }
@@ -105,12 +108,20 @@ public class HomeActivity extends AppCompatActivity implements AttractionViewHol
     protected void onStart() {
         super.onStart();
         LocalBroadcastManager.getInstance(this).registerReceiver(mDataLoadedBroadcastReceiver, new IntentFilter(AttractionModel.BROADCAST_DATA_LOADED));
+
+        EventBus eventBus = EventBus.getDefault();
+        if (!eventBus.isRegistered(this)) {
+            eventBus.register(this);
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mDataLoadedBroadcastReceiver);
+
+        EventBus eventBus = EventBus.getDefault();
+        eventBus.unregister(this);
     }
 
     @Override
@@ -119,5 +130,13 @@ public class HomeActivity extends AppCompatActivity implements AttractionViewHol
         ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this,
                 new Pair(ivAttraction, getString(R.string.attraction_list_detail_transition_name)));
         ActivityCompat.startActivity(this, intent, activityOptions.toBundle());
+    }
+
+    public void onEventMainThread(DataEvent.AttractionDataLoadedEvent event) {
+        String extra = event.getExtraMessage();
+        Toast.makeText(getApplicationContext(), "Extra : "+extra, Toast.LENGTH_SHORT).show();
+
+        List<AttractionVO> newAttractionList = AttractionModel.getInstance().getAttractionList();
+        mAttractionAdapter.setNewData(newAttractionList);
     }
 }
