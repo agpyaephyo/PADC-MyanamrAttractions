@@ -31,6 +31,7 @@ public class AttractionModel {
     private static AttractionModel objInstance;
 
     private List<AttractionVO> mAttractionList;
+
     private AttractionDataAgent dataAgent;
 
     private AttractionModel() {
@@ -80,6 +81,7 @@ public class AttractionModel {
         //Notify that the data is ready - using LocalBroadcast
         mAttractionList = attractionList;
         broadcastAttractionLoadedWithEventBus();
+        //broadcastAttractionLoadedWithLocalBroadcastManager();
     }
 
     public void notifyErrorInLoadingAttractions(String message) {
@@ -93,6 +95,6 @@ public class AttractionModel {
     }
 
     private void broadcastAttractionLoadedWithEventBus() {
-        EventBus.getDefault().post(new DataEvent.AttractionDataLoadedEvent("extra-in-broadcast"));
+        EventBus.getDefault().post(new DataEvent.AttractionDataLoadedEvent("extra-in-broadcast", mAttractionList));
     }
 }

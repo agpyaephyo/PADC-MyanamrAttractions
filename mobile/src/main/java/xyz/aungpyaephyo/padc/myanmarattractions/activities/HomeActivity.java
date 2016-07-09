@@ -136,7 +136,8 @@ public class HomeActivity extends AppCompatActivity implements AttractionViewHol
         String extra = event.getExtraMessage();
         Toast.makeText(getApplicationContext(), "Extra : "+extra, Toast.LENGTH_SHORT).show();
 
-        List<AttractionVO> newAttractionList = AttractionModel.getInstance().getAttractionList();
+        //List<AttractionVO> newAttractionList = AttractionModel.getInstance().getAttractionList();
+        List<AttractionVO> newAttractionList = event.getAttractionList();
         mAttractionAdapter.setNewData(newAttractionList);
     }
 }

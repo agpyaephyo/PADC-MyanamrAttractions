@@ -56,23 +56,24 @@ public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
 
                 try {
                     // create the HttpURLConnection
-                    url = new URL(MyanmarAttractionsConstants.ATTRACTION_BASE_URL + MyanmarAttractionsConstants.API_GET_ATTRACTION_LIST);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    //http://www.aungpyaephyo.xyz/myanmar_attractions/getAttractionsList.php
+                    url = new URL(MyanmarAttractionsConstants.ATTRACTION_BASE_URL + MyanmarAttractionsConstants.API_GET_ATTRACTION_LIST); //1.
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection(); //2.
 
                     // just want to do an HTTP POST here
-                    connection.setRequestMethod("POST");
+                    connection.setRequestMethod("POST"); //3.
 
                     // uncomment this if you want to write output to this url
                     //connection.setDoOutput(true);
 
                     // give it 15 seconds to respond
-                    connection.setReadTimeout(15 * 1000);
+                    connection.setReadTimeout(15 * 1000); //4. ms
 
-                    connection.setDoInput(true);
+                    connection.setDoInput(true); //5.
                     connection.setDoOutput(true);
 
                     //put the request parameter into NameValuePair list.
-                    List<NameValuePair> params = new ArrayList<>();
+                    List<NameValuePair> params = new ArrayList<>(); //6.
                     params.add(new BasicNameValuePair(MyanmarAttractionsConstants.PARAM_ACCESS_TOKEN, MyanmarAttractionsConstants.ACCESS_TOKEN));
 
                     //write the parameters from NameValuePair list into connection obj.
@@ -84,10 +85,10 @@ public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
                     writer.close();
                     outputStream.close();
 
-                    connection.connect();
+                    connection.connect(); //7.
 
                     // read the output from the server
-                    reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    reader = new BufferedReader(new InputStreamReader(connection.getInputStream())); //8.
                     stringBuilder = new StringBuilder();
 
                     String line = null;
@@ -95,7 +96,7 @@ public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
                         stringBuilder.append(line + "\n");
                     }
 
-                    String responseString = stringBuilder.toString();
+                    String responseString = stringBuilder.toString(); //9.
                     AttractionListResponse response = CommonInstances.getGsonInstance().fromJson(responseString, AttractionListResponse.class);
                     List<AttractionVO> attractionList = response.getAttractionList();
 
