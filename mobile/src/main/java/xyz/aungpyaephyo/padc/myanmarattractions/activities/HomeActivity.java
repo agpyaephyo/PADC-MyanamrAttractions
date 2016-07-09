@@ -1,11 +1,15 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -38,6 +43,17 @@ public class HomeActivity extends AppCompatActivity implements AttractionViewHol
     FloatingActionButton fab;
 
     private AttractionAdapter mAttractionAdapter;
+
+    private BroadcastReceiver mDataLoadedBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //TODO instructions when the new data is ready.
+            String extra = intent.getStringExtra("key-for-extra");
+            Toast.makeText(getApplicationContext(), "Extra : "+extra, Toast.LENGTH_SHORT).show();
+            List<AttractionVO> newAttractionList = AttractionModel.getInstance().getAttractionList();
+            mAttractionAdapter.setNewData(newAttractionList);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +99,18 @@ public class HomeActivity extends AppCompatActivity implements AttractionViewHol
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mDataLoadedBroadcastReceiver, new IntentFilter(AttractionModel.BROADCAST_DATA_LOADED));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mDataLoadedBroadcastReceiver);
     }
 
     @Override

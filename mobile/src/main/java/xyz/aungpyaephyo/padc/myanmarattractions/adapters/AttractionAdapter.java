@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
@@ -41,5 +42,10 @@ public class AttractionAdapter extends RecyclerView.Adapter<AttractionViewHolder
     @Override
     public int getItemCount() {
         return mAttractionList.size();
+    }
+
+    public void setNewData(List<AttractionVO> newAttractionList) {
+        mAttractionList = newAttractionList;
+        notifyDataSetChanged();
     }
 }
