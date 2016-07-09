@@ -24,14 +24,23 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstant
  */
 public class OkHttpDataAgent implements AttractionDataAgent {
 
-    private static OkHttpClient sHttpClient;
+    private static OkHttpDataAgent objInstance;
 
-    static {
-        sHttpClient = new OkHttpClient.Builder()
+    private OkHttpClient mHttpClient;
+
+    private OkHttpDataAgent() {
+        mHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .build();
+    }
+
+    public static OkHttpDataAgent getInstance() {
+        if (objInstance == null) {
+            objInstance = new OkHttpDataAgent();
+        }
+        return objInstance;
     }
 
     @Override
@@ -43,14 +52,14 @@ public class OkHttpDataAgent implements AttractionDataAgent {
                 RequestBody formBody = new FormBody.Builder()
                         .add(MyanmarAttractionsConstants.PARAM_ACCESS_TOKEN, MyanmarAttractionsConstants.ACCESS_TOKEN)
                         .build();
-                
+
                 Request request = new Request.Builder()
-                        .url(MyanmarAttractionsConstants.ATTRACTION_LIST_URL)
+                        .url(MyanmarAttractionsConstants.ATTRACTION_BASE_URL + MyanmarAttractionsConstants.API_GET_ATTRACTION_LIST)
                         .post(formBody)
                         .build();
 
                 try {
-                    Response response = sHttpClient.newCall(request).execute();
+                    Response response = mHttpClient.newCall(request).execute();
                     if (response.isSuccessful()) {
                         String responseString = response.body().string();
                         AttractionListResponse responseAttractionList = CommonInstances.getGsonInstance().fromJson(responseString, AttractionListResponse.class);

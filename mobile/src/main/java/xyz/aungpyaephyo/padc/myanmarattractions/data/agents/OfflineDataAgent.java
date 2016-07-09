@@ -20,6 +20,20 @@ public class OfflineDataAgent implements AttractionDataAgent {
 
     private static final String OFFLINE_ATTRACTION_LIST = "myanmar_attractions.json";
 
+    private static OfflineDataAgent objInstance;
+
+    private OfflineDataAgent() {
+
+    }
+
+    public static OfflineDataAgent getInstance() {
+        if (objInstance == null) {
+            objInstance = new OfflineDataAgent();
+        }
+
+        return objInstance;
+    }
+
     @Override
     public void loadAttractions() {
         try {

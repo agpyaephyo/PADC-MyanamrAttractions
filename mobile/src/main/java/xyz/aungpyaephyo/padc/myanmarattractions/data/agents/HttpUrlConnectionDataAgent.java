@@ -31,9 +31,22 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstant
  */
 public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
 
+    private static HttpUrlConnectionDataAgent objInstance;
+
+    private HttpUrlConnectionDataAgent() {
+
+    }
+
+    public static HttpUrlConnectionDataAgent getInstance() {
+        if (objInstance == null) {
+            objInstance = new HttpUrlConnectionDataAgent();
+        }
+        return objInstance;
+    }
+
     @Override
     public void loadAttractions() {
-        new AsyncTask<Void,Void,List<AttractionVO>>() {
+        new AsyncTask<Void, Void, List<AttractionVO>>() {
 
             @Override
             protected List<AttractionVO> doInBackground(Void... voids) {
@@ -43,7 +56,7 @@ public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
 
                 try {
                     // create the HttpURLConnection
-                    url = new URL(MyanmarAttractionsConstants.ATTRACTION_LIST_URL);
+                    url = new URL(MyanmarAttractionsConstants.ATTRACTION_BASE_URL + MyanmarAttractionsConstants.API_GET_ATTRACTION_LIST);
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
                     // just want to do an HTTP POST here
