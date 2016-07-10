@@ -140,9 +140,14 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onTapAttraction(AttractionVO attraction, ImageView ivAttraction) {
         Intent intent = AttractionDetailActivity.newIntent(attraction.getTitle());
+        startActivity(intent);
+        //overridePendingTransition(R.anim.enter, R.anim.exit);
+
+        /*
         ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this,
                 new Pair(ivAttraction, getString(R.string.attraction_list_detail_transition_name)));
         ActivityCompat.startActivity(this, intent, activityOptions.toBundle());
+        */
     }
 
     public void onEventMainThread(DataEvent.AttractionDataLoadedEvent event) {

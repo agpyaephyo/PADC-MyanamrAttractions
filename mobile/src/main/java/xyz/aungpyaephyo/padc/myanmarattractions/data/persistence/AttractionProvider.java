@@ -147,6 +147,7 @@ public class AttractionProvider extends ContentProvider {
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();
+            db.close();
         }
 
         Context context = getContext();
