@@ -80,6 +80,10 @@ public class AttractionModel {
     public void notifyAttractionsLoaded(List<AttractionVO> attractionList) {
         //Notify that the data is ready - using LocalBroadcast
         mAttractionList = attractionList;
+
+        //keep the data in persistent layer.
+        AttractionVO.saveAttractions(mAttractionList);
+
         broadcastAttractionLoadedWithEventBus();
         //broadcastAttractionLoadedWithLocalBroadcastManager();
     }
