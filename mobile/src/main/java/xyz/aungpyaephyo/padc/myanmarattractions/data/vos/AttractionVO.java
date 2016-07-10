@@ -2,10 +2,12 @@ package xyz.aungpyaephyo.padc.myanmarattractions.data.vos;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
@@ -37,10 +39,14 @@ public class AttractionVO {
         return images;
     }
 
+    public void setImages(String[] images) {
+        this.images = images;
+    }
+
     public static void saveAttractions(List<AttractionVO> attractionList) {
         Context context = MyanmarAttractionsApp.getContext();
         ContentValues[] attractionCVs = new ContentValues[attractionList.size()];
-        for (int index = 0; index < attractionCVs.length; index++) {
+        for (int index = 0; index < attractionList.size(); index++) {
             AttractionVO attraction = attractionList.get(index);
             attractionCVs[index] = attraction.parseToContentValues();
 
@@ -77,5 +83,30 @@ public class AttractionVO {
         cv.put(AttractionsContract.AttractionEntry.COLUMN_TITLE, title);
         cv.put(AttractionsContract.AttractionEntry.COLUMN_DESC, desc);
         return cv;
+    }
+
+    public static AttractionVO parseFromCursor(Cursor data) {
+        AttractionVO attraction = new AttractionVO();
+        attraction.title = data.getString(data.getColumnIndex(AttractionsContract.AttractionEntry.COLUMN_TITLE));
+        attraction.desc = data.getString(data.getColumnIndex(AttractionsContract.AttractionEntry.COLUMN_DESC));
+        return attraction;
+    }
+
+    public static String[] loadAttractionImagesByTitle(String title) {
+        Context context = MyanmarAttractionsApp.getContext();
+        ArrayList<String> images = new ArrayList<>();
+
+        Cursor cursor = context.getContentResolver().query(AttractionsContract.AttractionImageEntry.buildAttractionImageUriWithTitle(title),
+                null, null, null, null);
+
+        if(cursor != null && cursor.moveToFirst()) {
+            do {
+                images.add(cursor.getString(cursor.getColumnIndex(AttractionsContract.AttractionImageEntry.COLUMN_IMAGE)));
+            } while (cursor.moveToNext());
+        }
+
+        String[] imageArray = new String[images.size()];
+        images.toArray(imageArray);
+        return imageArray;
     }
 }

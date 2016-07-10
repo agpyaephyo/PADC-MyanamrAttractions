@@ -84,7 +84,7 @@ public class AttractionModel {
         //keep the data in persistent layer.
         AttractionVO.saveAttractions(mAttractionList);
 
-        broadcastAttractionLoadedWithEventBus();
+        //broadcastAttractionLoadedWithEventBus();
         //broadcastAttractionLoadedWithLocalBroadcastManager();
     }
 

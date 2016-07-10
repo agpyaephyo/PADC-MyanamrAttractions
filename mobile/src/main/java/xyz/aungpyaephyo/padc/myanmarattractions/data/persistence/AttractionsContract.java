@@ -70,7 +70,7 @@ public class AttractionsContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildAttractionImageUriWithAttractionID(String attractionTitle) {
+        public static Uri buildAttractionImageUriWithTitle(String attractionTitle) {
             //content://xyz.aungpyaephyo.padc.myanmarattractions/attraction_images?attraction_title=Yangon
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_ATTRACTION_TITLE, attractionTitle)
