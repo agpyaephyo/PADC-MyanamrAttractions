@@ -130,6 +130,11 @@ public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
         }.execute();
     }
 
+    @Override
+    public void register(String name, String email, String password, String dateOfBirth, String countryOfOrigin) {
+
+    }
+
     private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;

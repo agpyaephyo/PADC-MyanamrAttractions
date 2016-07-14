@@ -5,9 +5,11 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 import java.util.Calendar;
+
+import de.greenrobot.event.EventBus;
+import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 
 /**
  * Created by aung on 6/25/16.
@@ -27,6 +29,7 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
 
     @Override
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-        Toast.makeText(view.getContext(), "Year : " + year + " Month : " + monthOfYear + " Day : " + dayOfMonth, Toast.LENGTH_SHORT).show();
+        DataEvent.DatePickedEvent event = new DataEvent.DatePickedEvent(year + "/" + monthOfYear + "/" + dayOfMonth);
+        EventBus.getDefault().post(event);
     }
 }

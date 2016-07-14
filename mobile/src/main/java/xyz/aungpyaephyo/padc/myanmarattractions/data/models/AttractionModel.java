@@ -21,24 +21,17 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstant
 /**
  * Created by aung on 7/6/16.
  */
-public class AttractionModel {
+public class AttractionModel extends BaseModel {
 
     public static final String BROADCAST_DATA_LOADED = "BROADCAST_DATA_LOADED";
-
-    private static final int INIT_DATA_AGENT_OFFLINE = 1;
-    private static final int INIT_DATA_AGENT_HTTP_URL_CONNECTION = 2;
-    private static final int INIT_DATA_AGENT_OK_HTTP = 3;
-    private static final int INIT_DATA_AGENT_RETROFIT = 4;
 
     private static AttractionModel objInstance;
 
     private List<AttractionVO> mAttractionList;
 
-    private AttractionDataAgent dataAgent;
-
     private AttractionModel() {
+        super();
         mAttractionList = new ArrayList<>();
-        initDataAgent(INIT_DATA_AGENT_RETROFIT);
         dataAgent.loadAttractions();
     }
 
@@ -49,22 +42,7 @@ public class AttractionModel {
         return objInstance;
     }
 
-    private void initDataAgent(int initType) {
-        switch (initType) {
-            case INIT_DATA_AGENT_OFFLINE:
-                dataAgent = OfflineDataAgent.getInstance();
-                break;
-            case INIT_DATA_AGENT_HTTP_URL_CONNECTION:
-                dataAgent = HttpUrlConnectionDataAgent.getInstance();
-                break;
-            case INIT_DATA_AGENT_OK_HTTP:
-                dataAgent = OkHttpDataAgent.getInstance();
-                break;
-            case INIT_DATA_AGENT_RETROFIT:
-                dataAgent = RetrofitDataAgent.getInstance();
-                break;
-        }
-    }
+
 
     public List<AttractionVO> getAttractionList() {
         return mAttractionList;

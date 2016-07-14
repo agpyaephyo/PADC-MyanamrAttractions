@@ -32,4 +32,19 @@
     <string name="msg_enter_password_register">Password တစ္ခုု သတ္မွတ္ေပးပါ</string>
     <string name="msg_date_of_birth">မိတ္ေဆြ ရဲ့ ေမြးေန့</string>
     <string name="msg_select_your_current_residing_country">မိတ္ေဆြ လက္ရွိေနထိုုင္ေသာ Country အား ေရြးခ်ယ္ပါ</string>
+
+    <string name="error_missing_name">Need to enter your name</string>
+    <string name="error_missing_email">Need to enter your email address</string>
+    <string name="error_missing_password">Need to put a password for Gita App</string>
+    <string name="error_missing_date_of_birth">Need to select your date of birth.</string>
+    <string name="error_email_is_not_valid">Your email doesn\'t seem valid. Please check.</string>
+
+    <string name="confirm_yes">ေသခ်ာပါသည္</string>
+    <string name="confirm_no">မျပဳလုပ္ေတာ့ပါ</string>
+    <string name="confirm_ok">ေကာင္းပါျပီ</string>
+    <string name="confirm_recover_password">Recover Password</string>
+    <string name="confirm_try_again">Try Again</string>
+    <string name="confirm_request_new_otp">Request New OTP</string>
+
+    <string name="msg_welcome_new_user">အခုုလိုု က်ြန္ေတာ္တိုု့ Myanmar Attraction App ေလးမွာ Register လုုပ္တဲ့ အတြက္ ေက်းဇူးအမ်ားျကီးတင္ပါတယ္ ။ အခုုဆိုုရင္ မိတ္ေဆြစိတ္ျကိုုက္ Travel Destination မ်ားကိုု မွတ္သားနိုုင္ အသစ္ထပ္ထည့္နိုုင္ ေဝဖန္ အျကံျပဳနိုုင္ပါျပီ ။</string>
 </resources>

@@ -5,4 +5,5 @@ package xyz.aungpyaephyo.padc.myanmarattractions.data.agents;
  */
 public interface AttractionDataAgent {
     void loadAttractions();
+    void register(String name, String email, String password, String dateOfBirth, String countryOfOrigin);
 }

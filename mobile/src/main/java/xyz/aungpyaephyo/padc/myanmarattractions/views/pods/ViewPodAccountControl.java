@@ -10,6 +10,7 @@ import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
+import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 
 /**
  * Created by aung on 7/6/16.
@@ -39,12 +40,10 @@ public class ViewPodAccountControl extends FrameLayout {
         super.onFinishInflate();
         ButterKnife.bind(this, this);
 
-        /*
         EventBus eventBus = EventBus.getDefault();
         if (!eventBus.isRegistered(this)) {
             eventBus.register(this);
         }
-        */
 
         refreshUserLoginStatus();
     }
@@ -65,9 +64,7 @@ public class ViewPodAccountControl extends FrameLayout {
         vpLogoutUser.setController(logoutUserController);
     }
 
-    /*
-    public void onEventMainThread(UserEvent.RefreshLoginStatus event) {
+    public void onEventMainThread(DataEvent.RefreshUserLoginStatusEvent event) {
         refreshUserLoginStatus();
     }
-    */
 }

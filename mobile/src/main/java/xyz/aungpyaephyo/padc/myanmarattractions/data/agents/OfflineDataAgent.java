@@ -49,4 +49,9 @@ public class OfflineDataAgent implements AttractionDataAgent {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void register(String name, String email, String password, String dateOfBirth, String countryOfOrigin) {
+
+    }
 }

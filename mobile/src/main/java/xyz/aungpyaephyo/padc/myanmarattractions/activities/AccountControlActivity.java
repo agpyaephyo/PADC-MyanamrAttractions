@@ -1,5 +1,7 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.activities;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,27 +13,39 @@ import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.ControllerAccountControl;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
+import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
+import xyz.aungpyaephyo.padc.myanmarattractions.events.UserEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.LoginFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.RegisterFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.ScreenUtils;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.SecurityUtils;
 
 /**
  * Created by aung on 7/15/16.
  */
-public class AccountControlActivity extends AppCompatActivity {
+public class AccountControlActivity extends AppCompatActivity
+        implements ControllerAccountControl {
 
     public static final int NAVIGATE_TO_REGISTER = 1;
     public static final int NAVIGATE_TO_LOGIN = 2;
 
+    public static final int RC_ACCOUNT_CONTROL_REGISTER = 100;
+
     private static final String IE_NAVIGATE_TO = "IE_NAVIGATE_TO";
+
+    public static final String IR_IS_REGISTER_SUCCESS = "IR_IS_REGISTER_SUCCESS";
 
     @BindView(R.id.iv_background)
     ImageView ivBackground;
 
     private int mNavigateTo;
+    private ProgressDialog mProgressDialog;
 
     public static Intent newIntent(int navigateTo) {
         Intent intent = new Intent(MyanmarAttractionsApp.getContext(), AccountControlActivity.class);
@@ -75,5 +89,46 @@ public class AccountControlActivity extends AppCompatActivity {
                     .replace(R.id.fl_container, fragment)
                     .commit();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus eventBus = EventBus.getDefault();
+        if (!eventBus.isRegistered(this)) {
+            eventBus.register(this);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus eventBus = EventBus.getDefault();
+        eventBus.unregister(this);
+    }
+
+    @Override
+    public void onRegister(String name, String email, String password, String dateOfBirth, String country) {
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("Registering. Please wait.");
+        mProgressDialog.show();
+
+        password = SecurityUtils.encryptMD5(password);
+        UserModel.getInstance().register(name, email, password, dateOfBirth, country);
+    }
+
+    //Success Register
+    public void onEventMainThread(UserEvent.SuccessRegistrationEvent event) {
+        Intent returningIntent = new Intent();
+        returningIntent.putExtra(IR_IS_REGISTER_SUCCESS, true);
+        setResult(Activity.RESULT_OK, returningIntent);
+        finish();
+
+        mProgressDialog.dismiss();
+    }
+
+    //Failed to Register
+    public void onEventMainThread(UserEvent.FailedRegistrationEvent event) {
+        SharedDialog.promptMsgWithTheme(this, event.getMessage());
     }
 }

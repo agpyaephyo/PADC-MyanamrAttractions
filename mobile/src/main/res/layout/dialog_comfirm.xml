@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/accent"
+    android:paddingTop="@dimen/margin_medium_2"
+    android:paddingBottom="@dimen/margin_medium"
+    android:paddingLeft="@dimen/margin_medium"
+    android:paddingRight="@dimen/margin_medium">
+
+    <ImageView
+        android:id="@+id/iv_header_image"
+        android:layout_width="@dimen/dialog_header_image_size"
+        android:layout_height="@dimen/dialog_header_image_size"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:src="@drawable/ic_attraction_launcher_icon"
+        />
+
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+        android:id="@+id/tv_confirm_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_toRightOf="@id/iv_header_image"
+        android:textColor="@color/text_black_ish"
+        android:textSize="@dimen/text_regular_2x" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_confirm_msg"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:padding="@dimen/margin_medium">
+
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+            android:id="@+id/tv_confirm_no"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_button_height"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_small"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rounded_dialog_button"
+            android:paddingLeft="@dimen/margin_medium"
+            android:paddingRight="@dimen/margin_medium"
+            android:textColor="@color/text_black_ish"
+            android:textSize="14sp"
+            android:text="@string/confirm_no"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+            android:id="@+id/btn_confirm_yes"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_button_height"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_weight="1"
+            android:background="@drawable/bg_rounded_dialog_button"
+            android:paddingLeft="@dimen/margin_medium"
+            android:paddingRight="@dimen/margin_medium"
+            android:textColor="@color/text_black_ish"
+            android:textSize="14sp"
+            android:text="@string/confirm_yes"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

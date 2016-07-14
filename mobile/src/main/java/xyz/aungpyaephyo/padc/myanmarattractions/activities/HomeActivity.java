@@ -14,8 +14,11 @@ import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
+import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
+import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
@@ -24,7 +27,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodLogoutUser;
 
 public class HomeActivity extends AppCompatActivity
         implements AttractionViewHolder.ControllerAttractionItem,
-        ViewPodLogoutUser.LogoutUserController{
+        ViewPodLogoutUser.LogoutUserController {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -57,7 +60,7 @@ public class HomeActivity extends AppCompatActivity
         vpAccountControl = (ViewPodAccountControl) navigationView.getHeaderView(0);
         vpAccountControl.setLogoutUserController(this);
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fl_container, AttractionListFragment.newInstance())
                     .commit();
@@ -91,6 +94,22 @@ public class HomeActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == AccountControlActivity.RC_ACCOUNT_CONTROL_REGISTER) {
+            if (resultCode == RESULT_OK) {
+                boolean isRegisterSuccess = data.getBooleanExtra(AccountControlActivity.IR_IS_REGISTER_SUCCESS, false);
+                if (isRegisterSuccess) {
+                    SharedDialog.promptMsgWithTheme(this, getString(R.string.msg_welcome_new_user));
+
+                    DataEvent.RefreshUserLoginStatusEvent event = new DataEvent.RefreshUserLoginStatusEvent();
+                    EventBus.getDefault().postSticky(event);
+                }
+            }
+        }
+    }
+
+    @Override
     public void onTapAttraction(AttractionVO attraction, ImageView ivAttraction) {
         Intent intent = AttractionDetailActivity.newIntent(attraction.getTitle());
         startActivity(intent);
@@ -111,6 +130,6 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onTapRegister() {
         Intent intent = AccountControlActivity.newIntent(AccountControlActivity.NAVIGATE_TO_REGISTER);
-        startActivity(intent);
+        startActivityForResult(intent, AccountControlActivity.RC_ACCOUNT_CONTROL_REGISTER);
     }
 }
