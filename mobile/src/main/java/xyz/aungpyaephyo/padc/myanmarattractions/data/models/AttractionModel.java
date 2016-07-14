@@ -5,6 +5,7 @@ import android.support.v4.content.LocalBroadcastManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
@@ -90,6 +91,18 @@ public class AttractionModel {
 
     public void notifyErrorInLoadingAttractions(String message) {
 
+    }
+
+    public String getRandomAttractionImage() {
+        if (mAttractionList == null) {
+            return null;
+        }
+
+        Random random = new Random();
+        int randomInt = random.nextInt(mAttractionList.size());
+
+        AttractionVO attraction = mAttractionList.get(randomInt);
+        return attraction.getImages()[attraction.getImages().length-1];
     }
 
     private void broadcastAttractionLoadedWithLocalBroadcastManager() {
