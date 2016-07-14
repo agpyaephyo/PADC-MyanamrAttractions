@@ -16,6 +16,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.OkHttpDataAgent;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.retrofit.RetrofitDataAgent;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 
 /**
  * Created by aung on 7/6/16.
@@ -94,7 +95,7 @@ public class AttractionModel {
     }
 
     public String getRandomAttractionImage() {
-        if (mAttractionList == null) {
+        if (mAttractionList == null || mAttractionList.size() == 0) {
             return null;
         }
 
@@ -102,7 +103,7 @@ public class AttractionModel {
         int randomInt = random.nextInt(mAttractionList.size());
 
         AttractionVO attraction = mAttractionList.get(randomInt);
-        return attraction.getImages()[attraction.getImages().length-1];
+        return MyanmarAttractionsConstants.IMAGE_ROOT_DIR + attraction.getImages()[attraction.getImages().length - 1];
     }
 
     private void broadcastAttractionLoadedWithLocalBroadcastManager() {

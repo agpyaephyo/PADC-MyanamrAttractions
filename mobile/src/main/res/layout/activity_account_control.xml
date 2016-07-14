@@ -7,13 +7,17 @@
         android:id="@+id/iv_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/drawer_background"
         android:scaleType="centerCrop"
-        />
+        android:src="@drawable/drawer_background" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black_overlay" />
+        android:background="@color/black_overlay_light" />
+
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

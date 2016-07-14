@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+            android:id="@+id/lbl_registration_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/text_white_ish"
+            android:padding="@dimen/margin_medium_2"
+            android:background="?attr/colorPrimary"
+            android:drawableRight="@drawable/ic_clear_24dp"
+            android:drawablePadding="@dimen/margin_medium"
+            />
+
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
+            android:id="@+id/et_name"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:hint="@string/msg_enter_name"
+            android:textColorHint="@color/hint_secondary_text"
+            android:textSize="@dimen/text_regular_2x"
+            android:singleLine="true"
+            android:layout_below="@id/lbl_registration_title"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium_2"
+            android:layout_marginRight="@dimen/margin_medium_2">
+
+            <requestFocus />
+
+        </xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText>
+
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
+            android:id="@+id/et_email"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_regular_2x"
+            android:hint="@string/msg_enter_email"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/hint_secondary_text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_below="@id/et_name"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium_2"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            />
+
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
+            android:id="@+id/et_password"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_regular_2x"
+            android:hint="@string/msg_enter_password_register"
+            android:inputType="textPassword"
+            android:textColorHint="@color/hint_secondary_text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:drawableRight="@drawable/ic_visibility_24dp"
+            android:drawablePadding="@dimen/margin_medium"
+            android:layout_below="@id/et_email"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium_2"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            />
+
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+            android:id="@+id/tv_date_of_birth"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_regular_2x"
+            android:hint="@string/msg_date_of_birth"
+            android:textColor="@color/text_white_ish"
+            android:textColorHint="@color/hint_secondary_text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:background="@drawable/bg_rounded_input"
+            android:padding="@dimen/margin_medium"
+            android:layout_below="@id/et_password"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:layout_marginLeft="@dimen/margin_medium_2"
+            android:layout_marginRight="@dimen/margin_medium_2"
+            android:editable="false"
+            />
+
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+            android:id="@+id/lbl_current_residing_country"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:textColor="@color/hint_secondary_text"
+            android:text="@string/msg_select_your_current_residing_country"
+            android:layout_marginLeft="@dimen/margin_spinner_label"
+            android:layout_marginRight="@dimen/margin_spinner_label"
+            android:layout_below="@id/tv_date_of_birth"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            />
+
+        <Spinner
+            android:id="@+id/sp_country_list"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_current_residing_country"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginRight="@dimen/margin_medium"
+            />
+
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+            android:id="@+id/btn_register"
+            style="@style/AccentButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sp_country_list"
+            android:layout_margin="@dimen/margin_medium_2"
+            android:text="@string/lbl_register_action" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

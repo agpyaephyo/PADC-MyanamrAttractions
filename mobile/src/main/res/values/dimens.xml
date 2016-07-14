@@ -28,5 +28,8 @@
     <dimen name="user_profile_image_size">64dp</dimen>
     <dimen name="offset_status_bar_height">40dp</dimen>
     <dimen name="menu_header_height">220dp</dimen>
+    <dimen name="input_box_width">300dp</dimen>
+    <dimen name="bg_dialog_button_radius">4dp</dimen>
+    <dimen name="margin_spinner_label">21dp</dimen>
 
 </resources>

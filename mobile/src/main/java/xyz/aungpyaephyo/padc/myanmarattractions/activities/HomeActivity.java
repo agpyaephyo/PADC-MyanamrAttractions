@@ -110,6 +110,7 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onTapRegister() {
-
+        Intent intent = AccountControlActivity.newIntent(AccountControlActivity.NAVIGATE_TO_REGISTER);
+        startActivity(intent);
     }
 }
