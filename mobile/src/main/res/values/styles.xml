@@ -17,4 +17,20 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AttractionButton">
+        <item name="android:paddingLeft">@dimen/margin_medium_2</item>
+        <item name="android:paddingRight">@dimen/margin_medium_2</item>
+        <item name="android:textSize">@dimen/text_regular</item>
+        <item name="android:textColor">@color/text_white_ish</item>
+    </style>
+
+    <style name="PrimaryButton" parent="AttractionButton">
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+
+    </style>
+
+    <style name="AccentButton" parent="AttractionButton">
+        <item name="android:backgroundTint">@color/accent_dark</item>
+    </style>
+
 </resources>

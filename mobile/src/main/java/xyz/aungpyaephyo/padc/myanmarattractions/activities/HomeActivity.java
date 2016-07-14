@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -14,7 +16,12 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.util.Pair;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +33,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,15 +46,23 @@ import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.adapters.AttractionAdapter;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.persistence.AttractionsContract;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 
 public class HomeActivity extends AppCompatActivity
         implements AttractionViewHolder.ControllerAttractionItem,
         LoaderManager.LoaderCallbacks<Cursor> {
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+
+    @BindView(R.id.navigation_view)
+    NavigationView navigationView;
 
     @BindView(R.id.rv_attractions)
     RecyclerView rvAttractions;
@@ -76,6 +94,15 @@ public class HomeActivity extends AppCompatActivity
         ButterKnife.bind(this, this);
 
         setSupportActionBar(toolbar);
+
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_attraction_launcher_icon);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        Menu leftMenu = navigationView.getMenu();
+        MMFontUtils.applyMMFontToMenu(leftMenu);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,8 +137,12 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                return true;
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

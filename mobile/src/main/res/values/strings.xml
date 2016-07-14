@@ -6,5 +6,11 @@
 
     <string name="attraction_list_detail_transition_name">attraction_list_detail_transition_name</string>
     <string name="action_share">Share</string>
+    <string name="lbl_login">Login ၀င္ရန္</string>
+    <string name="lbl_register">Register ျပဳလုုပ္ရန္</string>
+    <string name="lbl_logout">Logout</string>
+    <string name="myanmar_attractions_recycler_view">ျမန္မာ့ အလွအပမ်ား (RecyclerView)</string>
+    <string name="myanmar_attractions_list_view">ျမန္မာ့ အလွအပမ်ား (ListView)</string>
+    <string name="myanmar_attractions_grid_view">ျမန္မာ့ အလွအပမ်ား (GridView)</string>
 
 </resources>
