@@ -44,8 +44,6 @@ public class ViewPodAccountControl extends FrameLayout {
         if (!eventBus.isRegistered(this)) {
             eventBus.register(this);
         }
-
-        refreshUserLoginStatus();
     }
 
     private void refreshUserLoginStatus() {
@@ -53,11 +51,9 @@ public class ViewPodAccountControl extends FrameLayout {
         vpLogoutUser.setVisibility(isUserLogin ? View.GONE : View.VISIBLE);
         vpLoginUser.setVisibility(isUserLogin ? View.VISIBLE : View.GONE);
 
-        /*
         if (isUserLogin) {
             vpLoginUser.setData(UserModel.getInstance().getLoginUser());
         }
-        */
     }
 
     public void setLogoutUserController(ViewPodLogoutUser.LogoutUserController logoutUserController) {

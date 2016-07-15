@@ -34,5 +34,6 @@
     <dimen name="dialog_header_image_size">22dp</dimen>
     <dimen name="dialog_button_height">35dp</dimen>
     <dimen name="pb_dimen">55dp</dimen>
+    <dimen name="login_user_name_margin_top">12dp</dimen>
 
 </resources>

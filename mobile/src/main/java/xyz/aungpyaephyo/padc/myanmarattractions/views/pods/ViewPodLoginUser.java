@@ -1,16 +1,23 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.views.pods;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.AttributeSet;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
 
 /**
  * Created by aung on 7/6/16.
@@ -23,11 +30,8 @@ public class ViewPodLoginUser extends RelativeLayout {
     @BindView(R.id.iv_profile)
     ImageView ivProfile;
 
-    @BindView(R.id.tv_username)
-    TextView tvUsername;
-
-    @BindView(R.id.tv_phone_number)
-    TextView tvPhoneNumber;
+    @BindView(R.id.tv_name)
+    TextView tvName;
 
     @BindView(R.id.tv_email)
     TextView tvEmail;
@@ -55,8 +59,8 @@ public class ViewPodLoginUser extends RelativeLayout {
 
     }
 
-    /*
     public void setData(UserVO loginUser) {
+        /*
         Glide.with(getContext())
                 .load(loginUser.getCoverImageUrl())
                 .centerCrop()
@@ -70,10 +74,22 @@ public class ViewPodLoginUser extends RelativeLayout {
                 .placeholder(R.drawable.dummy_avatar)
                 .error(R.drawable.dummy_avatar)
                 .into(ivProfile);
+        */
 
-        tvUsername.setText(loginUser.getName());
+        Glide.with(getContext())
+                .load(R.drawable.dummy_avatar)
+                .asBitmap().centerCrop()
+                .into(new BitmapImageViewTarget(ivProfile) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(ivProfile.getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        ivProfile.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
+
+        tvName.setText(loginUser.getName());
         tvEmail.setText(loginUser.getEmail());
-        tvPhoneNumber.setText(loginUser.getPhoneNumberDisplay());
     }
-    */
 }

@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
@@ -65,6 +66,8 @@ public class HomeActivity extends AppCompatActivity
                     .replace(R.id.fl_container, AttractionListFragment.newInstance())
                     .commit();
         }
+
+        UserModel.getInstance().init();
     }
 
     @Override

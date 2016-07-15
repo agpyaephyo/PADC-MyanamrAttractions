@@ -1,6 +1,10 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.data.models;
 
+import java.util.Date;
+
+import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
+import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.UserEvent;
 
 /**
@@ -14,6 +18,15 @@ public class UserModel extends BaseModel {
 
     private UserModel() {
         super();
+    }
+
+    public void init() {
+        loginUser = UserVO.loadLoginUser();
+
+        if (loginUser != null) {
+            DataEvent.RefreshUserLoginStatusEvent event = new DataEvent.RefreshUserLoginStatusEvent();
+            EventBus.getDefault().postSticky(event);
+        }
     }
 
     public static UserModel getInstance() {
@@ -34,12 +47,18 @@ public class UserModel extends BaseModel {
     //Success Register
     public void onEventMainThread(UserEvent.SuccessRegistrationEvent event) {
         loginUser = event.getLoginUser();
+        loginUser.setRegisteredDate(new Date());
 
-        //TODO Persist login user object.
+        //Persist login user object.
+        loginUser.saveLoginUser();
     }
 
     //Failed to Register
     public void onEventMainThread(UserEvent.FailedRegistrationEvent event) {
         //Do nothing on persistent layer.
+    }
+
+    public UserVO getLoginUser() {
+        return loginUser;
     }
 }

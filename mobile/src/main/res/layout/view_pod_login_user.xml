@@ -27,11 +27,11 @@
         android:src="@drawable/dummy_avatar" />
 
     <TextView
-        android:id="@+id/tv_username"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/iv_profile"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginTop="@dimen/login_user_name_margin_top"
         android:layout_marginRight="@dimen/margin_small"
         android:layout_toRightOf="@+id/iv_profile"
         android:ellipsize="end"
@@ -40,22 +40,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <TextView
-        android:id="@+id/tv_phone_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_username"
-        android:layout_toRightOf="@+id/iv_profile"
-        android:layout_marginRight="@dimen/margin_small"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="+959783499931"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-    <TextView
         android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_phone_number"
+        android:layout_below="@id/tv_name"
         android:layout_toRightOf="@+id/iv_profile"
         android:layout_marginRight="@dimen/margin_small"
         android:ellipsize="end"
