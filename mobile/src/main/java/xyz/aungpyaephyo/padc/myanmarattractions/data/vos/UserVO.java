@@ -110,6 +110,7 @@ public class UserVO {
         ContentValues cv = parseToContentValues();
         Context context = MyanmarAttractionsApp.getContext();
         Uri insertedUri = context.getContentResolver().insert(AttractionsContract.LoginUserEntry.CONTENT_URI, cv);
+
         Log.d(MyanmarAttractionsApp.TAG, "Login User Inserted Uri : " + insertedUri);
     }
 
@@ -147,5 +148,12 @@ public class UserVO {
         cv.put(AttractionsContract.LoginUserEntry.COLUMN_REGISTERED_DATE, registeredDateText);
         cv.put(AttractionsContract.LoginUserEntry.COLUMN_LAST_USED_DATE, lastUsedDate);
         return cv;
+    }
+
+    public void clearData() {
+        Context context = MyanmarAttractionsApp.getContext();
+        int deletedRowCount = context.getContentResolver().delete(AttractionsContract.LoginUserEntry.CONTENT_URI, null, null);
+
+        Log.d(MyanmarAttractionsApp.TAG, "User clearData - deletedRowCount : " + deletedRowCount);
     }
 }

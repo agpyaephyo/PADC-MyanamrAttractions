@@ -17,12 +17,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.BaseController;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserController;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.ViewController;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
+import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 
 /**
  * Created by aung on 7/6/16.
  */
-public class ViewPodLoginUser extends RelativeLayout {
+public class ViewPodLoginUser extends RelativeLayout implements ViewController {
 
     @BindView(R.id.iv_profile_cover)
     ImageView ivProfileCover;
@@ -35,6 +40,8 @@ public class ViewPodLoginUser extends RelativeLayout {
 
     @BindView(R.id.tv_email)
     TextView tvEmail;
+
+    private UserController mController;
 
     public ViewPodLoginUser(Context context) {
         super(context);
@@ -52,11 +59,6 @@ public class ViewPodLoginUser extends RelativeLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         ButterKnife.bind(this, this);
-    }
-
-    @OnClick(R.id.btn_logout)
-    public void onTapLogout(Button btnLogout) {
-
     }
 
     public void setData(UserVO loginUser) {
@@ -91,5 +93,15 @@ public class ViewPodLoginUser extends RelativeLayout {
 
         tvName.setText(loginUser.getName());
         tvEmail.setText(loginUser.getEmail());
+    }
+
+    @Override
+    public void setController(BaseController controller) {
+        mController = (UserController) controller;
+    }
+
+    @OnClick(R.id.btn_logout)
+    public void onTapLogout(Button btnLogout) {
+        mController.onTapLogout();
     }
 }

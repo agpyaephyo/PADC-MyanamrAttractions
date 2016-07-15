@@ -9,6 +9,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.BaseController;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserController;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.ViewController;
 
 /**
@@ -16,7 +18,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.controllers.ViewController;
  */
 public class ViewPodLogoutUser extends RelativeLayout implements ViewController {
 
-    private LogoutUserController mController;
+    private UserController mController;
 
     public ViewPodLogoutUser(Context context) {
         super(context);
@@ -48,12 +50,6 @@ public class ViewPodLogoutUser extends RelativeLayout implements ViewController 
 
     @Override
     public void setController(BaseController controller) {
-        mController = (LogoutUserController) controller;
-    }
-
-    public interface LogoutUserController extends BaseController {
-        void onTapLogin();
-
-        void onTapRegister();
+        mController = (UserController) controller;
     }
 }

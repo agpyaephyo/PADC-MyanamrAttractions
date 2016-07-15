@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserController;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
@@ -24,11 +25,10 @@ import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodAccountControl;
-import xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodLogoutUser;
 
 public class HomeActivity extends AppCompatActivity
         implements AttractionViewHolder.ControllerAttractionItem,
-        ViewPodLogoutUser.LogoutUserController {
+        UserController {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -59,7 +59,7 @@ public class HomeActivity extends AppCompatActivity
         MMFontUtils.applyMMFontToMenu(leftMenu);
 
         vpAccountControl = (ViewPodAccountControl) navigationView.getHeaderView(0);
-        vpAccountControl.setLogoutUserController(this);
+        vpAccountControl.setUserController(this);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -134,5 +134,20 @@ public class HomeActivity extends AppCompatActivity
     public void onTapRegister() {
         Intent intent = AccountControlActivity.newIntent(AccountControlActivity.NAVIGATE_TO_REGISTER);
         startActivityForResult(intent, AccountControlActivity.RC_ACCOUNT_CONTROL_REGISTER);
+    }
+
+    @Override
+    public void onTapLogout() {
+        SharedDialog.confirmYesNoWithTheme(this, getString(R.string.msg_confirm_logout), new SharedDialog.YesNoConfirmDelegate() {
+            @Override
+            public void onConfirmYes() {
+                UserModel.getInstance().logout();
+            }
+
+            @Override
+            public void onConfirmNo() {
+
+            }
+        });
     }
 }

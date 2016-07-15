@@ -9,6 +9,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserController;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 
@@ -56,8 +58,9 @@ public class ViewPodAccountControl extends FrameLayout {
         }
     }
 
-    public void setLogoutUserController(ViewPodLogoutUser.LogoutUserController logoutUserController) {
-        vpLogoutUser.setController(logoutUserController);
+    public void setUserController(UserController userController) {
+        vpLogoutUser.setController(userController);
+        vpLoginUser.setController(userController);
     }
 
     public void onEventMainThread(DataEvent.RefreshUserLoginStatusEvent event) {

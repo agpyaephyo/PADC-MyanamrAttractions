@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/accent"
-    android:paddingTop="@dimen/margin_medium_2"
     android:paddingBottom="@dimen/margin_medium"
     android:paddingLeft="@dimen/margin_medium"
-    android:paddingRight="@dimen/margin_medium">
+    android:paddingRight="@dimen/margin_medium"
+    android:paddingTop="@dimen/margin_medium_2">
 
     <ImageView
         android:id="@+id/iv_header_image"
@@ -15,8 +15,7 @@
         android:layout_marginLeft="@dimen/margin_medium"
         android:layout_marginRight="@dimen/margin_medium"
         android:layout_marginTop="@dimen/margin_medium"
-        android:src="@drawable/ic_attraction_launcher_icon"
-        />
+        android:src="@drawable/ic_attraction_launcher_icon" />
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
         android:id="@+id/tv_confirm_msg"
@@ -43,14 +42,13 @@
             android:layout_marginRight="@dimen/margin_small"
             android:layout_weight="1"
             android:background="@drawable/bg_rounded_dialog_button"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:paddingLeft="@dimen/margin_medium"
             android:paddingRight="@dimen/margin_medium"
-            android:textColor="@color/text_black_ish"
-            android:textSize="14sp"
             android:text="@string/confirm_no"
-            android:maxLines="1"
-            android:ellipsize="end"
-            />
+            android:textColor="@color/text_black_ish"
+            android:textSize="14sp" />
 
         <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
             android:id="@+id/btn_confirm_yes"
@@ -60,14 +58,13 @@
             android:layout_marginRight="@dimen/margin_medium"
             android:layout_weight="1"
             android:background="@drawable/bg_rounded_dialog_button"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:paddingLeft="@dimen/margin_medium"
             android:paddingRight="@dimen/margin_medium"
-            android:textColor="@color/text_black_ish"
-            android:textSize="14sp"
             android:text="@string/confirm_yes"
-            android:maxLines="1"
-            android:ellipsize="end"
-            />
+            android:textColor="@color/text_black_ish"
+            android:textSize="14sp" />
 
     </LinearLayout>
 

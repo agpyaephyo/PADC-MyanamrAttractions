@@ -61,4 +61,12 @@ public class UserModel extends BaseModel {
     public UserVO getLoginUser() {
         return loginUser;
     }
+
+    public void logout() {
+        loginUser.clearData();
+        loginUser = null;
+
+        DataEvent.RefreshUserLoginStatusEvent event = new DataEvent.RefreshUserLoginStatusEvent();
+        EventBus.getDefault().postSticky(event);
+    }
 }

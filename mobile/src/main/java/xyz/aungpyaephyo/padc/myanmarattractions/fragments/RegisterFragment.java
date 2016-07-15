@@ -27,7 +27,7 @@ import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.adapters.CountryListAdapter;
-import xyz.aungpyaephyo.padc.myanmarattractions.controllers.ControllerAccountControl;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.PasswordVisibilityListener;
@@ -56,7 +56,7 @@ public class RegisterFragment extends Fragment {
     Spinner spCountryList;
 
     private CountryListAdapter mCountryListAdapter;
-    private ControllerAccountControl mControllerAccountControl;
+    private UserSessionController mUserSessionController;
 
     public static RegisterFragment newInstance() {
         RegisterFragment fragment = new RegisterFragment();
@@ -66,7 +66,7 @@ public class RegisterFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mControllerAccountControl = (ControllerAccountControl) context;
+        mUserSessionController = (UserSessionController) context;
     }
 
     @Override
@@ -156,7 +156,7 @@ public class RegisterFragment extends Fragment {
             etEmail.setError(getString(R.string.error_email_is_not_valid));
         } else {
             //Checking on client side is done here.
-            mControllerAccountControl.onRegister(name, email, password, dateOfBith, country);
+            mUserSessionController.onRegister(name, email, password, dateOfBith, country);
         }
 
     }

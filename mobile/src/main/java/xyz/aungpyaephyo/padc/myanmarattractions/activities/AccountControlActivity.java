@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
-import xyz.aungpyaephyo.padc.myanmarattractions.controllers.ControllerAccountControl;
+import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
@@ -30,7 +30,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.SecurityUtils;
  * Created by aung on 7/15/16.
  */
 public class AccountControlActivity extends AppCompatActivity
-        implements ControllerAccountControl {
+        implements UserSessionController {
 
     public static final int NAVIGATE_TO_REGISTER = 1;
     public static final int NAVIGATE_TO_LOGIN = 2;

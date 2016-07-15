@@ -31,9 +31,10 @@
     <dimen name="input_box_width">300dp</dimen>
     <dimen name="bg_dialog_button_radius">4dp</dimen>
     <dimen name="margin_spinner_label">21dp</dimen>
-    <dimen name="dialog_header_image_size">22dp</dimen>
+    <dimen name="dialog_header_image_size">48dp</dimen>
     <dimen name="dialog_button_height">35dp</dimen>
     <dimen name="pb_dimen">55dp</dimen>
     <dimen name="login_user_name_margin_top">12dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
 
 </resources>
