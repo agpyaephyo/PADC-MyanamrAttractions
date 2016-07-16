@@ -10,6 +10,7 @@ public class MyanmarAttractionsConstants {
     public static final String ATTRACTION_BASE_URL = "http://www.aungpyaephyo.xyz/myanmar_attractions/";
     public static final String API_GET_ATTRACTION_LIST = "getAttractionsList.php";
     public static final String API_REGISTER = "register.php";
+    public static final String API_LOGIN = "login.php";
 
     public static final String PARAM_ACCESS_TOKEN = "access_token";
 

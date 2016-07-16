@@ -41,6 +41,7 @@ public class AccountControlActivity extends AppCompatActivity
     private static final String IE_NAVIGATE_TO = "IE_NAVIGATE_TO";
 
     public static final String IR_IS_REGISTER_SUCCESS = "IR_IS_REGISTER_SUCCESS";
+    public static final String IR_IS_LOGIN_SUCCESS = "IR_IS_LOGIN_SUCCESS";
 
     @BindView(R.id.iv_background)
     ImageView ivBackground;
@@ -141,11 +142,28 @@ public class AccountControlActivity extends AppCompatActivity
         setResult(Activity.RESULT_OK, returningIntent);
         finish();
 
-        mProgressDialog.dismiss();
+        if(mProgressDialog.isShowing())
+            mProgressDialog.dismiss();
     }
 
     //Failed to Register
     public void onEventMainThread(UserEvent.FailedRegistrationEvent event) {
+        SharedDialog.promptMsgWithTheme(this, event.getMessage());
+    }
+
+    //Success Login
+    public void onEventMainThread(UserEvent.SuccessLoginEvent event) {
+        Intent returningIntent = new Intent();
+        returningIntent.putExtra(IR_IS_LOGIN_SUCCESS, true);
+        setResult(Activity.RESULT_OK, returningIntent);
+        finish();
+
+        if(mProgressDialog.isShowing())
+            mProgressDialog.dismiss();
+    }
+
+    //Failed to Login
+    public void onEventMainThread(UserEvent.FailedLoginEvent event) {
         SharedDialog.promptMsgWithTheme(this, event.getMessage());
     }
 }

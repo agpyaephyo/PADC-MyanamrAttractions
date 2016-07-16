@@ -135,6 +135,11 @@ public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
 
     }
 
+    @Override
+    public void login(String email, String password) {
+
+    }
+
     private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;

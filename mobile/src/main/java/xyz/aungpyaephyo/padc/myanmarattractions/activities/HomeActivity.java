@@ -1,5 +1,6 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.activities;
 
+import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -119,6 +120,11 @@ public class HomeActivity extends AppCompatActivity
                 if (isRegisterSuccess) {
                     SharedDialog.promptMsgWithTheme(this, getString(R.string.msg_welcome_new_user));
                 }
+            } else if (requestCode == AccountControlActivity.RC_ACCOUNT_CONTROL_LOGIN) {
+                boolean isLoginSuccess = data.getBooleanExtra(AccountControlActivity.IR_IS_LOGIN_SUCCESS, false);
+                if (isLoginSuccess) {
+                    SharedDialog.promptMsgWithTheme(this, getString(R.string.msg_welcome_returning_user));
+                }
             }
 
             DataEvent.RefreshUserLoginStatusEvent event = new DataEvent.RefreshUserLoginStatusEvent();
@@ -142,7 +148,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onTapLogin() {
         Intent intent = AccountControlActivity.newIntent(AccountControlActivity.NAVIGATE_TO_LOGIN);
-        startActivityForResult(intent, AccountControlActivity.RC_ACCOUNT_CONTROL_REGISTER);
+        startActivityForResult(intent, AccountControlActivity.RC_ACCOUNT_CONTROL_LOGIN);
     }
 
     @Override

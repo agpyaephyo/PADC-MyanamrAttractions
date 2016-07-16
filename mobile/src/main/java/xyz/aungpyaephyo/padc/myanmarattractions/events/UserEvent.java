@@ -29,4 +29,28 @@ public class UserEvent {
             return message;
         }
     }
+
+    public static class SuccessLoginEvent {
+        private UserVO loginUser;
+
+        public SuccessLoginEvent(UserVO loginUser) {
+            this.loginUser = loginUser;
+        }
+
+        public UserVO getLoginUser() {
+            return loginUser;
+        }
+    }
+
+    public static class FailedLoginEvent {
+        private String message;
+
+        public FailedLoginEvent(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
 }

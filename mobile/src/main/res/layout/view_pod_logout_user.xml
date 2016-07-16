@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/btn_register"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/margin_medium_2"
+        android:layout_marginBottom="@dimen/margin_medium"
         android:layout_marginRight="@dimen/margin_medium_2"
         android:text="@string/lbl_login" />
 

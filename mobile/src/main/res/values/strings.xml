@@ -49,6 +49,8 @@
     <string name="confirm_request_new_otp">Request New OTP</string>
 
     <string name="msg_welcome_new_user">အခုုလိုု က်ြန္ေတာ္တိုု့ ျမန္မာ့့ အလွ Mobile App ေလးမွာ Register လုုပ္တဲ့ အတြက္ ေက်းဇူးအမ်ားျကီးတင္ပါတယ္ ။ အခုုဆိုုရင္ မိတ္ေဆြစိတ္ျကိုုက္ Travel Destination မ်ားကိုု မွတ္သားနိုုင္ အသစ္ထပ္ထည့္နိုုင္ ေဝဖန္ အျကံျပဳနိုုင္ပါျပီ ။</string>
+    <string name="msg_welcome_returning_user"><b> ျမန္မာ့ အလွ </b> မွ ျပန္လည္ ျကိုုဆိုုပါတယ္ မိတ္ေဆြ</string>
+
     <string name="msg_confirm_logout">ျမန္မာ့ အလွ Mobile App မွ Logout ျပဳလုုပ္ရန္ ေသခ်ာပါသလား</string>
     <string name="lbl_login_action">Login</string>
 

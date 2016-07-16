@@ -57,7 +57,7 @@ public class UserModel extends BaseModel {
     }
 
     public void login(String email, String password) {
-        
+        dataAgent.login(email, password);
     }
 
     //Success Register
@@ -71,6 +71,19 @@ public class UserModel extends BaseModel {
 
     //Failed to Register
     public void onEventMainThread(UserEvent.FailedRegistrationEvent event) {
+        //Do nothing on persistent layer.
+    }
+
+    //Success Login
+    public void onEventMainThread(UserEvent.SuccessLoginEvent event) {
+        loginUser = event.getLoginUser();
+
+        //Persist login user object.
+        loginUser.saveLoginUser();
+    }
+
+    //Failed to Login
+    public void onEventMainThread(UserEvent.FailedLoginEvent event) {
         //Do nothing on persistent layer.
     }
 }

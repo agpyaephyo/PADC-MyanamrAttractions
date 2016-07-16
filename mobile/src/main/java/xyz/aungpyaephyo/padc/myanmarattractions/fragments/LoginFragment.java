@@ -19,6 +19,7 @@ import butterknife.OnClick;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.CommonUtils;
+import xyz.aungpyaephyo.padc.myanmarattractions.views.PasswordVisibilityListener;
 
 /**
  * Created by aung on 7/15/16.
@@ -62,6 +63,8 @@ public class LoginFragment extends Fragment {
         lblNavigateToRegister.setText(Html.fromHtml(getString(R.string.lbl_navigate_to_register)));
 
         lblLoginTitle.setText(Html.fromHtml(getString(R.string.lbl_login_title)));
+
+        etPassword.setOnTouchListener(new PasswordVisibilityListener());
 
         return rootView;
     }

@@ -37,7 +37,9 @@ public class UserVO {
     @SerializedName("country_of_origin")
     private String countryOfOrigin;
 
+    @SerializedName("registered_date")
     private String registeredDateText; //YYYY-MM-dd
+
     private String lastUsedDate;
 
     public String getName() {

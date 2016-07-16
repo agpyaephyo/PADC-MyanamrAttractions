@@ -90,4 +90,9 @@ public class OkHttpDataAgent implements AttractionDataAgent {
     public void register(String name, String email, String password, String dateOfBirth, String countryOfOrigin) {
 
     }
+
+    @Override
+    public void login(String email, String password) {
+
+    }
 }

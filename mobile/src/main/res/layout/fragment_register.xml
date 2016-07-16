@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF">
+    android:background="@android:color/white">
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
         android:id="@+id/lbl_registration_title"
@@ -26,7 +26,8 @@
         android:hint="@string/msg_enter_name"
         android:singleLine="true"
         android:textColorHint="@color/hint_secondary_text"
-        android:textSize="@dimen/text_regular_2x">
+        android:textSize="@dimen/text_regular_2x"
+        android:backgroundTint="?attr/colorAccent">
 
         <requestFocus />
 
@@ -45,7 +46,9 @@
         android:maxLines="1"
         android:singleLine="true"
         android:textColorHint="@color/hint_secondary_text"
-        android:textSize="@dimen/text_regular_2x" />
+        android:textSize="@dimen/text_regular_2x"
+        android:backgroundTint="?attr/colorAccent"
+        />
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
         android:id="@+id/et_password"
@@ -62,7 +65,9 @@
         android:maxLines="1"
         android:singleLine="true"
         android:textColorHint="@color/hint_secondary_text"
-        android:textSize="@dimen/text_regular_2x" />
+        android:textSize="@dimen/text_regular_2x"
+        android:backgroundTint="?attr/colorAccent"
+        />
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
         android:id="@+id/tv_date_of_birth"
