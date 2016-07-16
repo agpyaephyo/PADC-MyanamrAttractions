@@ -10,6 +10,7 @@ import android.view.SubMenu;
 import android.widget.TextView;
 
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
+import xyz.aungpyaephyo.padc.myanmarattractions.components.CustomTypefaceSpan;
 
 /**
  * Created by aung on 6/25/16.

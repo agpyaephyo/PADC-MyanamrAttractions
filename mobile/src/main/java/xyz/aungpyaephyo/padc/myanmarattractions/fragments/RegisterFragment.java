@@ -29,6 +29,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.adapters.CountryListAdapter;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.CommonUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.PasswordVisibilityListener;
 
@@ -151,7 +152,7 @@ public class RegisterFragment extends Fragment {
             if (TextUtils.isEmpty(dateOfBith)) {
                 tvDateOfBirth.setError(getString(R.string.error_missing_date_of_birth));
             }
-        } else if (!isEmailValid(email)) {
+        } else if (!CommonUtils.isEmailValid(email)) {
             //Email address is not in the right format.
             etEmail.setError(getString(R.string.error_email_is_not_valid));
         } else {
@@ -159,15 +160,6 @@ public class RegisterFragment extends Fragment {
             mUserSessionController.onRegister(name, email, password, dateOfBith, country);
         }
 
-    }
-
-    public boolean isEmailValid(String email) {
-        Pattern pattern = Pattern.compile(MyanmarAttractionsConstants.EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-        if (matcher.matches()) {
-            return true;
-        }
-        return false;
     }
 
     //Success Register

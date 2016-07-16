@@ -7,8 +7,6 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -42,13 +40,10 @@ import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHold
  * Created by aung on 7/15/16.
  */
 public class AttractionListFragment extends Fragment
-        implements LoaderManager.LoaderCallbacks<Cursor>{
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @BindView(R.id.rv_attractions)
     RecyclerView rvAttractions;
-
-    @BindView(R.id.fab_search)
-    FloatingActionButton fabSearch;
 
     private AttractionAdapter mAttractionAdapter;
     private AttractionViewHolder.ControllerAttractionItem controllerAttractionItem;
@@ -80,14 +75,6 @@ public class AttractionListFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_attraction_list, container, false);
         ButterKnife.bind(this, rootView);
-
-        fabSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         List<AttractionVO> attractionList = AttractionModel.getInstance().getAttractionList();
         mAttractionAdapter = new AttractionAdapter(attractionList, controllerAttractionItem);
@@ -148,6 +135,8 @@ public class AttractionListFragment extends Fragment
 
         Log.d(MyanmarAttractionsApp.TAG, "Retrieved attractions : " + attractionList.size());
         mAttractionAdapter.setNewData(attractionList);
+
+        AttractionModel.getInstance().setStoredData(attractionList);
     }
 
     @Override

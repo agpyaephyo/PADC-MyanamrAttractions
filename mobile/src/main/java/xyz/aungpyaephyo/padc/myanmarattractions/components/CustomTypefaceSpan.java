@@ -1,4 +1,4 @@
-package xyz.aungpyaephyo.padc.myanmarattractions.utils;
+package xyz.aungpyaephyo.padc.myanmarattractions.components;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;

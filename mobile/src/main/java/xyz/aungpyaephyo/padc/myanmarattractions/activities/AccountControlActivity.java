@@ -36,6 +36,7 @@ public class AccountControlActivity extends AppCompatActivity
     public static final int NAVIGATE_TO_LOGIN = 2;
 
     public static final int RC_ACCOUNT_CONTROL_REGISTER = 100;
+    public static final int RC_ACCOUNT_CONTROL_LOGIN = 100;
 
     private static final String IE_NAVIGATE_TO = "IE_NAVIGATE_TO";
 
@@ -60,7 +61,7 @@ public class AccountControlActivity extends AppCompatActivity
         ScreenUtils.setStatusbarColor(R.color.primary_dark, this);
         ButterKnife.bind(this, this);
 
-        mNavigateTo = getIntent().getIntExtra(IE_NAVIGATE_TO, NAVIGATE_TO_REGISTER);
+        mNavigateTo = getIntent().getIntExtra(IE_NAVIGATE_TO, NAVIGATE_TO_LOGIN);
 
         String randomBackgroundImgUrl = AttractionModel.getInstance().getRandomAttractionImage();
         if (randomBackgroundImgUrl != null) {
@@ -109,12 +110,28 @@ public class AccountControlActivity extends AppCompatActivity
 
     @Override
     public void onRegister(String name, String email, String password, String dateOfBirth, String country) {
-        mProgressDialog = new ProgressDialog(this);
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+        }
+
         mProgressDialog.setMessage("Registering. Please wait.");
         mProgressDialog.show();
 
         password = SecurityUtils.encryptMD5(password);
         UserModel.getInstance().register(name, email, password, dateOfBirth, country);
+    }
+
+    @Override
+    public void onLogin(String email, String password) {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+        }
+
+        mProgressDialog.setMessage("Logging In. Please wait.");
+        mProgressDialog.show();
+
+        password = SecurityUtils.encryptMD5(password);
+        UserModel.getInstance().login(email, password);
     }
 
     //Success Register

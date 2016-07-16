@@ -14,6 +14,7 @@
     <string name="myanmar_attractions_list_view">ျမန္မာ့ အလွအပမ်ား (ListView)</string>
     <string name="myanmar_attractions_grid_view">ျမန္မာ့ အလွအပမ်ား (GridView)</string>
     <string name="lbl_registration_title"><![CDATA[<b> ျမန္မာ့ အလွ </b>တြင္ စိတ္ျကိုုက္ပါဝင္နိုုင္ရန္ ေအာက္ပါ တိုု့ကိုု ျဖည့္စြက္၍ Register ျပဳလုုပ္ပါ ။]]></string>
+    <string name="lbl_login_title"><![CDATA[လြန္ခဲ့ေသာ ၃ ရက္အတြင္း <b> ျမန္မာ့ အလွ</b> သိုု့ Travel Destination ၇ ခုု အသစ္ေရာက္ရွိလာပါသည္ ]]></string>
 
     <string-array name="current_residing_country">
         <item>Myanmar</item>
@@ -29,6 +30,7 @@
 
     <string name="msg_enter_name">မိတ္ေဆြရဲ့ အမည္</string>
     <string name="msg_enter_email">မိတ္ေဆြရဲ့ email</string>
+    <string name="msg_enter_password">မိတ္ေဆြရဲ့ Password</string>
     <string name="msg_enter_password_register">Password တစ္ခုု သတ္မွတ္ေပးပါ</string>
     <string name="msg_date_of_birth">မိတ္ေဆြ ရဲ့ ေမြးေန့</string>
     <string name="msg_select_your_current_residing_country">မိတ္ေဆြ လက္ရွိေနထိုုင္ေသာ Country အား ေရြးခ်ယ္ပါ</string>
@@ -48,4 +50,13 @@
 
     <string name="msg_welcome_new_user">အခုုလိုု က်ြန္ေတာ္တိုု့ ျမန္မာ့့ အလွ Mobile App ေလးမွာ Register လုုပ္တဲ့ အတြက္ ေက်းဇူးအမ်ားျကီးတင္ပါတယ္ ။ အခုုဆိုုရင္ မိတ္ေဆြစိတ္ျကိုုက္ Travel Destination မ်ားကိုု မွတ္သားနိုုင္ အသစ္ထပ္ထည့္နိုုင္ ေဝဖန္ အျကံျပဳနိုုင္ပါျပီ ။</string>
     <string name="msg_confirm_logout">ျမန္မာ့ အလွ Mobile App မွ Logout ျပဳလုုပ္ရန္ ေသခ်ာပါသလား</string>
+    <string name="lbl_login_action">Login</string>
+
+    <string name="lbl_recover_password"><![CDATA[<u>Password ေမ့သြားလိုု့လား</u>]]></string>
+    <string name="lbl_navigate_to_register"><![CDATA[<u>Register မလုုပ္ရေသးပါက ျပဳလုုပ္ရန္</u>]]></string>
+
+    <string name="error_missing_email_login">Need to enter the email address you used to register.</string>
+    <string name="error_missing_password_login">Need to enter the password.</string>
+
+
 </resources>

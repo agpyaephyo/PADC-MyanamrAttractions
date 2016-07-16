@@ -36,6 +36,8 @@
             android:name=".activities.AccountControlActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
+
+
         </activity>
         
         <provider

@@ -40,8 +40,24 @@ public class UserModel extends BaseModel {
         return loginUser != null;
     }
 
+    public UserVO getLoginUser() {
+        return loginUser;
+    }
+
     public void register(String name, String email, String password, String dateOfBirth, String country) {
         dataAgent.register(name, email, password, dateOfBirth, country);
+    }
+
+    public void logout() {
+        loginUser.clearData();
+        loginUser = null;
+
+        DataEvent.RefreshUserLoginStatusEvent event = new DataEvent.RefreshUserLoginStatusEvent();
+        EventBus.getDefault().postSticky(event);
+    }
+
+    public void login(String email, String password) {
+        
     }
 
     //Success Register
@@ -56,17 +72,5 @@ public class UserModel extends BaseModel {
     //Failed to Register
     public void onEventMainThread(UserEvent.FailedRegistrationEvent event) {
         //Do nothing on persistent layer.
-    }
-
-    public UserVO getLoginUser() {
-        return loginUser;
-    }
-
-    public void logout() {
-        loginUser.clearData();
-        loginUser = null;
-
-        DataEvent.RefreshUserLoginStatusEvent event = new DataEvent.RefreshUserLoginStatusEvent();
-        EventBus.getDefault().postSticky(event);
     }
 }

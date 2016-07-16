@@ -2,7 +2,9 @@ package xyz.aungpyaephyo.padc.myanmarattractions.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -10,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import butterknife.BindView;
@@ -39,6 +42,9 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
+    @BindView(R.id.fab_search)
+    FloatingActionButton fabSearch;
+
     private ViewPodAccountControl vpAccountControl;
 
     @Override
@@ -60,6 +66,14 @@ public class HomeActivity extends AppCompatActivity
 
         vpAccountControl = (ViewPodAccountControl) navigationView.getHeaderView(0);
         vpAccountControl.setUserController(this);
+
+        fabSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -99,16 +113,16 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == AccountControlActivity.RC_ACCOUNT_CONTROL_REGISTER) {
-            if (resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == AccountControlActivity.RC_ACCOUNT_CONTROL_REGISTER) {
                 boolean isRegisterSuccess = data.getBooleanExtra(AccountControlActivity.IR_IS_REGISTER_SUCCESS, false);
                 if (isRegisterSuccess) {
                     SharedDialog.promptMsgWithTheme(this, getString(R.string.msg_welcome_new_user));
-
-                    DataEvent.RefreshUserLoginStatusEvent event = new DataEvent.RefreshUserLoginStatusEvent();
-                    EventBus.getDefault().postSticky(event);
                 }
             }
+
+            DataEvent.RefreshUserLoginStatusEvent event = new DataEvent.RefreshUserLoginStatusEvent();
+            EventBus.getDefault().post(event);
         }
     }
 
@@ -127,13 +141,14 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onTapLogin() {
-
+        Intent intent = AccountControlActivity.newIntent(AccountControlActivity.NAVIGATE_TO_LOGIN);
+        startActivityForResult(intent, AccountControlActivity.RC_ACCOUNT_CONTROL_REGISTER);
     }
 
     @Override
     public void onTapRegister() {
         Intent intent = AccountControlActivity.newIntent(AccountControlActivity.NAVIGATE_TO_REGISTER);
-        startActivityForResult(intent, AccountControlActivity.RC_ACCOUNT_CONTROL_REGISTER);
+        startActivityForResult(intent, AccountControlActivity.RC_ACCOUNT_CONTROL_LOGIN);
     }
 
     @Override

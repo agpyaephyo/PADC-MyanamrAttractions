@@ -93,4 +93,8 @@ public class AttractionModel extends BaseModel {
     private void broadcastAttractionLoadedWithEventBus() {
         EventBus.getDefault().post(new DataEvent.AttractionDataLoadedEvent("extra-in-broadcast", mAttractionList));
     }
+
+    public void setStoredData(List<AttractionVO> attractionList) {
+        mAttractionList = attractionList;
+    }
 }
