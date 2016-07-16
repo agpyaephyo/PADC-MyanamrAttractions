@@ -1,6 +1,5 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.activities;
 
-import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -26,13 +25,15 @@ import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ListViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodAccountControl;
 
 public class HomeActivity extends AppCompatActivity
         implements AttractionViewHolder.ControllerAttractionItem,
-        UserController {
+        UserController,
+        NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -64,6 +65,7 @@ public class HomeActivity extends AppCompatActivity
 
         Menu leftMenu = navigationView.getMenu();
         MMFontUtils.applyMMFontToMenu(leftMenu);
+        navigationView.setNavigationItemSelectedListener(this);
 
         vpAccountControl = (ViewPodAccountControl) navigationView.getHeaderView(0);
         vpAccountControl.setUserController(this);
@@ -77,9 +79,7 @@ public class HomeActivity extends AppCompatActivity
         });
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fl_container, AttractionListFragment.newInstance())
-                    .commit();
+            navigateToRecyclerView();
         }
 
         UserModel.getInstance().init();
@@ -170,5 +170,32 @@ public class HomeActivity extends AppCompatActivity
 
             }
         });
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        drawerLayout.closeDrawer(GravityCompat.START);
+        switch (item.getItemId()) {
+            case R.id.myanmar_attractions_recycler_view:
+                return true;
+            case R.id.myanmar_attractions_list_view:
+                navigateToListView();
+                return true;
+            case R.id.myanmar_attractions_grid_view:
+                return true;
+        }
+        return false;
+    }
+
+    private void navigateToListView() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, ListViewAttractionListFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToRecyclerView() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, AttractionListFragment.newInstance())
+                .commit();
     }
 }

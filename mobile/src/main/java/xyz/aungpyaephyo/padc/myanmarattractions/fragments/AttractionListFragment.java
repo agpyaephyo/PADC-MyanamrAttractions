@@ -119,7 +119,7 @@ public class AttractionListFragment extends Fragment
                 null,
                 null,
                 null,
-                null);
+                AttractionsContract.AttractionEntry.COLUMN_TITLE + " DESC");
     }
 
     @Override
