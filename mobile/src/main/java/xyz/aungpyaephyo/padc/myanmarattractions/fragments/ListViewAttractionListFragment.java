@@ -94,7 +94,7 @@ public class ListViewAttractionListFragment extends Fragment
             } while (data.moveToNext());
         }
 
-        Log.d(MyanmarAttractionsApp.TAG, "Retrieved attractions : " + attractionList.size());
+        Log.d(MyanmarAttractionsApp.TAG, "Retrieved attractions ASC : " + attractionList.size());
         attractionAdapter.setNewData(attractionList);
 
         AttractionModel.getInstance().setStoredData(attractionList);

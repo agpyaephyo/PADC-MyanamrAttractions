@@ -177,6 +177,7 @@ public class HomeActivity extends AppCompatActivity
         drawerLayout.closeDrawer(GravityCompat.START);
         switch (item.getItemId()) {
             case R.id.myanmar_attractions_recycler_view:
+                navigateToRecyclerView();
                 return true;
             case R.id.myanmar_attractions_list_view:
                 navigateToListView();

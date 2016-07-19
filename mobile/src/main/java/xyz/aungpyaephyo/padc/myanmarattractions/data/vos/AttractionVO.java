@@ -75,7 +75,7 @@ public class AttractionVO {
         Context context = MyanmarAttractionsApp.getContext();
         int insertCount = context.getContentResolver().bulkInsert(AttractionsContract.AttractionImageEntry.CONTENT_URI, attractionImagesCVs);
 
-        Log.d(MyanmarAttractionsApp.TAG, "Bulk inserted into attraction_images table : " + insertCount);
+        //Log.d(MyanmarAttractionsApp.TAG, "Bulk inserted into attraction_images table : " + insertCount);
     }
 
     private ContentValues parseToContentValues() {

@@ -133,7 +133,7 @@ public class AttractionListFragment extends Fragment
             } while (data.moveToNext());
         }
 
-        Log.d(MyanmarAttractionsApp.TAG, "Retrieved attractions : " + attractionList.size());
+        Log.d(MyanmarAttractionsApp.TAG, "Retrieved attractions DESC : " + attractionList.size());
         mAttractionAdapter.setNewData(attractionList);
 
         AttractionModel.getInstance().setStoredData(attractionList);
