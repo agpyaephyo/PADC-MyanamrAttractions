@@ -19,6 +19,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
@@ -31,6 +33,8 @@ import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.GridViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ListViewAttractionListFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.services.AttractionIntentService;
+import xyz.aungpyaephyo.padc.myanmarattractions.services.AttractionService;
 import xyz.aungpyaephyo.padc.myanmarattractions.services.RandomNumberGeneratorService;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
@@ -101,12 +105,19 @@ public class HomeActivity extends AppCompatActivity
                 startService(intent);
                 */
 
+                /*
+                Intent intent = AttractionIntentService.newIntent(new Date().toString());
+                startService(intent);
+                */
+
+                /*
                 if (isServiceBound) {
                     int randomNumber = mBindingService.getRandomNumber();
                     Toast.makeText(getApplicationContext(), "Random Number from RandomNumberGeneratorService : " + randomNumber, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Sorry, the service for generating random number is NOT connected.", Toast.LENGTH_SHORT).show();
                 }
+                */
             }
         });
 
