@@ -203,8 +203,10 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void navigateToGridView() {
+        /*
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, GridViewAttractionListFragment.newInstance())
                 .commit();
+                */
     }
 }

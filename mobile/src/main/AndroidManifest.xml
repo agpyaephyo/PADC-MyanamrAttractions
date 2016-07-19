@@ -34,17 +34,20 @@
 
         <activity
             android:name=".activities.AccountControlActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
 
-
-
-        </activity>
-        
         <provider
             android:authorities="xyz.aungpyaephyo.padc.myanmarattractions"
             android:name=".data.persistence.AttractionProvider"
             android:exported="false"
             android:syncable="true" />
+
+        <receiver
+            android:name=".receivers.system.InternetConnectivityStateReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
