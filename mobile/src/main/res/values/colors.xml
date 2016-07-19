@@ -8,4 +8,23 @@
     <color name="secondary_text">#727272</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#B6B6B6</color>
+
+    <color name="hint_secondary_text">#AA727272</color>
+
+    <!-- theme adjacent color -->
+    <color name="primary_bright">#25CAF4</color>
+    <color name="accent_dark">#882061</color>
+
+    <!-- theme on white -->
+    <color name="text_white_ish">#EEE</color>
+    <color name="white_full">#FFF</color>
+
+    <!-- theme on black -->
+    <color name="text_black_ish">#111</color>
+    <color name="black_full">#F000</color>
+
+    <!-- overlays -->
+    <color name="black_overlay">#9000</color>
+    <color name="black_overlay_light">#6000</color>
+
 </resources>

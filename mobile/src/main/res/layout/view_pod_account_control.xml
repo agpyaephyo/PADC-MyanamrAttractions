@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodAccountControl xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/menu_header_height"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <include
+        android:id="@+id/vp_login_user"
+        layout="@layout/view_pod_login_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <include
+        android:id="@+id/vp_logout_user"
+        layout="@layout/view_pod_logout_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+</xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodAccountControl>

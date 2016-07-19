@@ -17,6 +17,7 @@ public class AttractionsContract {
 
     public static final String PATH_ATTRACTIONS = "attractions";
     public static final String PATH_ATTRACTION_IMAGES = "attraction_images";
+    public static final String PATH_LOGIN_USER = "login_user";
 
     public static final class AttractionEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
@@ -79,6 +80,32 @@ public class AttractionsContract {
 
         public static String getAttractionTitleFromParam(Uri uri) {
             return uri.getQueryParameter(COLUMN_ATTRACTION_TITLE);
+        }
+    }
+
+    public static final class LoginUserEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_LOGIN_USER).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_LOGIN_USER;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_LOGIN_USER;
+
+        public static final String TABLE_NAME = "login_user";
+
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_EMAIL = "email";
+        public static final String COLUMN_ACCESS_TOKEN = "access_token";
+        public static final String COLUMN_DATE_OF_BIRTH = "date_of_birth";
+        public static final String COLUMN_COUNTRY = "country";
+        public static final String COLUMN_REGISTERED_DATE = "registered_date";
+        public static final String COLUMN_LAST_USED_DATE = "last_use_date";
+
+        public static Uri buildLoginUserUri(long id) {
+            //content://xyz.aungpyaephyo.padc.myanmarattractions/login_user/1
+            return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }
 }

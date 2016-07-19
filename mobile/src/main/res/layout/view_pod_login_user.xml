@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodLoginUser xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/iv_profile_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/drawer_background" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_overlay" />
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="@dimen/user_profile_image_size"
+        android:layout_height="@dimen/user_profile_image_size"
+        android:layout_marginLeft="@dimen/margin_medium_2"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_centerVertical="true"
+        android:elevation="4dp"
+        android:src="@drawable/dummy_avatar" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_profile"
+        android:layout_marginTop="@dimen/login_user_name_margin_top"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_toRightOf="@+id/iv_profile"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Ko Aung Pyae Phyo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name"
+        android:layout_toRightOf="@+id/iv_profile"
+        android:layout_marginRight="@dimen/margin_small"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="aungpyaephyo24@gmail.com"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+        android:id="@+id/btn_logout"
+        style="@style/AccentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_logout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_medium"
+        />
+
+</xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodLoginUser>

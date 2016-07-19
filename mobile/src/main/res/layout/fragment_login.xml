@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_large"
+    android:orientation="vertical"
+    android:background="@drawable/bg_rounded"
+    android:layout_gravity="center">
+
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+        android:id="@+id/lbl_login_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:drawablePadding="@dimen/margin_medium"
+        android:drawableRight="@drawable/ic_clear_24dp"
+        android:fontFamily="sans-serif-condensed"
+        android:padding="@dimen/margin_medium_2"
+        android:textColor="@color/text_white_ish" />
+
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_medium_2"
+        android:layout_marginRight="@dimen/margin_medium_2"
+        android:hint="@string/msg_enter_email"
+        android:maxLines="1"
+        android:padding="@dimen/margin_medium"
+        android:singleLine="true"
+        android:textColorHint="@color/accent_dark"
+        android:inputType="textEmailAddress"
+        android:backgroundTint="?attr/colorAccent"
+        />
+
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_marginLeft="@dimen/margin_medium_2"
+        android:layout_marginRight="@dimen/margin_medium_2"
+        android:hint="@string/msg_enter_password"
+        android:maxLines="1"
+        android:padding="@dimen/margin_medium"
+        android:singleLine="true"
+        android:textColorHint="@color/accent_dark"
+        android:inputType="textPassword"
+        android:drawablePadding="@dimen/margin_medium"
+        android:drawableRight="@drawable/ic_visibility_24dp"
+        android:backgroundTint="?attr/colorAccent"
+        />
+
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+        android:id="@+id/btn_login"
+        style="@style/AccentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_marginLeft="@dimen/margin_medium_2"
+        android:layout_marginRight="@dimen/margin_medium_2"
+        android:text="@string/lbl_login_action" />
+
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+        android:id="@+id/lbl_recover_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginLeft="@dimen/margin_medium_3"
+        android:layout_marginRight="@dimen/margin_medium_2"
+        android:textColor="@color/accent_dark"
+        />
+
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+        android:id="@+id/lbl_navigate_to_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginLeft="@dimen/margin_medium_3"
+        android:layout_marginRight="@dimen/margin_medium_2"
+        android:textColor="@color/accent_dark"
+        />
+
+</LinearLayout>
