@@ -49,6 +49,12 @@
             </intent-filter>
         </receiver>
 
+        <service
+            android:name=".services.AttractionService" />
+
+        <service
+            android:name=".services.RandomNumberGeneratorService" />
+
     </application>
 
 </manifest>
