@@ -25,6 +25,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.fragments.GridViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ListViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
@@ -183,6 +184,7 @@ public class HomeActivity extends AppCompatActivity
                 navigateToListView();
                 return true;
             case R.id.myanmar_attractions_grid_view:
+                navigateToGridView();
                 return true;
         }
         return false;
@@ -197,6 +199,12 @@ public class HomeActivity extends AppCompatActivity
     private void navigateToRecyclerView() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, AttractionListFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToGridView() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, GridViewAttractionListFragment.newInstance())
                 .commit();
     }
 }

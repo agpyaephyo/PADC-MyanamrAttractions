@@ -27,6 +27,7 @@ public class MyanmarAttractionsConstants {
     public static final int ATTRACTION_LIST_LOADER = 1;
     public static final int ATTRACTION_DETAIL_LOADER = 2;
     public static final int ATTRACTION_LIST_LOADER_LISTVIEW = 3;
+    public static final int ATTRACTION_LIST_LOADER_GRIDVIEW = 4;
 
     //Regular Expression for checking email.
     public static final String EMAIL_PATTERN = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
