@@ -32,7 +32,7 @@ public class AttractionModel extends BaseModel {
     private AttractionModel() {
         super();
         mAttractionList = new ArrayList<>();
-        loadAttractions();
+        //loadAttractions();
     }
 
     public static AttractionModel getInstance() {

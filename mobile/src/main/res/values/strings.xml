@@ -2,6 +2,10 @@
     <string name="app_name">PADC-MyanmarAttractions</string>
     <string name="action_settings">Settings</string>
 
+    <!-- SyncAdapter -->
+    <string name="sync_account_type">myanmarattractions.padc.aungpyaephyo.xyz</string>
+    <string name="content_authority">xyz.aungpyaephyo.padc.myanmarattractions</string>
+
     <string name="home_screen_title">Myanmar\'s Attractions</string>
 
     <string name="attraction_list_detail_transition_name">attraction_list_detail_transition_name</string>

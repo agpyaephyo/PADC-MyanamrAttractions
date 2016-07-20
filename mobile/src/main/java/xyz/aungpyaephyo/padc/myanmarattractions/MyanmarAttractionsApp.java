@@ -3,6 +3,10 @@ package xyz.aungpyaephyo.padc.myanmarattractions;
 import android.app.Application;
 import android.content.Context;
 
+import org.w3c.dom.Attr;
+
+import xyz.aungpyaephyo.padc.myanmarattractions.sync.AttractionSyncAdapter;
+
 /**
  * Created by aung on 7/6/16.
  */
@@ -16,6 +20,9 @@ public class MyanmarAttractionsApp extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+
+        //AttractionSyncAdapter.syncImmediately(getContext());
+        AttractionSyncAdapter.initializeSyncAdapter(getContext());
     }
 
     public static Context getContext() {
