@@ -17,9 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,10 +28,9 @@ import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionPagerFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.GridViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ListViewAttractionListFragment;
-import xyz.aungpyaephyo.padc.myanmarattractions.services.AttractionIntentService;
-import xyz.aungpyaephyo.padc.myanmarattractions.services.AttractionService;
 import xyz.aungpyaephyo.padc.myanmarattractions.services.RandomNumberGeneratorService;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
@@ -245,6 +241,9 @@ public class HomeActivity extends AppCompatActivity
             case R.id.myanmar_attractions_grid_view:
                 navigateToGridView();
                 return true;
+            case R.id.myanmar_attractions_tab_layout:
+                navigateToTabLayout();
+                return true;
         }
         return false;
     }
@@ -264,6 +263,12 @@ public class HomeActivity extends AppCompatActivity
     private void navigateToGridView() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, GridViewAttractionListFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToTabLayout() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, AttractionPagerFragment.newInstance())
                 .commit();
     }
 }

@@ -63,6 +63,7 @@
 
     <string name="error_missing_email_login">Need to enter the email address you used to register.</string>
     <string name="error_missing_password_login">Need to enter the password.</string>
+    <string name="myanmar_attractions_tab_layout">ျမန္မာ့ အလွအပမ်ား (TabLayout)</string>
 
 
 </resources>

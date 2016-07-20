@@ -2,11 +2,14 @@ package xyz.aungpyaephyo.padc.myanmarattractions.utils;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.design.widget.TabLayout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
@@ -49,6 +52,23 @@ public class MMFontUtils {
 
             //the method we have create in activity
             MMFontUtils.applyMMFontToMenuItem(menuItem);
+        }
+    }
+
+    public static void applyMMFontToTabLayout(TabLayout tl) {
+        ViewGroup vg = (ViewGroup) tl.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    TextView tv = (TextView) tabViewChild;
+                    //tv.setLineSpacing(1.5f, 1.5f);
+                    setMMFont(tv);
+                }
+            }
         }
     }
 }

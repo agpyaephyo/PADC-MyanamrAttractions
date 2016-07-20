@@ -21,5 +21,11 @@
             android:title="@string/myanmar_attractions_grid_view"
             />
 
+        <item
+            android:id="@+id/myanmar_attractions_tab_layout"
+            android:icon="@drawable/ic_setting_light"
+            android:title="@string/myanmar_attractions_tab_layout"
+            />
+
     </group>
 </menu>
