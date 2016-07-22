@@ -65,7 +65,7 @@
     <string name="error_missing_password_login">Need to enter the password.</string>
     <string name="myanmar_attractions_tab_layout">ျမန္မာ့ အလွအပမ်ား (TabLayout)</string>
     <string name="myanmar_attractions_notification">Notification မ်ား</string>
-    <string name="msg_notification">Find out Attraction Places around you.</string>
+    <string name="msg_notification">Find out Attraction Places around you. It\'s for free. You can also add new attraction places where your friends should go and find out when they are around.</string>
 
 
 </resources>

@@ -36,5 +36,7 @@
     <dimen name="pb_dimen">55dp</dimen>
     <dimen name="login_user_name_margin_top">12dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
+    <dimen name="attraction_sight_width">330dp</dimen>
+    <dimen name="attraction_sight_height">200dp</dimen>
 
 </resources>

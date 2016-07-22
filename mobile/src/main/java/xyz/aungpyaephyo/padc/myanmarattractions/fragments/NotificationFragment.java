@@ -35,4 +35,14 @@ public class NotificationFragment extends Fragment {
     public void onTapNotifiy(Button btnNotify) {
         NotificationUtils.showNotification();
     }
+
+    @OnClick(R.id.btn_notify_bigtext)
+    public void onTapNotifyBigText(Button btnNotifyBigText) {
+        NotificationUtils.showNotificationWithBigTextStyle();
+    }
+
+    @OnClick(R.id.btn_notify_bigpic)
+    public void onTapNotifyBigPicture(Button btnNotifyBigPicture) {
+        NotificationUtils.showNotificationWithBigPictureStyle();
+    }
 }
