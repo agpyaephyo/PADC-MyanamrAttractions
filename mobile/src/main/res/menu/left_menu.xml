@@ -27,5 +27,11 @@
             android:title="@string/myanmar_attractions_tab_layout"
             />
 
+        <item
+            android:id="@+id/myanmar_attractions_notification"
+            android:icon="@drawable/ic_cast_off_light"
+            android:title="@string/myanmar_attractions_notification"
+            />
+
     </group>
 </menu>

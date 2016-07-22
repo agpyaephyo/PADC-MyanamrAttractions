@@ -31,6 +31,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionPagerFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.GridViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ListViewAttractionListFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.fragments.NotificationFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.services.RandomNumberGeneratorService;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
@@ -231,6 +232,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
+        fabSearch.setVisibility(View.VISIBLE);
         switch (item.getItemId()) {
             case R.id.myanmar_attractions_recycler_view:
                 navigateToRecyclerView();
@@ -243,6 +245,10 @@ public class HomeActivity extends AppCompatActivity
                 return true;
             case R.id.myanmar_attractions_tab_layout:
                 navigateToTabLayout();
+                return true;
+            case R.id.myanmar_attractions_notification:
+                fabSearch.setVisibility(View.GONE);
+                navigateToNotification();
                 return true;
         }
         return false;
@@ -269,6 +275,12 @@ public class HomeActivity extends AppCompatActivity
     private void navigateToTabLayout() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, AttractionPagerFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToNotification() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, NotificationFragment.newInstance())
                 .commit();
     }
 }
