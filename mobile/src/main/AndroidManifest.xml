@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Permission required by the SyncAdapter -->
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />s
+
     <application
         android:name=".MyanmarAttractionsApp"
         android:allowBackup="true"
@@ -22,7 +27,7 @@
             </intent-filter>
 
         </activity>
-        
+
         <activity
             android:name=".activities.AttractionDetailActivity"
             android:parentActivityName=".activities.HomeActivity"
@@ -34,17 +39,49 @@
 
         <activity
             android:name=".activities.AccountControlActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" />
 
-
-
-        </activity>
-        
         <provider
-            android:authorities="xyz.aungpyaephyo.padc.myanmarattractions"
             android:name=".data.persistence.AttractionProvider"
+            android:authorities="@string/content_authority"
             android:exported="false"
             android:syncable="true" />
+
+        <receiver android:name=".receivers.system.InternetConnectivityStateReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".services.AttractionService" />
+
+        <service android:name=".services.AttractionIntentService" />
+
+        <service android:name=".services.RandomNumberGeneratorService" />
+
+        <!-- SyncAdapter's dummy authentication service !-->
+        <service android:name=".sync.AttractionAuthenticatorService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <!-- The SyncAdapter service -->
+        <service
+            android:name=".sync.AttractionSyncService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
 
     </application>
 

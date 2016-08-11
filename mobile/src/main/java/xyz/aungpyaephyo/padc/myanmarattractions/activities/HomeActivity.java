@@ -1,10 +1,13 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.activities;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -25,7 +28,11 @@ import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionPagerFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.fragments.GridViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ListViewAttractionListFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.fragments.NotificationFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.services.RandomNumberGeneratorService;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodAccountControl;
@@ -48,6 +55,23 @@ public class HomeActivity extends AppCompatActivity
     FloatingActionButton fabSearch;
 
     private ViewPodAccountControl vpAccountControl;
+
+    private RandomNumberGeneratorService mBindingService;
+    private boolean isServiceBound = false;
+
+    private ServiceConnection mBindingServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            RandomNumberGeneratorService.LocalBinder localBinder = (RandomNumberGeneratorService.LocalBinder) iBinder;
+            mBindingService = localBinder.getService();
+            isServiceBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            isServiceBound = false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +97,24 @@ public class HomeActivity extends AppCompatActivity
         fabSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*
+                Intent intent = AttractionService.newIntent(new Date().toString());
+                startService(intent);
+                */
+
+                /*
+                Intent intent = AttractionIntentService.newIntent(new Date().toString());
+                startService(intent);
+                */
+
+                /*
+                if (isServiceBound) {
+                    int randomNumber = mBindingService.getRandomNumber();
+                    Toast.makeText(getApplicationContext(), "Random Number from RandomNumberGeneratorService : " + randomNumber, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Sorry, the service for generating random number is NOT connected.", Toast.LENGTH_SHORT).show();
+                }
+                */
             }
         });
 
@@ -133,6 +173,23 @@ public class HomeActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        Intent intent = RandomNumberGeneratorService.newIntent();
+        bindService(intent, mBindingServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (isServiceBound) {
+            unbindService(mBindingServiceConnection);
+            isServiceBound = false;
+        }
+    }
+
+    @Override
     public void onTapAttraction(AttractionVO attraction, ImageView ivAttraction) {
         Intent intent = AttractionDetailActivity.newIntent(attraction.getTitle());
         startActivity(intent);
@@ -175,6 +232,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
+        fabSearch.setVisibility(View.VISIBLE);
         switch (item.getItemId()) {
             case R.id.myanmar_attractions_recycler_view:
                 navigateToRecyclerView();
@@ -183,6 +241,14 @@ public class HomeActivity extends AppCompatActivity
                 navigateToListView();
                 return true;
             case R.id.myanmar_attractions_grid_view:
+                navigateToGridView();
+                return true;
+            case R.id.myanmar_attractions_tab_layout:
+                navigateToTabLayout();
+                return true;
+            case R.id.myanmar_attractions_notification:
+                fabSearch.setVisibility(View.GONE);
+                navigateToNotification();
                 return true;
         }
         return false;
@@ -197,6 +263,24 @@ public class HomeActivity extends AppCompatActivity
     private void navigateToRecyclerView() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, AttractionListFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToGridView() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, GridViewAttractionListFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToTabLayout() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, AttractionPagerFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToNotification() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, NotificationFragment.newInstance())
                 .commit();
     }
 }

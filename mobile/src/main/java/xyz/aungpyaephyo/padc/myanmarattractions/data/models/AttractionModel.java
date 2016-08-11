@@ -32,7 +32,7 @@ public class AttractionModel extends BaseModel {
     private AttractionModel() {
         super();
         mAttractionList = new ArrayList<>();
-        dataAgent.loadAttractions();
+        //loadAttractions();
     }
 
     public static AttractionModel getInstance() {
@@ -42,7 +42,9 @@ public class AttractionModel extends BaseModel {
         return objInstance;
     }
 
-
+    public void loadAttractions() {
+        dataAgent.loadAttractions();
+    }
 
     public List<AttractionVO> getAttractionList() {
         return mAttractionList;

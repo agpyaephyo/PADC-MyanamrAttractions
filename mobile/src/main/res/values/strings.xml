@@ -2,6 +2,10 @@
     <string name="app_name">PADC-MyanmarAttractions</string>
     <string name="action_settings">Settings</string>
 
+    <!-- SyncAdapter -->
+    <string name="sync_account_type">myanmarattractions.padc.aungpyaephyo.xyz</string>
+    <string name="content_authority">xyz.aungpyaephyo.padc.myanmarattractions</string>
+
     <string name="home_screen_title">Myanmar\'s Attractions</string>
 
     <string name="attraction_list_detail_transition_name">attraction_list_detail_transition_name</string>
@@ -59,6 +63,9 @@
 
     <string name="error_missing_email_login">Need to enter the email address you used to register.</string>
     <string name="error_missing_password_login">Need to enter the password.</string>
+    <string name="myanmar_attractions_tab_layout">ျမန္မာ့ အလွအပမ်ား (TabLayout)</string>
+    <string name="myanmar_attractions_notification">Notification မ်ား</string>
+    <string name="msg_notification">Find out Attraction Places around you. It\'s for free. You can also add new attraction places where your friends should go and find out when they are around.</string>
 
 
 </resources>

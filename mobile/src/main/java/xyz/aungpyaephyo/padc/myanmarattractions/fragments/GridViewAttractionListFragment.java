@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.GridView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,40 +29,40 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstant
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 
 /**
- * Created by aung on 7/16/16.
+ * Created by aung on 7/19/16.
  */
-public class ListViewAttractionListFragment extends Fragment
-        implements LoaderManager.LoaderCallbacks<Cursor> {
+public class GridViewAttractionListFragment extends Fragment
+        implements LoaderManager.LoaderCallbacks<Cursor>{
 
-    @BindView(R.id.lv_attractions)
-    ListView lvAttractions;
+    @BindView(R.id.gv_attractions)
+    GridView gvAttractions;
 
-    private ListViewAttractionAdapter attractionAdapter;
-    private AttractionViewHolder.ControllerAttractionItem controllerAttractionItem;
+    private ListViewAttractionAdapter mAdapter;
+    private AttractionViewHolder.ControllerAttractionItem mControllerAttractionItem;
 
-    public static Fragment newInstance() {
-        ListViewAttractionListFragment fragment = new ListViewAttractionListFragment();
+    public static GridViewAttractionListFragment newInstance() {
+        GridViewAttractionListFragment fragment = new GridViewAttractionListFragment();
         return fragment;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        controllerAttractionItem = (AttractionViewHolder.ControllerAttractionItem) context;
+        mControllerAttractionItem = (AttractionViewHolder.ControllerAttractionItem) context;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        attractionAdapter = new ListViewAttractionAdapter(null, controllerAttractionItem);
+        mAdapter = new ListViewAttractionAdapter(null, mControllerAttractionItem);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_listview_attraction_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_gridview_attraction_list, container, false);
         ButterKnife.bind(this, rootView);
 
-        lvAttractions.setAdapter(attractionAdapter);
+        gvAttractions.setAdapter(mAdapter);
 
         return rootView;
     }
@@ -70,7 +70,7 @@ public class ListViewAttractionListFragment extends Fragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().getSupportLoaderManager().initLoader(MyanmarAttractionsConstants.ATTRACTION_LIST_LOADER_LISTVIEW, null, this);
+        getActivity().getSupportLoaderManager().initLoader(MyanmarAttractionsConstants.ATTRACTION_LIST_LOADER_GRIDVIEW, null, this);
     }
 
     @Override
@@ -94,8 +94,8 @@ public class ListViewAttractionListFragment extends Fragment
             } while (data.moveToNext());
         }
 
-        Log.d(MyanmarAttractionsApp.TAG, "Retrieved attractions ASC : " + attractionList.size());
-        attractionAdapter.setNewData(attractionList);
+        Log.d(MyanmarAttractionsApp.TAG, "Retrieved attractions ASC - GridView : " + attractionList.size());
+        mAdapter.setNewData(attractionList);
 
         AttractionModel.getInstance().setStoredData(attractionList);
     }
@@ -104,6 +104,4 @@ public class ListViewAttractionListFragment extends Fragment
     public void onLoaderReset(Loader<Cursor> loader) {
 
     }
-
-
 }
