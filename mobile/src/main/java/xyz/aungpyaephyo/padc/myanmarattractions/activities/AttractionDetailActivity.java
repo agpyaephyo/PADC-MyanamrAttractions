@@ -6,27 +6,27 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.app.ShareCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.adapters.AttractionImagesPagerAdapter;
 import xyz.aungpyaephyo.padc.myanmarattractions.components.PageIndicatorView;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.persistence.AttractionsContract;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
+import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 
-public class AttractionDetailActivity extends AppCompatActivity
+public class AttractionDetailActivity extends BaseActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String IE_ATTRACTION_NAME = "IE_ATTRACTION_NAME";
@@ -80,10 +80,7 @@ public class AttractionDetailActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 String imageUrl = MyanmarAttractionsConstants.IMAGE_ROOT_DIR + mAttraction.getImages()[0];
-                startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(AttractionDetailActivity.this)
-                        .setType("text/plain")
-                        .setText(mAttraction.getTitle() + " - " + imageUrl)
-                        .getIntent(), getString(R.string.action_share)));
+                sendViaShareIntent(mAttraction.getTitle() + " - " + imageUrl);
             }
         });
 
@@ -169,5 +166,27 @@ public class AttractionDetailActivity extends AppCompatActivity
 
         collapsingToolbar.setTitle(mAttractionTitle);
     }
-    
+
+    @OnClick(R.id.iv_locate_attraction)
+    public void onTapLocateAttraction(View view) {
+        openLocationInMap(mAttraction.getTitle());
+    }
+
+    @OnClick(R.id.iv_book_the_trip)
+    public void onTapBookTheTrip(View view) {
+        String msg = getString(R.string.format_contact_option_confirmation, mAttraction.getTitle());
+        SharedDialog.confirmYesNoWithTheme(this, msg,
+                getString(R.string.booking_phone), getString(R.string.booking_email), new SharedDialog.YesNoConfirmDelegate() {
+            @Override
+            public void onConfirmYes() {
+                makeCall(MyanmarAttractionsConstants.CUSTOMER_SUPPORT_PHONE);
+            }
+
+            @Override
+            public void onConfirmNo() {
+                sendEmail(MyanmarAttractionsConstants.CUSTOMER_SUPPORT_EMAIL, getString(R.string.book_the_trip_subject),
+                        getString(R.string.format_book_the_trip_msg, mAttraction.getTitle()));
+            }
+        });
+    }
 }

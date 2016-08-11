@@ -29,7 +29,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.SecurityUtils;
 /**
  * Created by aung on 7/15/16.
  */
-public class AccountControlActivity extends AppCompatActivity
+public class AccountControlActivity extends BaseActivity
         implements UserSessionController {
 
     public static final int NAVIGATE_TO_REGISTER = 1;

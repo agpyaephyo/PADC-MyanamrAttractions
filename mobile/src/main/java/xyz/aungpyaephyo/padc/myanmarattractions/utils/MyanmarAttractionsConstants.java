@@ -33,4 +33,11 @@ public class MyanmarAttractionsConstants {
     public static final String EMAIL_PATTERN = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
 
     public static final String ENCRYPT_MD5 = "MD5";
+
+    public static final String URI_TO_OPEN_IN_MAP = "http://maps.google.com/maps?daddr=";
+
+    public static final String CUSTOMER_SUPPORT_PHONE = "0912345678";
+    public static final String CUSTOMER_SUPPORT_EMAIL = "customer-support@myanmarattractions.com";
+
+    public static final int DIALOG_BUTTON_LABEL_LIMIT = 15;
 }

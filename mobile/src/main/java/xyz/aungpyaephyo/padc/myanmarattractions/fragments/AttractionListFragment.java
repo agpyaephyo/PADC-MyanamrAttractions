@@ -39,7 +39,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHold
 /**
  * Created by aung on 7/15/16.
  */
-public class AttractionListFragment extends Fragment
+public class AttractionListFragment extends BaseFragment
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     @BindView(R.id.rv_attractions)

@@ -18,7 +18,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 /**
  * Created by aung on 7/20/16.
  */
-public class AttractionPagerFragment extends Fragment {
+public class AttractionPagerFragment extends BaseFragment {
 
     @BindView(R.id.tl_attractions)
     TabLayout tlAttractions;

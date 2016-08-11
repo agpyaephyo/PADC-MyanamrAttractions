@@ -39,4 +39,5 @@
     <dimen name="attraction_sight_width">330dp</dimen>
     <dimen name="attraction_sight_height">200dp</dimen>
 
+    <dimen name="icon_in_detail">48dp</dimen>
 </resources>

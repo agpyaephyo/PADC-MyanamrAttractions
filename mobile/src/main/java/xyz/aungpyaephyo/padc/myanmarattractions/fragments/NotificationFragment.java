@@ -16,7 +16,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.NotificationUtils;
 /**
  * Created by aung on 7/22/16.
  */
-public class NotificationFragment extends Fragment {
+public class NotificationFragment extends BaseFragment {
 
     public static NotificationFragment newInstance() {
         NotificationFragment fragment = new NotificationFragment();

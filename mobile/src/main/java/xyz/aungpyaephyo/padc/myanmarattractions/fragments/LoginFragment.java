@@ -24,7 +24,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.views.PasswordVisibilityListener
 /**
  * Created by aung on 7/15/16.
  */
-public class LoginFragment extends Fragment {
+public class LoginFragment extends BaseFragment {
 
     @BindView(R.id.lbl_recover_password)
     TextView lblRecoverPassword;

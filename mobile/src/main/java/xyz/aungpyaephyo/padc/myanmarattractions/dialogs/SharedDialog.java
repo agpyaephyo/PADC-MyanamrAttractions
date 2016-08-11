@@ -8,9 +8,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 
 
 /**
@@ -65,6 +67,11 @@ public class SharedDialog {
             Button btnCancel = (Button) dialog.findViewById(R.id.tv_confirm_no);
             if (!TextUtils.isEmpty(cancelBtn)) {
                 btnCancel.setText(cancelBtn);
+            }
+
+            LinearLayout llDialogControls = (LinearLayout) dialog.findViewById(R.id.ll_controls);
+            if (yesBtn.length() > MyanmarAttractionsConstants.DIALOG_BUTTON_LABEL_LIMIT || cancelBtn.length() > MyanmarAttractionsConstants.DIALOG_BUTTON_LABEL_LIMIT) {
+                llDialogControls.setOrientation(LinearLayout.VERTICAL);
             }
 
             btnOK.setOnClickListener(new View.OnClickListener() {

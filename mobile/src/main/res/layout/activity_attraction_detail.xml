@@ -68,18 +68,52 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
-            android:id="@+id/tv_attraction_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
-            android:fontFamily="sans-serif-light"
-            android:lineSpacingMultiplier="1.2"
-            tools:text="Mandalay was the last Royal Capital of Myanmar and is located nearly 700 km north of Yangon between the mighty Ayeyarwaddy River and the Shan plateau. Mandalay is considered the centre of Burmese culture, a city of artisans and a trading centre of goods in all directions. The geometric laid out streets, the many bicycles riders, the 8 km long moth and wall around the former Royal Palace, the pagodas and monasteries abound and the sacred Mandalay Hill towering over it all, are some of its most visible features. In the vicinity of Mandalay are the former royal capitals and religious centers of Amarapura, Mingun, Inwa (Ava) and Sagaing, each worth visiting. Mandalay is another gateway to Myanmar and has direct air links with Bangkok, Singapore, Kunming and Chiang Mai.\n\n Mandalay was the last Royal Capital of Myanmar and is located nearly 700 km north of Yangon between the mighty Ayeyarwaddy River and the Shan plateau. Mandalay is considered the centre of Burmese culture, a city of artisans and a trading centre of goods in all directions. The geometric laid out streets, the many bicycles riders, the 8 km long moth and wall around the former Royal Palace, the pagodas and monasteries abound and the sacred Mandalay Hill towering over it all, are some of its most visible features. In the vicinity of Mandalay are the former royal capitals and religious centers of Amarapura, Mingun, Inwa (Ava) and Sagaing, each worth visiting. Mandalay is another gateway to Myanmar and has direct air links with Bangkok, Singapore, Kunming and Chiang Mai."
-            android:textColor="@color/primary_text"
-            android:textSize="@dimen/text_regular_2x"
-            android:padding="@dimen/margin_medium_2"
-            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_locate_attraction"
+                android:layout_width="@dimen/icon_in_detail"
+                android:layout_height="@dimen/icon_in_detail"
+                android:src="@drawable/ic_map_white_24dp"
+                android:tint="@color/accent"
+                android:foreground="@drawable/selector_action_bg"
+                android:clickable="true"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:padding="@dimen/margin_medium"
+                />
+
+            <ImageView
+                android:id="@+id/iv_book_the_trip"
+                android:layout_width="@dimen/icon_in_detail"
+                android:layout_height="@dimen/icon_in_detail"
+                android:src="@drawable/ic_book_for_the_trip"
+                android:tint="@color/accent"
+                android:foreground="@drawable/selector_action_bg"
+                android:clickable="true"
+                android:layout_toRightOf="@id/iv_locate_attraction"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:padding="@dimen/margin_medium"
+                />
+
+            <TextView
+                android:id="@+id/tv_attraction_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:lineSpacingMultiplier="1.2"
+                tools:text="Mandalay was the last Royal Capital of Myanmar and is located nearly 700 km north of Yangon between the mighty Ayeyarwaddy River and the Shan plateau. Mandalay is considered the centre of Burmese culture, a city of artisans and a trading centre of goods in all directions. The geometric laid out streets, the many bicycles riders, the 8 km long moth and wall around the former Royal Palace, the pagodas and monasteries abound and the sacred Mandalay Hill towering over it all, are some of its most visible features. In the vicinity of Mandalay are the former royal capitals and religious centers of Amarapura, Mingun, Inwa (Ava) and Sagaing, each worth visiting. Mandalay is another gateway to Myanmar and has direct air links with Bangkok, Singapore, Kunming and Chiang Mai.\n\n Mandalay was the last Royal Capital of Myanmar and is located nearly 700 km north of Yangon between the mighty Ayeyarwaddy River and the Shan plateau. Mandalay is considered the centre of Burmese culture, a city of artisans and a trading centre of goods in all directions. The geometric laid out streets, the many bicycles riders, the 8 km long moth and wall around the former Royal Palace, the pagodas and monasteries abound and the sacred Mandalay Hill towering over it all, are some of its most visible features. In the vicinity of Mandalay are the former royal capitals and religious centers of Amarapura, Mingun, Inwa (Ava) and Sagaing, each worth visiting. Mandalay is another gateway to Myanmar and has direct air links with Bangkok, Singapore, Kunming and Chiang Mai."
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_regular_2x"
+                android:layout_below="@id/iv_locate_attraction"
+                android:layout_marginLeft="@dimen/margin_medium_2"
+                android:layout_marginRight="@dimen/margin_medium_2"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                />
+
+        </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>
 

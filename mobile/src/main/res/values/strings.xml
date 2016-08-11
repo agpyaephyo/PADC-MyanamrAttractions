@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/tools">
     <string name="app_name">PADC-MyanmarAttractions</string>
     <string name="action_settings">Settings</string>
 
@@ -10,6 +10,7 @@
 
     <string name="attraction_list_detail_transition_name">attraction_list_detail_transition_name</string>
     <string name="action_share">Share</string>
+    <string name="action_send_email">Book the Trip via Email</string>
     <string name="lbl_login">Login ၀င္ရန္</string>
     <string name="lbl_register">Register ျပဳလုုပ္ရန္</string>
     <string name="lbl_register_action">Register</string>
@@ -68,4 +69,11 @@
     <string name="msg_notification">Find out Attraction Places around you. It\'s for free. You can also add new attraction places where your friends should go and find out when they are around.</string>
 
     <string name="lbl_map">Map</string>
+    <string name="myanmar_attractions_contact_us">ဆက္သြယ္ရန္</string>
+    <string name="format_contact_option_confirmation"><xliff:g id="picked_attraction">%1$s</xliff:g> သိုု့ သြားေရာက္ လည္ပတ္ႏိုုင္ရန္ ဖုုန္းျဖင့္ေသာ္လည္းေကာင္း email ျဖင့္ေသာ္လည္းေကာင္း booking ျပဳလုုပ္ႏိုုင္ပါတယ္ </string>
+    <string name="booking_phone">ဖုုန္းျဖင့္ booking လုုပ္မည္</string>
+    <string name="booking_email">email ျဖင့္ booking လုုပ္မည္</string>
+
+    <string name="book_the_trip_subject">Booking a trip</string>
+    <string name="format_book_the_trip_msg">I would like to book a trip to <xliff:g id="picked_attraction">%1$s</xliff:g></string>
 </resources>

@@ -36,7 +36,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.views.PasswordVisibilityListener
 /**
  * Created by aung on 7/15/16.
  */
-public class RegisterFragment extends Fragment {
+public class RegisterFragment extends BaseFragment {
 
     @BindView(R.id.lbl_registration_title)
     TextView lblRegistrationTitle;

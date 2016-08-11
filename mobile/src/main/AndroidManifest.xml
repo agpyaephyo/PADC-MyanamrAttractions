@@ -7,7 +7,9 @@
     <!-- Permission required by the SyncAdapter -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />s
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:name=".MyanmarAttractionsApp"

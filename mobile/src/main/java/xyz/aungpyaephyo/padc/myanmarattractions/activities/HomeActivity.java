@@ -29,6 +29,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionPagerFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ContactUsFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.GridViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ListViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.NotificationFragment;
@@ -37,7 +38,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodAccountControl;
 
-public class HomeActivity extends AppCompatActivity
+public class HomeActivity extends BaseActivity
         implements AttractionViewHolder.ControllerAttractionItem,
         UserController,
         NavigationView.OnNavigationItemSelectedListener {
@@ -250,6 +251,9 @@ public class HomeActivity extends AppCompatActivity
                 fabSearch.setVisibility(View.GONE);
                 navigateToNotification();
                 return true;
+            case R.id.myanmar_attractions_contact_us:
+                navigateToContactUs();
+                return true;
         }
         return false;
     }
@@ -281,6 +285,12 @@ public class HomeActivity extends AppCompatActivity
     private void navigateToNotification() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, NotificationFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToContactUs() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, ContactUsFragment.newInstance())
                 .commit();
     }
 }
