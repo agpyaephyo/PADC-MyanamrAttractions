@@ -67,5 +67,5 @@
     <string name="myanmar_attractions_notification">Notification မ်ား</string>
     <string name="msg_notification">Find out Attraction Places around you. It\'s for free. You can also add new attraction places where your friends should go and find out when they are around.</string>
 
-
+    <string name="lbl_map">Map</string>
 </resources>
