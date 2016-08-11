@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "455978576037",
+    "firebase_url": "https://myanmars-attractions.firebaseio.com",
+    "project_id": "myanmars-attractions",
+    "storage_bucket": "myanmars-attractions.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455978576037:android:8a11d0a448ec3491",
+        "android_client_info": {
+          "package_name": "xyz.aungpyaephyo.padc.myanmarattractions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455978576037-tvfdblidki7eaogfp61nbdru3lc6i3bl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.aungpyaephyo.padc.myanmarattractions",
+            "certificate_hash": "08F3173B7FF8E85D3971085387ED01CE2E634A6B"
+          }
+        },
+        {
+          "client_id": "455978576037-dfqg04jsh2g9ent69ahl00eih8qeuqh2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDluUcnqXBiO0NDMQQx4xKdn1mWW_1Hn9w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455978576037-dfqg04jsh2g9ent69ahl00eih8qeuqh2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

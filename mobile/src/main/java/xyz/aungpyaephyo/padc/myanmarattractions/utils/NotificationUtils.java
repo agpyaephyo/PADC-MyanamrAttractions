@@ -164,4 +164,35 @@ public class NotificationUtils {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(GENERAL_NOTIFICATION_ID_BIG_TEXT, builder.build());
     }
+
+    public static void showDynamicNotification(String title, String text) {
+        Context context = MyanmarAttractionsApp.getContext();
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                .setColor(context.getResources().getColor(R.color.primary))
+                .setSmallIcon(R.drawable.ic_search_24dp)
+                .setLargeIcon(MyanmarAttractionsApp.getAppIcon())
+                .setContentTitle(title)
+                .setContentText(text)
+                .setAutoCancel(true);
+
+        if(text.length() > 32) {
+            //BigText Style
+            NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+            bigTextStyle.bigText(text);
+
+            builder.setStyle(bigTextStyle);
+        }
+
+        //Open the app when user tap on notification
+        Intent resultIntent = new Intent(context, HomeActivity.class);
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(resultPendingIntent);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        notificationManager.notify(GENERAL_NOTIFICATION_ID_BIG_TEXT, builder.build());
+    }
 }
