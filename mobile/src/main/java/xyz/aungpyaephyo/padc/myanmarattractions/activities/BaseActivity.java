@@ -1,6 +1,7 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.activities;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -10,17 +11,32 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.FacebookUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 
 /**
@@ -40,8 +56,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     private String numberToCall = null;
     private String mCurrentPhotoPath;
 
+    private ProgressDialog mProgressDialog;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_IMAGE_CAPTURE) {
                 Bundle extras = data.getExtras();
@@ -76,10 +100,10 @@ public abstract class BaseActivity extends AppCompatActivity {
                 onPictureTaken(selectedImagePath);
             } else if (requestCode == REQUEST_SELECT_IMAGE) {
                 Uri uri = data.getData();
-                String[] projection = { MediaStore.Images.Media.DATA };
+                String[] projection = {MediaStore.Images.Media.DATA};
 
                 Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-                if(cursor != null && cursor.moveToFirst()) {
+                if (cursor != null && cursor.moveToFirst()) {
                     int columnIndex = cursor.getColumnIndex(projection[0]);
                     String picturePath = cursor.getString(columnIndex); // returns null
                     cursor.close();
@@ -302,6 +326,20 @@ public abstract class BaseActivity extends AppCompatActivity {
             // Always show the chooser (if there are multiple options available)
             startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture)), REQUEST_SELECT_IMAGE_ABOVE_KITKAT);
         }
+    }
+
+    protected void showProgressDialog(String msg) {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+        }
+
+        mProgressDialog.setMessage(msg);
+        mProgressDialog.show();
+    }
+
+    protected void dismissProgressDialog() {
+        if(mProgressDialog.isShowing())
+            mProgressDialog.dismiss();
     }
 
     public void onPictureTaken(Bitmap takenPicture) {

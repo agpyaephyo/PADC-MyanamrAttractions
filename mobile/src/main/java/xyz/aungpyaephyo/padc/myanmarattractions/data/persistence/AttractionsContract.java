@@ -103,6 +103,8 @@ public class AttractionsContract {
         public static final String COLUMN_REGISTERED_DATE = "registered_date";
         public static final String COLUMN_LAST_USED_DATE = "last_use_date";
         public static final String COLUMN_PROFILE_PICTURE = "profile_picture";
+        public static final String COLUMN_COVER_PICTURE = "cover_picture";
+        public static final String COLUMN_FACEBOOK_ID = "facebook_id";
 
         public static Uri buildLoginUserUri(long id) {
             //content://xyz.aungpyaephyo.padc.myanmarattractions/login_user/1

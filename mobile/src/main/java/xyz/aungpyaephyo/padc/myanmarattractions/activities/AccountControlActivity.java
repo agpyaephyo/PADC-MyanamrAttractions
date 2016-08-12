@@ -12,6 +12,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
@@ -48,7 +50,6 @@ public class AccountControlActivity extends BaseActivity
     ImageView ivBackground;
 
     private int mNavigateTo;
-    private ProgressDialog mProgressDialog;
 
     public static Intent newIntent(int navigateTo) {
         Intent intent = new Intent(MyanmarAttractionsApp.getContext(), AccountControlActivity.class);
@@ -112,12 +113,7 @@ public class AccountControlActivity extends BaseActivity
 
     @Override
     public void onRegister(String name, String email, String password, String dateOfBirth, String country) {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-        }
-
-        mProgressDialog.setMessage("Registering. Please wait.");
-        mProgressDialog.show();
+        showProgressDialog("Registering. Please wait.");
 
         password = SecurityUtils.encryptMD5(password);
         UserModel.getInstance().register(name, email, password, dateOfBirth, country);
@@ -125,15 +121,16 @@ public class AccountControlActivity extends BaseActivity
 
     @Override
     public void onLogin(String email, String password) {
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
-        }
-
-        mProgressDialog.setMessage("Logging In. Please wait.");
-        mProgressDialog.show();
+        showProgressDialog("Logging In. Please wait.");
 
         password = SecurityUtils.encryptMD5(password);
         UserModel.getInstance().login(email, password);
+    }
+
+    @Override
+    public void onLoginWithFacebook(JSONObject facebookLoginUser, String imageUrl, String coverImageUrl) {
+        showProgressDialog("Logging In. Please wait.");
+        UserModel.getInstance().loginWithFacebook(facebookLoginUser, imageUrl, coverImageUrl);
     }
 
     //Success Register
@@ -143,12 +140,12 @@ public class AccountControlActivity extends BaseActivity
         setResult(Activity.RESULT_OK, returningIntent);
         finish();
 
-        if(mProgressDialog.isShowing())
-            mProgressDialog.dismiss();
+        dismissProgressDialog();
     }
 
     //Failed to Register
     public void onEventMainThread(UserEvent.FailedRegistrationEvent event) {
+        dismissProgressDialog();
         SharedDialog.promptMsgWithTheme(this, event.getMessage());
     }
 
@@ -159,12 +156,12 @@ public class AccountControlActivity extends BaseActivity
         setResult(Activity.RESULT_OK, returningIntent);
         finish();
 
-        if(mProgressDialog.isShowing())
-            mProgressDialog.dismiss();
+        dismissProgressDialog();
     }
 
     //Failed to Login
     public void onEventMainThread(UserEvent.FailedLoginEvent event) {
+        dismissProgressDialog();
         SharedDialog.promptMsgWithTheme(this, event.getMessage());
     }
 }

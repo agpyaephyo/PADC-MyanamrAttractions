@@ -140,6 +140,11 @@ public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
 
     }
 
+    @Override
+    public void loginWithFacebook(String email, String facebookId) {
+
+    }
+
     private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;

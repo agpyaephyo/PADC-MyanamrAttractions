@@ -18,6 +18,32 @@
         android:padding="@dimen/margin_medium_2"
         android:textColor="@color/text_white_ish" />
 
+    <ImageView
+        android:id="@+id/iv_login_with_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:src="@drawable/login_with_facebook_large"
+        android:foreground="@drawable/selector_action_bg_white"
+        android:clickable="true"
+        />
+
+    <ImageView
+        android:id="@+id/iv_login_with_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/iv_login_with_facebook"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_below="@id/iv_login_with_facebook"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:src="@drawable/login_with_google_large"
+        android:foreground="@drawable/selector_action_bg"
+        android:clickable="true"
+        android:background="@drawable/bg_rounded"
+        android:padding="2dp"
+        />
+
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"

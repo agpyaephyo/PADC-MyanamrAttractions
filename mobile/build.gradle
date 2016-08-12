@@ -40,6 +40,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'de.greenrobot:eventbus:2.4.0'
+
+    compile 'com.facebook.android:facebook-android-sdk:4.6.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

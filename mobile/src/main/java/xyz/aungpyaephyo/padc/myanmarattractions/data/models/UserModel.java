@@ -1,5 +1,7 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.data.models;
 
+import org.json.JSONObject;
+
 import java.util.Date;
 
 import de.greenrobot.event.EventBus;
@@ -60,9 +62,18 @@ public class UserModel extends BaseModel {
         dataAgent.login(email, password);
     }
 
+    public void loginWithFacebook(JSONObject facebookLoginUser, String profilePic, String coverPic) {
+        loginUser = UserVO.initFromFacebookInfo(facebookLoginUser, profilePic, coverPic);
+        dataAgent.loginWithFacebook(loginUser.getEmail(), loginUser.getFacebookId());
+    }
+
     //Success Register
     public void onEventMainThread(UserEvent.SuccessRegistrationEvent event) {
-        loginUser = event.getLoginUser();
+        if (loginUser == null) {
+            loginUser = event.getLoginUser();
+        } else {
+            loginUser.setAccessToken(event.getLoginUser().getAccessToken());
+        }
         loginUser.setRegisteredDate(new Date());
 
         //Persist login user object.
@@ -76,7 +87,14 @@ public class UserModel extends BaseModel {
 
     //Success Login
     public void onEventMainThread(UserEvent.SuccessLoginEvent event) {
-        loginUser = event.getLoginUser();
+        if (loginUser == null) {
+            loginUser = event.getLoginUser();
+        } else {
+            loginUser.setAccessToken(event.getLoginUser().getAccessToken());
+            loginUser.setDateOfBirthText(event.getLoginUser().getDateOfBirthText());
+            loginUser.setCountryOfOrigin(event.getLoginUser().getCountryOfOrigin());
+            loginUser.setRegisteredDate(event.getLoginUser().getRegisteredDate());
+        }
 
         //Persist login user object.
         loginUser.saveLoginUser();

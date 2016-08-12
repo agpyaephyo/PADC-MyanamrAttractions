@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 import com.bumptech.glide.Glide;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 import java.util.concurrent.ExecutionException;
 
@@ -27,6 +29,9 @@ public class MyanmarAttractionsApp extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
 
         //AttractionSyncAdapter.syncImmediately(getContext());
         AttractionSyncAdapter.initializeSyncAdapter(getContext());

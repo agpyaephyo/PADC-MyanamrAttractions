@@ -33,4 +33,10 @@ public interface AttractionApi {
     Call<LoginResponse> login(
             @Field(MyanmarAttractionsConstants.PARAM_EMAIL) String email,
             @Field(MyanmarAttractionsConstants.PARAM_PASSWORD) String password);
+
+    @FormUrlEncoded
+    @POST(MyanmarAttractionsConstants.API_LOGIN_WITH_FACEBOOK)
+    Call<LoginResponse> loginWithFacebook(
+            @Field(MyanmarAttractionsConstants.PARAM_EMAIL) String email,
+            @Field(MyanmarAttractionsConstants.PARAM_FACEBOOK_ID) String facebookId);
 }

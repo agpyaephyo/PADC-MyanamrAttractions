@@ -1,6 +1,9 @@
 <resources xmlns:xliff="http://schemas.android.com/tools">
-    <string name="app_name">PADC-MyanmarAttractions</string>
+    <string name="app_name">Myanmar Attractions</string>
     <string name="action_settings">Settings</string>
+
+    <string name="facebook_app_id" translatable="false">1038009522973329</string>
+    <string name="fb_login_protocol_scheme">fb1038009522973329</string>
 
     <!-- SyncAdapter -->
     <string name="sync_account_type">myanmarattractions.padc.aungpyaephyo.xyz</string>

@@ -8,6 +8,9 @@ import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,6 +46,10 @@ public class UserVO {
     private String lastUsedDate;
 
     private String profilePicture;
+
+    private String coverPicture;
+
+    private String facebookId;
 
     public String getName() {
         return name;
@@ -98,15 +105,15 @@ public class UserVO {
         this.email = email;
     }
 
-    private void setAccessToken(String accessToken) {
+    public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
-    private void setDateOfBirthText(String dateOfBirthText) {
+    public void setDateOfBirthText(String dateOfBirthText) {
         this.dateOfBirthText = dateOfBirthText;
     }
 
-    private void setCountryOfOrigin(String countryOfOrigin) {
+    public void setCountryOfOrigin(String countryOfOrigin) {
         this.countryOfOrigin = countryOfOrigin;
     }
 
@@ -116,6 +123,22 @@ public class UserVO {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getCoverPicture() {
+        return coverPicture;
+    }
+
+    public void setCoverPicture(String coverPicture) {
+        this.coverPicture = coverPicture;
+    }
+
+    public String getFacebookId() {
+        return facebookId;
+    }
+
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
     }
 
     public void saveLoginUser() {
@@ -148,6 +171,8 @@ public class UserVO {
         loginUser.setRegisteredDate(cursor.getString(cursor.getColumnIndex(AttractionsContract.LoginUserEntry.COLUMN_REGISTERED_DATE)));
         loginUser.setLastUsedDate(cursor.getString(cursor.getColumnIndex(AttractionsContract.LoginUserEntry.COLUMN_LAST_USED_DATE)));
         loginUser.setProfilePicture(cursor.getString(cursor.getColumnIndex(AttractionsContract.LoginUserEntry.COLUMN_PROFILE_PICTURE)));
+        loginUser.setCoverPicture(cursor.getString(cursor.getColumnIndex(AttractionsContract.LoginUserEntry.COLUMN_COVER_PICTURE)));
+        loginUser.setFacebookId(cursor.getString(cursor.getColumnIndex(AttractionsContract.LoginUserEntry.COLUMN_FACEBOOK_ID)));
         return loginUser;
     }
 
@@ -161,6 +186,8 @@ public class UserVO {
         cv.put(AttractionsContract.LoginUserEntry.COLUMN_REGISTERED_DATE, registeredDateText);
         cv.put(AttractionsContract.LoginUserEntry.COLUMN_LAST_USED_DATE, lastUsedDate);
         cv.put(AttractionsContract.LoginUserEntry.COLUMN_PROFILE_PICTURE, profilePicture);
+        cv.put(AttractionsContract.LoginUserEntry.COLUMN_COVER_PICTURE, coverPicture);
+        cv.put(AttractionsContract.LoginUserEntry.COLUMN_FACEBOOK_ID, facebookId);
         return cv;
     }
 
@@ -169,5 +196,29 @@ public class UserVO {
         int deletedRowCount = context.getContentResolver().delete(AttractionsContract.LoginUserEntry.CONTENT_URI, null, null);
 
         Log.d(MyanmarAttractionsApp.TAG, "User clearData - deletedRowCount : " + deletedRowCount);
+    }
+
+    public static UserVO initFromFacebookInfo(JSONObject facebookInfo, String profilePic, String coverPic) {
+        UserVO loginUser = new UserVO();
+        try {
+            if (facebookInfo.has("id")) {
+                loginUser.setFacebookId(facebookInfo.getString("id"));
+            }
+
+            if (facebookInfo.has("name")) {
+                loginUser.setName(facebookInfo.getString("name"));
+            }
+
+            if (facebookInfo.has("email")) {
+                loginUser.setEmail(facebookInfo.getString("email"));
+            }
+        } catch (JSONException e) {
+            Log.e(MyanmarAttractionsApp.TAG, e.getMessage());
+        }
+
+        loginUser.setProfilePicture(profilePic);
+        loginUser.setCoverPicture(coverPic);
+
+        return loginUser;
     }
 }

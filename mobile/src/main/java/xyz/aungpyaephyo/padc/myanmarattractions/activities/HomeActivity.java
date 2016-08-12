@@ -17,6 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
@@ -220,6 +223,7 @@ public class HomeActivity extends BaseActivity
         SharedDialog.confirmYesNoWithTheme(this, getString(R.string.msg_confirm_logout), new SharedDialog.YesNoConfirmDelegate() {
             @Override
             public void onConfirmYes() {
+                LoginManager.getInstance().logOut();
                 UserModel.getInstance().logout();
             }
 

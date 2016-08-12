@@ -11,6 +11,7 @@ public class MyanmarAttractionsConstants {
     public static final String API_GET_ATTRACTION_LIST = "getAttractionsList.php";
     public static final String API_REGISTER = "register.php";
     public static final String API_LOGIN = "login.php";
+    public static final String API_LOGIN_WITH_FACEBOOK = "loginWithFacebook.php";
 
     public static final String PARAM_ACCESS_TOKEN = "access_token";
 
@@ -19,6 +20,7 @@ public class MyanmarAttractionsConstants {
     public static final String PARAM_PASSWORD = "password";
     public static final String PARAM_DATE_OF_BIRTH = "date_of_birth";
     public static final String PARAM_COUNTRY_OF_ORIGIN = "country_of_origin";
+    public static final String PARAM_FACEBOOK_ID = "facebook_id";
 
 
     public static final String ACCESS_TOKEN = "b002c7e1a528b7cb460933fc2875e916";

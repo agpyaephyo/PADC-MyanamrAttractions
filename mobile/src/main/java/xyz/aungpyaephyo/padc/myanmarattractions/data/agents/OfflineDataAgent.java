@@ -59,4 +59,9 @@ public class OfflineDataAgent implements AttractionDataAgent {
     public void login(String email, String password) {
 
     }
+
+    @Override
+    public void loginWithFacebook(String email, String facebookId) {
+
+    }
 }

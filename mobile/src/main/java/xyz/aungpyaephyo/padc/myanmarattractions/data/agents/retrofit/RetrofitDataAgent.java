@@ -118,4 +118,28 @@ public class RetrofitDataAgent implements AttractionDataAgent {
             }
         });
     }
+
+    @Override
+    public void loginWithFacebook(String email, String facebookId) {
+        Call<LoginResponse> loginCall = theApi.loginWithFacebook(email, facebookId);
+        loginCall.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse loginResponse = response.body();
+                if (loginResponse == null) {
+                    UserEvent.FailedLoginEvent event = new UserEvent.FailedLoginEvent(response.message());
+                    EventBus.getDefault().post(event);
+                } else {
+                    UserEvent.SuccessLoginEvent event = new UserEvent.SuccessLoginEvent(loginResponse.getLoginUser());
+                    EventBus.getDefault().post(event);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable throwable) {
+                UserEvent.FailedLoginEvent event = new UserEvent.FailedLoginEvent(throwable.getMessage());
+                EventBus.getDefault().post(event);
+            }
+        });
+    }
 }
