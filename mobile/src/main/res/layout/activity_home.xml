@@ -23,7 +23,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+                    android:id="@+id/tv_screen_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:text="@string/home_screen_title"
+                    android:textSize="@dimen/screen_title_size"
+                    android:textColor="@color/white_full"
+                    />
+
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -31,7 +44,7 @@
             android:id="@+id/fl_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_search"
@@ -50,19 +63,18 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/view_pod_account_control"
-        app:menu="@menu/left_menu"
         app:itemIconTint="@drawable/state_left_menu_item"
-        app:itemTextColor="@drawable/state_left_menu_item">
+        app:itemTextColor="@drawable/state_left_menu_item"
+        app:menu="@menu/left_menu">
 
         <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
             android:id="@+id/tv_app_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_black_ish"
-            android:fontFamily="sans-serif-light"
             android:layout_gravity="bottom|right"
             android:layout_margin="@dimen/margin_medium"
-            />
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/text_black_ish" />
 
     </android.support.design.widget.NavigationView>
 

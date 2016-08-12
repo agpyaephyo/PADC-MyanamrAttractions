@@ -6,7 +6,7 @@
     <string name="sync_account_type">myanmarattractions.padc.aungpyaephyo.xyz</string>
     <string name="content_authority">xyz.aungpyaephyo.padc.myanmarattractions</string>
 
-    <string name="home_screen_title">Myanmar\'s Attractions</string>
+    <string name="home_screen_title">ျမန္မာ့ အလွအပမ်ား </string>
 
     <string name="attraction_list_detail_transition_name">attraction_list_detail_transition_name</string>
     <string name="action_share">Share</string>
@@ -80,4 +80,5 @@
     <string name="change_profile_take_pic">ဓါတ္ပုုံအသစ္ရိုုက္မည္</string>
     <string name="change_profile_select">ရွိျပီးသားထဲကပဲ ေရြးမည္</string>
     <string name="select_picture">Select Picture</string>
+    <string name="myanmar_attractions_touropia">Touropia သိုု့</string>
 </resources>

@@ -42,4 +42,6 @@
 
     <dimen name="icon_in_detail">48dp</dimen>
     <dimen name="margin_top_profile_pic">60dp</dimen>
+
+    <dimen name="screen_title_size">19sp</dimen>
 </resources>

@@ -31,6 +31,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionPagerFragmen
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.GridViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ListViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.NotificationFragment;
+import xyz.aungpyaephyo.padc.myanmarattractions.fragments.TouropiaFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.services.RandomNumberGeneratorService;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
@@ -82,6 +83,7 @@ public class HomeActivity extends BaseActivity
 
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_attraction_launcher_icon);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
@@ -255,6 +257,10 @@ public class HomeActivity extends BaseActivity
                 fabSearch.setVisibility(View.GONE);
                 navigateToNotification();
                 return true;
+            case R.id.myanmar_attractions_touropia:
+                fabSearch.setVisibility(View.GONE);
+                navigateToTouropia();
+                return true;
         }
         return false;
     }
@@ -286,6 +292,12 @@ public class HomeActivity extends BaseActivity
     private void navigateToNotification() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, NotificationFragment.newInstance())
+                .commit();
+    }
+
+    private void navigateToTouropia() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fl_container, TouropiaFragment.newInstance())
                 .commit();
     }
 }
