@@ -12,6 +12,8 @@
     <!-- Implicit Intents -->
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyanmarAttractionsApp"
@@ -54,6 +56,16 @@
             android:authorities="@string/content_authority"
             android:exported="false"
             android:syncable="true" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="xyz.aungpyaephyo.padc.myanmarattractions.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
 
         <receiver android:name=".receivers.system.InternetConnectivityStateReceiver">
             <intent-filter>

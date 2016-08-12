@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,7 +64,8 @@ public class UserProfileActivity extends BaseActivity {
                 getString(R.string.change_profile_take_pic), getString(R.string.change_profile_select), new SharedDialog.YesNoConfirmDelegate() {
                     @Override
                     public void onConfirmYes() {
-                        takePicture();
+                        //takePicture();
+                        takeFullResolutionPicture();
                     }
 
                     @Override
@@ -83,5 +87,22 @@ public class UserProfileActivity extends BaseActivity {
                 RoundedBitmapDrawableFactory.create(ivProfile.getResources(), takenPicture);
         circularBitmapDrawable.setCircular(true);
         ivProfile.setImageDrawable(circularBitmapDrawable);
+    }
+
+    @Override
+    public void onPictureTaken(String localPath) {
+        super.onPictureTaken(localPath);
+        Glide.with(getApplicationContext())
+                .load(Uri.parse(localPath))
+                .asBitmap().centerCrop()
+                .into(new BitmapImageViewTarget(ivProfile) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(ivProfile.getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        ivProfile.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
     }
 }
