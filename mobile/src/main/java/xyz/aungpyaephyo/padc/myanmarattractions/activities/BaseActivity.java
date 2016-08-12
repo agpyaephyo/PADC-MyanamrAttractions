@@ -3,8 +3,10 @@ package xyz.aungpyaephyo.padc.myanmarattractions.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -28,9 +30,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 100;
     private static final int MY_PERMISSIONS_REQUEST_CAMERA = 101;
+    private static final int MY_PERMISSIONS_READ_EXTERNAL_STORAGE = 102;
 
     private static final int REQUEST_IMAGE_CAPTURE = 1001;
     private static final int REQUEST_IMAGE_CAPTURE_FULL_RESOLUTION = 1002;
+    private static final int REQUEST_SELECT_IMAGE_ABOVE_KITKAT = 1003;
+    private static final int REQUEST_SELECT_IMAGE = 1004;
 
     private String numberToCall = null;
     private String mCurrentPhotoPath;
@@ -44,6 +49,43 @@ public abstract class BaseActivity extends AppCompatActivity {
                 onPictureTaken(takenPicture);
             } else if (requestCode == REQUEST_IMAGE_CAPTURE_FULL_RESOLUTION) {
                 onPictureTaken(mCurrentPhotoPath);
+            } else if (requestCode == REQUEST_SELECT_IMAGE_ABOVE_KITKAT) {
+                Uri originalUri = data.getData();
+                final int takeFlags = data.getFlags()
+                        & (Intent.FLAG_GRANT_READ_URI_PERMISSION
+                        | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                // Check for the freshest data.
+                getContentResolver().takePersistableUriPermission(originalUri, takeFlags);
+                //onPictureSelect(originalUri);
+
+                String id = originalUri.getLastPathSegment().split(":")[1];
+                final String[] imageColumns = {MediaStore.Images.Media.DATA};
+                final String imageOrderBy = null;
+
+                Uri uri = getUri();
+
+                String selectedImagePath = "path";
+
+                Cursor imageCursor = managedQuery(uri, imageColumns,
+                        MediaStore.Images.Media._ID + "=" + id, null, imageOrderBy);
+
+                if (imageCursor.moveToFirst()) {
+                    selectedImagePath = imageCursor.getString(imageCursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                }
+
+                onPictureTaken(selectedImagePath);
+            } else if (requestCode == REQUEST_SELECT_IMAGE) {
+                Uri uri = data.getData();
+                String[] projection = { MediaStore.Images.Media.DATA };
+
+                Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+                if(cursor != null && cursor.moveToFirst()) {
+                    int columnIndex = cursor.getColumnIndex(projection[0]);
+                    String picturePath = cursor.getString(columnIndex); // returns null
+                    cursor.close();
+
+                    onPictureTaken(picturePath);
+                }
             }
         }
     }
@@ -81,6 +123,21 @@ public abstract class BaseActivity extends AppCompatActivity {
                 }
                 return;
             }
+            case MY_PERMISSIONS_READ_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay!
+                    selectPicture();
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
 
             // other 'case' lines to check for other
             // permissions this app might request
@@ -101,6 +158,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
+    }
+
+    private Uri getUri() {
+        String state = Environment.getExternalStorageState();
+        if (!state.equalsIgnoreCase(Environment.MEDIA_MOUNTED))
+            return MediaStore.Images.Media.INTERNAL_CONTENT_URI;
+
+        return MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
     }
 
     protected void sendViaShareIntent(String msg) {
@@ -209,6 +274,33 @@ public abstract class BaseActivity extends AppCompatActivity {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE_FULL_RESOLUTION);
             }
+        }
+    }
+
+    protected void selectPicture() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            Intent intent = new Intent();
+            // Show only images, no videos or anything else
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            // Always show the chooser (if there are multiple options available)
+            startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture)), REQUEST_SELECT_IMAGE);
+        } else {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_READ_EXTERNAL_STORAGE);
+
+                return;
+            }
+
+            Intent intent = new Intent();
+            // Show only images, no videos or anything else
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+            // Always show the chooser (if there are multiple options available)
+            startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture)), REQUEST_SELECT_IMAGE_ABOVE_KITKAT);
         }
     }
 

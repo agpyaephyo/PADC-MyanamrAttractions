@@ -26,11 +26,12 @@
 
     <style name="PrimaryButton" parent="AttractionButton">
         <item name="android:backgroundTint">?attr/colorPrimary</item>
-
+        <item name="android:background">?attr/colorPrimary</item>
     </style>
 
     <style name="AccentButton" parent="AttractionButton">
         <item name="android:backgroundTint">@color/accent_dark</item>
+        <item name="android:background">@color/accent_dark</item>
     </style>
 
 </resources>

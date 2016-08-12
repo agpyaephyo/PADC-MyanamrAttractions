@@ -63,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_add_a_photo_24dp"
+                android:tint="@color/accent"
                 android:layout_gravity="right|bottom"
                 android:paddingRight="@dimen/margin_medium"
                 android:paddingBottom="@dimen/margin_small"

@@ -86,13 +86,15 @@ public class ScreenUtils {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setStatusbarColor(int colorReference, Activity activity) {
-        Window window = activity.getWindow();
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-        // finally change the color
-        window.setStatusBarColor(activity.getResources().getColor(colorReference));
+            // finally change the color
+            window.setStatusBarColor(activity.getResources().getColor(colorReference));
+        }
     }
 }

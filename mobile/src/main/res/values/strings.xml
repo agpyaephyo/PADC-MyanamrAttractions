@@ -79,4 +79,5 @@
     <string name="confirm_change_profile_take_or_select">Profile Picture change ရန္ ဓါတ္ပုုံအသစ္ရိုုက္လိုုပါသလား ၊ ဒါမွမဟုုတ္ ရွိျပီးသား ဓါတ္ပုုံေတြထဲက ေရြးခ်ယ္လိုုပါသလား</string>
     <string name="change_profile_take_pic">ဓါတ္ပုုံအသစ္ရိုုက္မည္</string>
     <string name="change_profile_select">ရွိျပီးသားထဲကပဲ ေရြးမည္</string>
+    <string name="select_picture">Select Picture</string>
 </resources>

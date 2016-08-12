@@ -1,13 +1,9 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.activities;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.View;
@@ -16,8 +12,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-
-import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,7 +64,7 @@ public class UserProfileActivity extends BaseActivity {
 
                     @Override
                     public void onConfirmNo() {
-
+                        selectPicture();
                     }
                 });
     }
@@ -109,9 +103,8 @@ public class UserProfileActivity extends BaseActivity {
         super.onPictureTaken(localPath);
         UserModel.getInstance().saveProfilePicture(localPath);
 
-
         Glide.with(getApplicationContext())
-                .load(Uri.parse(localPath))
+                .load(localPath)
                 .asBitmap().centerCrop()
                 .into(new BitmapImageViewTarget(ivProfile) {
                     @Override
