@@ -102,6 +102,7 @@ public class AttractionsContract {
         public static final String COLUMN_COUNTRY = "country";
         public static final String COLUMN_REGISTERED_DATE = "registered_date";
         public static final String COLUMN_LAST_USED_DATE = "last_use_date";
+        public static final String COLUMN_PROFILE_PICTURE = "profile_picture";
 
         public static Uri buildLoginUserUri(long id) {
             //content://xyz.aungpyaephyo.padc.myanmarattractions/login_user/1

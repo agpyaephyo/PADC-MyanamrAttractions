@@ -86,4 +86,12 @@ public class UserModel extends BaseModel {
     public void onEventMainThread(UserEvent.FailedLoginEvent event) {
         //Do nothing on persistent layer.
     }
+
+    public void saveProfilePicture(String localPath) {
+        loginUser.setProfilePicture(localPath);
+        loginUser.saveLoginUser();
+
+        DataEvent.RefreshUserLoginStatusEvent event = new DataEvent.RefreshUserLoginStatusEvent();
+        EventBus.getDefault().post(event);
+    }
 }

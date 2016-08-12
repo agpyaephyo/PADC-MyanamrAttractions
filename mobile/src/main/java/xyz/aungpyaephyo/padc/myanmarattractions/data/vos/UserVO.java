@@ -42,6 +42,8 @@ public class UserVO {
 
     private String lastUsedDate;
 
+    private String profilePicture;
+
     public String getName() {
         return name;
     }
@@ -108,6 +110,14 @@ public class UserVO {
         this.countryOfOrigin = countryOfOrigin;
     }
 
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
     public void saveLoginUser() {
         ContentValues cv = parseToContentValues();
         Context context = MyanmarAttractionsApp.getContext();
@@ -137,6 +147,7 @@ public class UserVO {
         loginUser.setCountryOfOrigin(cursor.getString(cursor.getColumnIndex(AttractionsContract.LoginUserEntry.COLUMN_COUNTRY)));
         loginUser.setRegisteredDate(cursor.getString(cursor.getColumnIndex(AttractionsContract.LoginUserEntry.COLUMN_REGISTERED_DATE)));
         loginUser.setLastUsedDate(cursor.getString(cursor.getColumnIndex(AttractionsContract.LoginUserEntry.COLUMN_LAST_USED_DATE)));
+        loginUser.setProfilePicture(cursor.getString(cursor.getColumnIndex(AttractionsContract.LoginUserEntry.COLUMN_PROFILE_PICTURE)));
         return loginUser;
     }
 
@@ -149,6 +160,7 @@ public class UserVO {
         cv.put(AttractionsContract.LoginUserEntry.COLUMN_COUNTRY, countryOfOrigin);
         cv.put(AttractionsContract.LoginUserEntry.COLUMN_REGISTERED_DATE, registeredDateText);
         cv.put(AttractionsContract.LoginUserEntry.COLUMN_LAST_USED_DATE, lastUsedDate);
+        cv.put(AttractionsContract.LoginUserEntry.COLUMN_PROFILE_PICTURE, profilePicture);
         return cv;
     }
 

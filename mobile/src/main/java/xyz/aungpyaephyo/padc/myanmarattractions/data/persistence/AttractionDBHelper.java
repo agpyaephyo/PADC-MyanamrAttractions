@@ -13,7 +13,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.data.persistence.AttractionsCont
  */
 public class AttractionDBHelper extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
     public static final String DATABASE_NAME = "attractions.db";
 
     private static final String SQL_CREATE_ATTRACTION_TABLE = "CREATE TABLE " + AttractionEntry.TABLE_NAME + " (" +
@@ -42,6 +42,7 @@ public class AttractionDBHelper extends SQLiteOpenHelper{
             LoginUserEntry.COLUMN_COUNTRY + " TEXT NOT NULL, "+
             LoginUserEntry.COLUMN_REGISTERED_DATE + " TEXT NOT NULL, "+
             LoginUserEntry.COLUMN_LAST_USED_DATE + " TEXT, "+
+            LoginUserEntry.COLUMN_PROFILE_PICTURE + " TEXT, "+
 
             " UNIQUE (" + LoginUserEntry.COLUMN_EMAIL + ") ON CONFLICT REPLACE" +
             " );";

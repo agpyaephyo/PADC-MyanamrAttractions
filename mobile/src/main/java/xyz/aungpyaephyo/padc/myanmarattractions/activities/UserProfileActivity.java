@@ -76,6 +76,21 @@ public class UserProfileActivity extends BaseActivity {
     }
 
     private void bindData(UserVO loginUser) {
+        Glide.with(getApplicationContext())
+                .load(loginUser.getProfilePicture())
+                .asBitmap().centerCrop()
+                .placeholder(R.drawable.dummy_avatar)
+                .error(R.drawable.dummy_avatar)
+                .into(new BitmapImageViewTarget(ivProfile) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(ivProfile.getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        ivProfile.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
+
         tvName.setText(loginUser.getName());
         tvEmail.setText(loginUser.getEmail());
     }
@@ -92,6 +107,9 @@ public class UserProfileActivity extends BaseActivity {
     @Override
     public void onPictureTaken(String localPath) {
         super.onPictureTaken(localPath);
+        UserModel.getInstance().saveProfilePicture(localPath);
+
+
         Glide.with(getApplicationContext())
                 .load(Uri.parse(localPath))
                 .asBitmap().centerCrop()

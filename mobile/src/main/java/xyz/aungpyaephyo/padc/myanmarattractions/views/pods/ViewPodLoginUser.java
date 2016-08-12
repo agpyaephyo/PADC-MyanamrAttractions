@@ -20,10 +20,9 @@ import butterknife.OnClick;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.BaseController;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserController;
-import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.ViewController;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
-import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 
 /**
  * Created by aung on 7/6/16.
@@ -64,7 +63,9 @@ public class ViewPodLoginUser extends RelativeLayout implements ViewController {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                mController.onNavigateUserProfile();
+                if (UserModel.getInstance().isUserLogin()) {
+                    mController.onNavigateUserProfile();
+                }
             }
         });
     }
@@ -87,8 +88,10 @@ public class ViewPodLoginUser extends RelativeLayout implements ViewController {
         */
 
         Glide.with(getContext())
-                .load(R.drawable.dummy_avatar)
+                .load(loginUser.getProfilePicture())
                 .asBitmap().centerCrop()
+                .placeholder(R.drawable.dummy_avatar)
+                .error(R.drawable.dummy_avatar)
                 .into(new BitmapImageViewTarget(ivProfile) {
                     @Override
                     protected void setResource(Bitmap resource) {
