@@ -11,7 +11,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +28,6 @@ import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionPagerFragment;
-import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ContactUsFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.GridViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ListViewAttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.NotificationFragment;
@@ -231,6 +229,12 @@ public class HomeActivity extends BaseActivity
     }
 
     @Override
+    public void onNavigateUserProfile() {
+        Intent intent = UserProfileActivity.newIntent();
+        startActivity(intent);
+    }
+
+    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
         fabSearch.setVisibility(View.VISIBLE);
@@ -250,9 +254,6 @@ public class HomeActivity extends BaseActivity
             case R.id.myanmar_attractions_notification:
                 fabSearch.setVisibility(View.GONE);
                 navigateToNotification();
-                return true;
-            case R.id.myanmar_attractions_contact_us:
-                navigateToContactUs();
                 return true;
         }
         return false;
@@ -285,12 +286,6 @@ public class HomeActivity extends BaseActivity
     private void navigateToNotification() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_container, NotificationFragment.newInstance())
-                .commit();
-    }
-
-    private void navigateToContactUs() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fl_container, ContactUsFragment.newInstance())
                 .commit();
     }
 }

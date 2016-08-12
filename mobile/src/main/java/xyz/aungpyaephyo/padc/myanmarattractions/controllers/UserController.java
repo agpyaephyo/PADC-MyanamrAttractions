@@ -7,4 +7,5 @@ public interface UserController extends BaseController {
     void onTapLogin();
     void onTapRegister();
     void onTapLogout();
+    void onNavigateUserProfile();
 }

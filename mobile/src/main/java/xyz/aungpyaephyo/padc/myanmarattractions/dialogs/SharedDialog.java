@@ -70,7 +70,8 @@ public class SharedDialog {
             }
 
             LinearLayout llDialogControls = (LinearLayout) dialog.findViewById(R.id.ll_controls);
-            if (yesBtn.length() > MyanmarAttractionsConstants.DIALOG_BUTTON_LABEL_LIMIT || cancelBtn.length() > MyanmarAttractionsConstants.DIALOG_BUTTON_LABEL_LIMIT) {
+            if ((yesBtn != null && yesBtn.length() > MyanmarAttractionsConstants.DIALOG_BUTTON_LABEL_LIMIT)
+                    || (cancelBtn != null && cancelBtn.length() > MyanmarAttractionsConstants.DIALOG_BUTTON_LABEL_LIMIT)) {
                 llDialogControls.setOrientation(LinearLayout.VERTICAL);
             }
 

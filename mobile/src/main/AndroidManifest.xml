@@ -9,7 +9,9 @@
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
 
+    <!-- Implicit Intents -->
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".MyanmarAttractionsApp"
@@ -41,6 +43,10 @@
 
         <activity
             android:name=".activities.AccountControlActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".activities.UserProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <provider

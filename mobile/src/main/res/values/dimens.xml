@@ -26,6 +26,7 @@
     <dimen name="detail_backdrop_height">256dp</dimen>
     <dimen name="left_menu_width">280dp</dimen>
     <dimen name="user_profile_image_size">64dp</dimen>
+    <dimen name="user_profile_image_size_large">90dp</dimen>
     <dimen name="offset_status_bar_height">40dp</dimen>
     <dimen name="menu_header_height">220dp</dimen>
     <dimen name="input_box_width">300dp</dimen>
@@ -40,4 +41,5 @@
     <dimen name="attraction_sight_height">200dp</dimen>
 
     <dimen name="icon_in_detail">48dp</dimen>
+    <dimen name="margin_top_profile_pic">60dp</dimen>
 </resources>

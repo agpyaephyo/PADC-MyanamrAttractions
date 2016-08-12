@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_header_height">
+
+        <ImageView
+            android:id="@+id/iv_profile_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/drawer_background" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_overlay" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:layout_centerHorizontal="true"
+            android:text="aungpyaephyo24@gmail.com"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/text_white_ish"
+            />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tv_email"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_centerHorizontal="true"
+            android:text="Ko Aung Pyae Phyo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/text_white_ish"
+            />
+
+        <FrameLayout
+            android:layout_width="@dimen/user_profile_image_size_large"
+            android:layout_height="@dimen/user_profile_image_size_large"
+            android:layout_above="@id/tv_name"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/dummy_avatar"
+                android:scaleType="centerCrop"
+                />
+
+            <ImageView
+                android:id="@+id/iv_change_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add_a_photo_24dp"
+                android:layout_gravity="right|bottom"
+                android:paddingRight="@dimen/margin_medium"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_medium"
+                android:paddingLeft="@dimen/margin_medium"
+                android:foreground="@drawable/selector_action_bg"
+                android:clickable="true"
+                />
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -3,7 +3,10 @@ package xyz.aungpyaephyo.padc.myanmarattractions.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,8 +20,20 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstant
 public abstract class BaseActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 100;
+    private static final int MY_PERMISSIONS_REQUEST_CAMERA = 101;
+
+    private static final int REQUEST_IMAGE_CAPTURE = 1001;
 
     private String numberToCall = null;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap takenPicture = (Bitmap) extras.get("data");
+            onPictureTaken(takenPicture);
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -30,6 +45,21 @@ public abstract class BaseActivity extends AppCompatActivity {
 
                     // permission was granted, yay!
                     makeCall(numberToCall);
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+            case MY_PERMISSIONS_REQUEST_CAMERA: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay!
+                    takePicture();
 
                 } else {
 
@@ -104,5 +134,25 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         startActivity(Intent.createChooser(intent,
                 getString(R.string.action_send_email)));
+    }
+
+    protected void takePicture() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA},
+                    MY_PERMISSIONS_REQUEST_CAMERA);
+
+            return;
+        }
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    public void onPictureTaken(Bitmap takenPicture) {
+
     }
 }

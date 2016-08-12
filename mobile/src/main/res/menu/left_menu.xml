@@ -33,11 +33,5 @@
             android:title="@string/myanmar_attractions_notification"
             />
 
-        <item
-            android:id="@+id/myanmar_attractions_contact_us"
-            android:icon="@drawable/ic_store_mall_directory_24dp"
-            android:title="@string/myanmar_attractions_contact_us"
-            />
-
     </group>
 </menu>
