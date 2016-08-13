@@ -10,6 +10,7 @@ import java.util.List;
 
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.CommonInstances;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.JsonUtils;
 
@@ -56,12 +57,19 @@ public class OfflineDataAgent implements AttractionDataAgent {
     }
 
     @Override
+    public void registerWithFacebook(UserVO registeringUser, String password) {
+
+    }
+
+    @Override
     public void login(String email, String password) {
 
     }
 
     @Override
-    public void loginWithFacebook(String email, String facebookId) {
+    public void loginWithFacebook(UserVO loginUser) {
 
     }
+
+
 }

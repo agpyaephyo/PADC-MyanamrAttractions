@@ -41,7 +41,7 @@
         android:foreground="@drawable/selector_action_bg"
         android:clickable="true"
         android:background="@drawable/bg_rounded"
-        android:padding="2dp"
+        android:padding="1dp"
         />
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText

@@ -29,6 +29,18 @@ public interface AttractionApi {
             @Field(MyanmarAttractionsConstants.PARAM_COUNTRY_OF_ORIGIN) String countryOfOrigin);
 
     @FormUrlEncoded
+    @POST(MyanmarAttractionsConstants.API_REGISTER_WITH_FACEBOOK)
+    Call<RegisterResponse> registerWithFacebook(
+            @Field(MyanmarAttractionsConstants.PARAM_FACEBOOK_ID) String facebookId,
+            @Field(MyanmarAttractionsConstants.PARAM_PROFILE_IMAGE) String profileImage,
+            @Field(MyanmarAttractionsConstants.PARAM_COVER_IMAGE) String coverImage,
+            @Field(MyanmarAttractionsConstants.PARAM_NAME) String name,
+            @Field(MyanmarAttractionsConstants.PARAM_EMAIL) String email,
+            @Field(MyanmarAttractionsConstants.PARAM_PASSWORD) String password,
+            @Field(MyanmarAttractionsConstants.PARAM_DATE_OF_BIRTH) String dateOfBirth,
+            @Field(MyanmarAttractionsConstants.PARAM_COUNTRY_OF_ORIGIN) String countryOfOrigin);
+
+    @FormUrlEncoded
     @POST(MyanmarAttractionsConstants.API_LOGIN)
     Call<LoginResponse> login(
             @Field(MyanmarAttractionsConstants.PARAM_EMAIL) String email,
@@ -38,5 +50,7 @@ public interface AttractionApi {
     @POST(MyanmarAttractionsConstants.API_LOGIN_WITH_FACEBOOK)
     Call<LoginResponse> loginWithFacebook(
             @Field(MyanmarAttractionsConstants.PARAM_EMAIL) String email,
-            @Field(MyanmarAttractionsConstants.PARAM_FACEBOOK_ID) String facebookId);
+            @Field(MyanmarAttractionsConstants.PARAM_FACEBOOK_ID) String facebookId,
+            @Field(MyanmarAttractionsConstants.PARAM_PROFILE_IMAGE) String profileImage,
+            @Field(MyanmarAttractionsConstants.PARAM_COVER_IMAGE) String coverImage);
 }

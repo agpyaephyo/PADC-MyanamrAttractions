@@ -50,6 +50,11 @@ public class UserModel extends BaseModel {
         dataAgent.register(name, email, password, dateOfBirth, country);
     }
 
+    public void registerWithFacebook(UserVO registeringUser, String password) {
+        loginUser = registeringUser;
+        dataAgent.registerWithFacebook(registeringUser, password);
+    }
+
     public void logout() {
         loginUser.clearData();
         loginUser = null;
@@ -64,7 +69,7 @@ public class UserModel extends BaseModel {
 
     public void loginWithFacebook(JSONObject facebookLoginUser, String profilePic, String coverPic) {
         loginUser = UserVO.initFromFacebookInfo(facebookLoginUser, profilePic, coverPic);
-        dataAgent.loginWithFacebook(loginUser.getEmail(), loginUser.getFacebookId());
+        dataAgent.loginWithFacebook(loginUser);
     }
 
     //Success Register
@@ -73,7 +78,10 @@ public class UserModel extends BaseModel {
             loginUser = event.getLoginUser();
         } else {
             loginUser.setAccessToken(event.getLoginUser().getAccessToken());
+            loginUser.setDateOfBirthText(event.getLoginUser().getDateOfBirthText());
+            loginUser.setCountryOfOrigin(event.getLoginUser().getCountryOfOrigin());
         }
+
         loginUser.setRegisteredDate(new Date());
 
         //Persist login user object.

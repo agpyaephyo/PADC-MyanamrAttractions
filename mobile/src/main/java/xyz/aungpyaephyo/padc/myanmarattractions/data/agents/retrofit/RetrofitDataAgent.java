@@ -14,6 +14,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.responses.AttractionListResponse;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.responses.LoginResponse;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.responses.RegisterResponse;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.UserEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.CommonInstances;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
@@ -96,6 +97,33 @@ public class RetrofitDataAgent implements AttractionDataAgent {
     }
 
     @Override
+    public void registerWithFacebook(UserVO registeringUser, String password) {
+        Call<RegisterResponse> registerCall = theApi.registerWithFacebook(registeringUser.getFacebookId(),
+                registeringUser.getProfilePicture(), registeringUser.getCoverPicture(),
+                registeringUser.getName(), registeringUser.getEmail(), password,
+                registeringUser.getDateOfBirthText(), registeringUser.getCountryOfOrigin());
+        registerCall.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                RegisterResponse registerResponse = response.body();
+                if (registerResponse == null) {
+                    UserEvent.FailedRegistrationEvent event = new UserEvent.FailedRegistrationEvent(response.message());
+                    EventBus.getDefault().post(event);
+                } else {
+                    UserEvent.SuccessRegistrationEvent event = new UserEvent.SuccessRegistrationEvent(registerResponse.getLoginUser());
+                    EventBus.getDefault().post(event);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable throwable) {
+                UserEvent.FailedRegistrationEvent event = new UserEvent.FailedRegistrationEvent(throwable.getMessage());
+                EventBus.getDefault().post(event);
+            }
+        });
+    }
+
+    @Override
     public void login(String email, String password) {
         Call<LoginResponse> loginCall = theApi.login(email, password);
         loginCall.enqueue(new Callback<LoginResponse>() {
@@ -120,8 +148,9 @@ public class RetrofitDataAgent implements AttractionDataAgent {
     }
 
     @Override
-    public void loginWithFacebook(String email, String facebookId) {
-        Call<LoginResponse> loginCall = theApi.loginWithFacebook(email, facebookId);
+    public void loginWithFacebook(UserVO loginUser) {
+        Call<LoginResponse> loginCall = theApi.loginWithFacebook(loginUser.getEmail(),
+                loginUser.getFacebookId(), loginUser.getProfilePicture(), loginUser.getCoverPicture());
         loginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {

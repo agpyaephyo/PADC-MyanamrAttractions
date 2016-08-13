@@ -23,6 +23,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.responses.AttractionListResponse;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.CommonInstances;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 
@@ -136,14 +137,20 @@ public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
     }
 
     @Override
+    public void registerWithFacebook(UserVO registeringUser, String password) {
+
+    }
+
+    @Override
     public void login(String email, String password) {
 
     }
 
     @Override
-    public void loginWithFacebook(String email, String facebookId) {
+    public void loginWithFacebook(UserVO loginUser) {
 
     }
+
 
     private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();

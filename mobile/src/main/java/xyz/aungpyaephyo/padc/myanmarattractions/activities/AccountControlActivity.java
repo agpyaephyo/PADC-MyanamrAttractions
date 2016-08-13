@@ -22,6 +22,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
+import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.UserEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.LoginFragment;
@@ -120,6 +121,14 @@ public class AccountControlActivity extends BaseActivity
     }
 
     @Override
+    public void onRegisterWithFacebook(UserVO registeringUser, String password) {
+        showProgressDialog("Registering with Facebook Info. Please wait.");
+
+        password = SecurityUtils.encryptMD5(password);
+        UserModel.getInstance().registerWithFacebook(registeringUser, password);
+    }
+
+    @Override
     public void onLogin(String email, String password) {
         showProgressDialog("Logging In. Please wait.");
 
@@ -129,7 +138,7 @@ public class AccountControlActivity extends BaseActivity
 
     @Override
     public void onLoginWithFacebook(JSONObject facebookLoginUser, String imageUrl, String coverImageUrl) {
-        showProgressDialog("Logging In. Please wait.");
+        showProgressDialog("Logging In with Facebook Info. Please wait.");
         UserModel.getInstance().loginWithFacebook(facebookLoginUser, imageUrl, coverImageUrl);
     }
 
