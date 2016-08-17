@@ -71,21 +71,12 @@ public class ViewPodLoginUser extends RelativeLayout implements ViewController {
     }
 
     public void setData(UserVO loginUser) {
-        /*
         Glide.with(getContext())
-                .load(loginUser.getCoverImageUrl())
+                .load(loginUser.getCoverPicture())
                 .centerCrop()
                 .placeholder(R.drawable.drawer_background)
                 .error(R.drawable.drawer_background)
                 .into(ivProfileCover);
-
-        Glide.with(getContext())
-                .load(loginUser.getImageUrl())
-                .centerCrop()
-                .placeholder(R.drawable.dummy_avatar)
-                .error(R.drawable.dummy_avatar)
-                .into(ivProfile);
-        */
 
         Glide.with(getContext())
                 .load(loginUser.getProfilePicture())

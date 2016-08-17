@@ -1,5 +1,8 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.data.models;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.plus.model.people.Person;
+
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -55,6 +58,11 @@ public class UserModel extends BaseModel {
         dataAgent.registerWithFacebook(registeringUser, password);
     }
 
+    public void registerWithGoogle(UserVO registeringUser, String password) {
+        loginUser = registeringUser;
+        dataAgent.registerWithFacebook(registeringUser, password);
+    }
+
     public void logout() {
         loginUser.clearData();
         loginUser = null;
@@ -70,6 +78,11 @@ public class UserModel extends BaseModel {
     public void loginWithFacebook(JSONObject facebookLoginUser, String profilePic, String coverPic) {
         loginUser = UserVO.initFromFacebookInfo(facebookLoginUser, profilePic, coverPic);
         dataAgent.loginWithFacebook(loginUser);
+    }
+
+    public void loginWithGoogle(GoogleSignInAccount signInAccount, Person registeringUser) {
+        loginUser = UserVO.initFromGoogleInfo(signInAccount, registeringUser);
+        dataAgent.loginWithGoogle(loginUser);
     }
 
     //Success Register

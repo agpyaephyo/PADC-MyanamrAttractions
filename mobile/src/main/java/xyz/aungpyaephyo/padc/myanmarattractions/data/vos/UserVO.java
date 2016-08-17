@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.plus.model.people.Person;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONException;
@@ -50,6 +52,8 @@ public class UserVO {
     private String coverPicture;
 
     private String facebookId;
+
+    private String googleId;
 
     public String getName() {
         return name;
@@ -141,6 +145,14 @@ public class UserVO {
         this.facebookId = facebookId;
     }
 
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+
     public void saveLoginUser() {
         ContentValues cv = parseToContentValues();
         Context context = MyanmarAttractionsApp.getContext();
@@ -218,6 +230,24 @@ public class UserVO {
 
         loginUser.setProfilePicture(profilePic);
         loginUser.setCoverPicture(coverPic);
+
+        return loginUser;
+    }
+
+    public static UserVO initFromGoogleInfo(GoogleSignInAccount googleSignInAccount, Person registeringUser) {
+        UserVO loginUser = new UserVO();
+        loginUser.setGoogleId(googleSignInAccount.getId());
+        loginUser.setName(googleSignInAccount.getDisplayName());
+        loginUser.setEmail(googleSignInAccount.getEmail());
+
+        Uri imageUri = googleSignInAccount.getPhotoUrl();
+        if (imageUri != null) {
+            loginUser.setProfilePicture(imageUri.toString());
+        }
+
+        if(registeringUser != null) {
+            loginUser.setCoverPicture(registeringUser.getCover().getCoverPhoto().getUrl());
+        }
 
         return loginUser;
     }

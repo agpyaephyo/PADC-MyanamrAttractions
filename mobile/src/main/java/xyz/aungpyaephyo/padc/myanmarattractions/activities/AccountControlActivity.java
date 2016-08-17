@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.plus.model.people.Person;
 
 import org.json.JSONObject;
 
@@ -129,6 +131,14 @@ public class AccountControlActivity extends BaseActivity
     }
 
     @Override
+    public void onRegisterWithGoogle(UserVO registeringUser, String password) {
+        showProgressDialog("Registering with Google Info. Please wait.");
+
+        password = SecurityUtils.encryptMD5(password);
+        UserModel.getInstance().registerWithGoogle(registeringUser, password);
+    }
+
+    @Override
     public void onLogin(String email, String password) {
         showProgressDialog("Logging In. Please wait.");
 
@@ -140,6 +150,12 @@ public class AccountControlActivity extends BaseActivity
     public void onLoginWithFacebook(JSONObject facebookLoginUser, String imageUrl, String coverImageUrl) {
         showProgressDialog("Logging In with Facebook Info. Please wait.");
         UserModel.getInstance().loginWithFacebook(facebookLoginUser, imageUrl, coverImageUrl);
+    }
+
+    @Override
+    public void onLoginWithGoogle(GoogleSignInAccount signInAccount, Person registeringUser) {
+        showProgressDialog("Logging In with Google Info. Please wait.");
+        UserModel.getInstance().loginWithGoogle(signInAccount, registeringUser);
     }
 
     //Success Register

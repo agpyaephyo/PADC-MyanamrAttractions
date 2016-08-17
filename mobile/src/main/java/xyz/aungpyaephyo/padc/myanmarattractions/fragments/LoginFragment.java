@@ -23,6 +23,9 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.plus.model.people.Person;
 
 import org.json.JSONObject;
 
@@ -125,4 +128,15 @@ public class LoginFragment extends BaseFragment {
         mController.onLoginWithFacebook(facebookLoginUser, imageUrl, coverImageUrl);
     }
 
+    @OnClick(R.id.iv_login_with_google)
+    public void onTapLoginWithGoogle(View view) {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_LOGIN_WITH_GOOGLE);
+    }
+
+    @Override
+    protected void onRetrieveGoogleInfo(GoogleSignInAccount signInAccount, Person registeringUser) {
+        super.onRetrieveGoogleInfo(signInAccount, registeringUser);
+        mController.onLoginWithGoogle(signInAccount, registeringUser);
+    }
 }

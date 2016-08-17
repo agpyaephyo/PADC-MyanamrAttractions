@@ -1,5 +1,8 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.controllers;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.plus.model.people.Person;
+
 import org.json.JSONObject;
 
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
@@ -12,8 +15,12 @@ public interface UserSessionController extends SocialMediaController {
 
     void onRegisterWithFacebook(UserVO registeringUser, String password);
 
+    void onRegisterWithGoogle(UserVO registeringUser, String password);
+
     void onLogin(String email, String password);
 
     void onLoginWithFacebook(JSONObject facebookLoginUser, String imageUrl, String coverImageUrl);
+
+    void onLoginWithGoogle(GoogleSignInAccount signInAccount, Person registeringUser);
 }
 

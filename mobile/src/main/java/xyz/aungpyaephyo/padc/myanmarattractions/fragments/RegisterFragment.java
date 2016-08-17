@@ -1,9 +1,13 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,12 +15,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.plus.model.people.Person;
 
 import org.json.JSONObject;
 
@@ -43,8 +53,14 @@ import xyz.aungpyaephyo.padc.myanmarattractions.views.PasswordVisibilityListener
  */
 public class RegisterFragment extends BaseFragment {
 
+    private static final int CONNECTED_SOCIAL_MEDIA_FACEBOOK = 1;
+    private static final int CONNECTED_SOCIAL_MEDIA_GOOGLE = 2;
+
     @BindView(R.id.lbl_registration_title)
     TextView lblRegistrationTitle;
+
+    @BindView(R.id.iv_profile)
+    ImageView ivProfile;
 
     @BindView(R.id.et_name)
     EditText etName;
@@ -65,6 +81,8 @@ public class RegisterFragment extends BaseFragment {
     private UserSessionController mUserSessionController;
 
     private UserVO mRegisteringUser;
+
+    private int mConnectedSocialMedia;
 
     public static RegisterFragment newInstance() {
         RegisterFragment fragment = new RegisterFragment();
@@ -164,17 +182,19 @@ public class RegisterFragment extends BaseFragment {
             etEmail.setError(getString(R.string.error_email_is_not_valid));
         } else {
             //Checking on client side is done here.
-            if(mRegisteringUser == null) { //Regular Registration
+            if (mRegisteringUser == null) { //Regular Registration
                 mUserSessionController.onRegister(name, email, password, dateOfBith, country);
             } else { //Registration with Social Media.
                 mRegisteringUser.setDateOfBirthText(dateOfBith);
                 mRegisteringUser.setCountryOfOrigin(country);
 
-                mUserSessionController.onRegisterWithFacebook(mRegisteringUser, password);
+                if (mConnectedSocialMedia == CONNECTED_SOCIAL_MEDIA_FACEBOOK) {
+                    mUserSessionController.onRegisterWithFacebook(mRegisteringUser, password);
+                } else if (mConnectedSocialMedia == CONNECTED_SOCIAL_MEDIA_GOOGLE) {
+                    mUserSessionController.onRegisterWithGoogle(mRegisteringUser, password);
+                }
             }
-
         }
-
     }
 
     @OnClick(R.id.iv_register_with_facebook)
@@ -193,6 +213,7 @@ public class RegisterFragment extends BaseFragment {
     @Override
     protected void onRetrieveFacebookInfo(JSONObject facebookLoginUser, String imageUrl, String coverImageUrl) {
         super.onRetrieveFacebookInfo(facebookLoginUser, imageUrl, coverImageUrl);
+        mConnectedSocialMedia = CONNECTED_SOCIAL_MEDIA_FACEBOOK;
         mRegisteringUser = UserVO.initFromFacebookInfo(facebookLoginUser, imageUrl, coverImageUrl);
 
         showRetrievedDataInRegistrationForm(mRegisteringUser);
@@ -207,10 +228,45 @@ public class RegisterFragment extends BaseFragment {
             etEmail.setText(registeringUser.getEmail());
         }
 
+        if(!TextUtils.isEmpty(registeringUser.getProfilePicture())) {
+            ivProfile.setVisibility(View.VISIBLE);
+            Glide.with(getContext())
+                    .load(registeringUser.getProfilePicture())
+                    .asBitmap().centerCrop()
+                    .placeholder(R.drawable.dummy_avatar)
+                    .error(R.drawable.dummy_avatar)
+                    .into(new BitmapImageViewTarget(ivProfile) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(ivProfile.getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            ivProfile.setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
+        } else {
+            ivProfile.setVisibility(View.GONE);
+        }
+
         etPassword.requestFocus();
 
         SharedDialog.promptMsgWithTheme(getActivity(),
                 getString(R.string.prompt_some_data_retrieved_for_registration));
+    }
+
+    @OnClick(R.id.iv_register_with_google)
+    public void onTapRegisterWithGoogle(View view) {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_LOGIN_WITH_GOOGLE);
+    }
+
+    @Override
+    protected void onRetrieveGoogleInfo(GoogleSignInAccount signInAccount, Person registeringUser) {
+        super.onRetrieveGoogleInfo(signInAccount, registeringUser);
+        mConnectedSocialMedia = CONNECTED_SOCIAL_MEDIA_GOOGLE;
+        mRegisteringUser = UserVO.initFromGoogleInfo(signInAccount, registeringUser);
+
+        showRetrievedDataInRegistrationForm(mRegisteringUser);
     }
 
     //Success Register

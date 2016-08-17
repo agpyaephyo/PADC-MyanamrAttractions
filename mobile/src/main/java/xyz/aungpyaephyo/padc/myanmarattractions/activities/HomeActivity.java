@@ -220,6 +220,7 @@ public class HomeActivity extends BaseActivity
 
     @Override
     public void onTapLogout() {
+        drawerLayout.closeDrawer(GravityCompat.START);
         SharedDialog.confirmYesNoWithTheme(this, getString(R.string.msg_confirm_logout), new SharedDialog.YesNoConfirmDelegate() {
             @Override
             public void onConfirmYes() {

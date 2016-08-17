@@ -49,11 +49,24 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="@dimen/user_profile_image_size"
+        android:layout_height="@dimen/user_profile_image_size"
+        android:layout_marginLeft="@dimen/margin_medium"
+        android:layout_marginRight="@dimen/margin_medium"
+        android:layout_below="@id/ll_register_with_social_media"
+        android:elevation="4dp"
+        android:visibility="gone"
+        android:src="@drawable/dummy_avatar" />
+
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
         android:id="@+id/et_name"
-        android:layout_width="@dimen/input_box_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_register_with_social_media"
+        android:layout_alignBottom="@id/iv_profile"
+        android:layout_toRightOf="@id/iv_profile"
         android:layout_marginLeft="@dimen/margin_medium_2"
         android:layout_marginRight="@dimen/margin_medium_2"
         android:layout_marginTop="@dimen/margin_medium"
@@ -69,7 +82,7 @@
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
         android:id="@+id/et_email"
-        android:layout_width="@dimen/input_box_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_name"
         android:layout_marginLeft="@dimen/margin_medium_2"
@@ -85,7 +98,7 @@
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
         android:id="@+id/et_password"
-        android:layout_width="@dimen/input_box_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_email"
         android:layout_marginLeft="@dimen/margin_medium_2"
@@ -103,7 +116,7 @@
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
         android:id="@+id/tv_date_of_birth"
-        android:layout_width="@dimen/input_box_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_password"
         android:layout_marginLeft="@dimen/margin_medium_2"
@@ -121,7 +134,7 @@
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
         android:id="@+id/lbl_current_residing_country"
-        android:layout_width="@dimen/input_box_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_date_of_birth"
         android:layout_marginLeft="@dimen/margin_spinner_label"
@@ -132,7 +145,7 @@
 
     <Spinner
         android:id="@+id/sp_country_list"
-        android:layout_width="@dimen/input_box_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/lbl_current_residing_country"
         android:layout_marginLeft="@dimen/margin_medium"

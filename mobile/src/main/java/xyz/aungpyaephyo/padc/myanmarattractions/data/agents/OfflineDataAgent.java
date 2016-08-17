@@ -62,12 +62,22 @@ public class OfflineDataAgent implements AttractionDataAgent {
     }
 
     @Override
+    public void registerWithGoogle(UserVO registeringUser, String password) {
+
+    }
+
+    @Override
     public void login(String email, String password) {
 
     }
 
     @Override
     public void loginWithFacebook(UserVO loginUser) {
+
+    }
+
+    @Override
+    public void loginWithGoogle(UserVO loginUser) {
 
     }
 

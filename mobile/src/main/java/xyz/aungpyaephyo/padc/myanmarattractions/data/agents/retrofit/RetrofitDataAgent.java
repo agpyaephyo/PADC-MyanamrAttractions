@@ -124,6 +124,33 @@ public class RetrofitDataAgent implements AttractionDataAgent {
     }
 
     @Override
+    public void registerWithGoogle(UserVO registeringUser, String password) {
+        Call<RegisterResponse> registerCall = theApi.registerWithGoogle(registeringUser.getGoogleId(),
+                registeringUser.getProfilePicture(), registeringUser.getCoverPicture(),
+                registeringUser.getName(), registeringUser.getEmail(), password,
+                registeringUser.getDateOfBirthText(), registeringUser.getCountryOfOrigin());
+        registerCall.enqueue(new Callback<RegisterResponse>() {
+            @Override
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                RegisterResponse registerResponse = response.body();
+                if (registerResponse == null) {
+                    UserEvent.FailedRegistrationEvent event = new UserEvent.FailedRegistrationEvent(response.message());
+                    EventBus.getDefault().post(event);
+                } else {
+                    UserEvent.SuccessRegistrationEvent event = new UserEvent.SuccessRegistrationEvent(registerResponse.getLoginUser());
+                    EventBus.getDefault().post(event);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponse> call, Throwable throwable) {
+                UserEvent.FailedRegistrationEvent event = new UserEvent.FailedRegistrationEvent(throwable.getMessage());
+                EventBus.getDefault().post(event);
+            }
+        });
+    }
+
+    @Override
     public void login(String email, String password) {
         Call<LoginResponse> loginCall = theApi.login(email, password);
         loginCall.enqueue(new Callback<LoginResponse>() {
@@ -151,6 +178,31 @@ public class RetrofitDataAgent implements AttractionDataAgent {
     public void loginWithFacebook(UserVO loginUser) {
         Call<LoginResponse> loginCall = theApi.loginWithFacebook(loginUser.getEmail(),
                 loginUser.getFacebookId(), loginUser.getProfilePicture(), loginUser.getCoverPicture());
+        loginCall.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse loginResponse = response.body();
+                if (loginResponse == null) {
+                    UserEvent.FailedLoginEvent event = new UserEvent.FailedLoginEvent(response.message());
+                    EventBus.getDefault().post(event);
+                } else {
+                    UserEvent.SuccessLoginEvent event = new UserEvent.SuccessLoginEvent(loginResponse.getLoginUser());
+                    EventBus.getDefault().post(event);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable throwable) {
+                UserEvent.FailedLoginEvent event = new UserEvent.FailedLoginEvent(throwable.getMessage());
+                EventBus.getDefault().post(event);
+            }
+        });
+    }
+
+    @Override
+    public void loginWithGoogle(UserVO loginUser) {
+        Call<LoginResponse> loginCall = theApi.loginWithGoogle(loginUser.getEmail(),
+                loginUser.getGoogleId(), loginUser.getProfilePicture(), loginUser.getCoverPicture());
         loginCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
