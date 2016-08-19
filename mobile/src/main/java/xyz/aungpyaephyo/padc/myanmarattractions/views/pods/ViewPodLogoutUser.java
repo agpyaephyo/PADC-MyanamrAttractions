@@ -12,6 +12,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.controllers.BaseController;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserController;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.ViewController;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 
 /**
  * Created by aung on 7/6/16.
@@ -40,11 +41,13 @@ public class ViewPodLogoutUser extends RelativeLayout implements ViewController 
 
     @OnClick(R.id.btn_login)
     public void onTapLogin(View view) {
+        GAUtils.getInstance().sendUserAccountAction(GAUtils.ACTION_TAP_LOGIN);
         mController.onTapLogin();
     }
 
     @OnClick(R.id.btn_register)
     public void onTapRegister(View view) {
+        GAUtils.getInstance().sendUserAccountAction(GAUtils.ACTION_TAP_REGISTER);
         mController.onTapRegister();
     }
 

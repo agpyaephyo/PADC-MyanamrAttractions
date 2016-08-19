@@ -12,6 +12,7 @@ import android.webkit.WebView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 
 /**
  * Created by aung on 8/12/16.
@@ -51,5 +52,10 @@ public class TouropiaFragment extends BaseFragment {
         wvWeb.loadUrl(TOUROPIA_URL);
 
         return rootView;
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_TOUROPIA);
     }
 }

@@ -21,6 +21,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.ScreenUtils;
 
 /**
@@ -115,5 +116,11 @@ public class UserProfileActivity extends BaseActivity {
                         ivProfile.setImageDrawable(circularBitmapDrawable);
                     }
                 });
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+        super.onSendScreenHit();
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_USER_PROFILE);
     }
 }

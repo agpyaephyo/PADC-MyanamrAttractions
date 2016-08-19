@@ -25,6 +25,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.adapters.ListViewAttractionAdapt
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.persistence.AttractionsContract;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 
@@ -106,4 +107,8 @@ public class ListViewAttractionListFragment extends BaseFragment
     }
 
 
+    @Override
+    protected void onSendScreenHit() {
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_ATTRACTION_LIST_LIST_VIEW);
+    }
 }

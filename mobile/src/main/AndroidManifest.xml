@@ -3,6 +3,7 @@
     package="xyz.aungpyaephyo.padc.myanmarattractions">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <!-- Permission required by the SyncAdapter -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />

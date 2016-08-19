@@ -24,6 +24,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.components.PageIndicatorView;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.persistence.AttractionsContract;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 
 public class AttractionDetailActivity extends BaseActivity
@@ -79,6 +80,8 @@ public class AttractionDetailActivity extends BaseActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                GAUtils.getInstance().sendAppAction(GAUtils.ACTION_TAP_SHARE, mAttractionTitle);
+
                 String imageUrl = MyanmarAttractionsConstants.IMAGE_ROOT_DIR + mAttraction.getImages()[0];
                 sendViaShareIntent(mAttraction.getTitle() + " - " + imageUrl);
             }
@@ -155,6 +158,9 @@ public class AttractionDetailActivity extends BaseActivity
 
             @Override
             public void onPageSelected(int position) {
+                GAUtils.getInstance().sendAppAction(GAUtils.ACTION_SWIPE_IMAGE_VIEW_PAGER,
+                        mAttractionTitle);
+
                 piAttractionImageSlider.setCurrentPage(position);
             }
 
@@ -169,24 +175,41 @@ public class AttractionDetailActivity extends BaseActivity
 
     @OnClick(R.id.iv_locate_attraction)
     public void onTapLocateAttraction(View view) {
+        GAUtils.getInstance().sendAppAction(GAUtils.ACTION_SHOW_ATTRACTION_ON_MAP,
+                mAttractionTitle);
+
         openLocationInMap(mAttraction.getTitle());
     }
 
     @OnClick(R.id.iv_book_the_trip)
     public void onTapBookTheTrip(View view) {
+        GAUtils.getInstance().sendAppAction(GAUtils.ACTION_TAP_BOOK_ATTRACTION);
+
         String msg = getString(R.string.format_contact_option_confirmation, mAttraction.getTitle());
         SharedDialog.confirmYesNoWithTheme(this, msg,
                 getString(R.string.booking_phone), getString(R.string.booking_email), new SharedDialog.YesNoConfirmDelegate() {
             @Override
             public void onConfirmYes() {
+                GAUtils.getInstance().sendAppAction(GAUtils.ACTION_BOOK_ATTRACTION_OVER_PHONE,
+                        mAttractionTitle);
+
                 makeCall(MyanmarAttractionsConstants.CUSTOMER_SUPPORT_PHONE);
             }
 
             @Override
             public void onConfirmNo() {
+                GAUtils.getInstance().sendAppAction(GAUtils.ACTION_BOOK_ATTRACTION_BY_EMAIL,
+                        mAttractionTitle);
+
                 sendEmail(MyanmarAttractionsConstants.CUSTOMER_SUPPORT_EMAIL, getString(R.string.book_the_trip_subject),
                         getString(R.string.format_book_the_trip_msg, mAttraction.getTitle()));
             }
         });
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+        super.onSendScreenHit();
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_ATTRACTION_DETAILS);
     }
 }

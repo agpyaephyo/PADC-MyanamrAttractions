@@ -33,6 +33,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.persistence.AttractionsContract;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 
@@ -101,6 +102,11 @@ public class AttractionListFragment extends BaseFragment
         if (!eventBus.isRegistered(this)) {
             eventBus.register(this);
         }
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_ATTRACTION_LIST_RECYCLER_VIEW);
     }
 
     @Override

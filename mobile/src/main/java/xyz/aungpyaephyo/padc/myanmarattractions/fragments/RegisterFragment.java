@@ -1,7 +1,6 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,13 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.facebook.AccessToken;
-import com.facebook.login.LoginManager;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.plus.model.people.Person;
 
@@ -39,22 +34,26 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.activities.AccountControlActivity;
 import xyz.aungpyaephyo.padc.myanmarattractions.adapters.CountryListAdapter;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.CommonUtils;
-import xyz.aungpyaephyo.padc.myanmarattractions.utils.FacebookUtils;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.PasswordVisibilityListener;
 
 /**
  * Created by aung on 7/15/16.
  */
-public class RegisterFragment extends BaseFragment {
+public class RegisterFragment extends BaseFragment
+        implements AccountControlActivity.SocialMediaInfoDelegate {
 
     private static final int CONNECTED_SOCIAL_MEDIA_FACEBOOK = 1;
     private static final int CONNECTED_SOCIAL_MEDIA_GOOGLE = 2;
+
+    public static final String FRAGMENT_TRANSITION_TAG = "RegisterFragment";
 
     @BindView(R.id.lbl_registration_title)
     TextView lblRegistrationTitle;
@@ -142,6 +141,11 @@ public class RegisterFragment extends BaseFragment {
     }
 
     @Override
+    protected void onSendScreenHit() {
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_REGISTRATION);
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         EventBus eventBus = EventBus.getDefault();
@@ -199,24 +203,12 @@ public class RegisterFragment extends BaseFragment {
 
     @OnClick(R.id.iv_register_with_facebook)
     public void onTapRegisterWithFacebook(View view) {
-        if (AccessToken.getCurrentAccessToken() == null) {
-            //Haven't login
-            Toast.makeText(getContext(), "Logging In ...", Toast.LENGTH_SHORT).show();
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(FacebookUtils.FACEBOOK_LOGIN_PERMISSIONS));
-        } else {
-            //Logout - just to test it.
-            Toast.makeText(getContext(), "Logging Out ...", Toast.LENGTH_SHORT).show();
-            LoginManager.getInstance().logOut();
-        }
+        mUserSessionController.connectToFacebook(this);
     }
 
-    @Override
-    protected void onRetrieveFacebookInfo(JSONObject facebookLoginUser, String imageUrl, String coverImageUrl) {
-        super.onRetrieveFacebookInfo(facebookLoginUser, imageUrl, coverImageUrl);
-        mConnectedSocialMedia = CONNECTED_SOCIAL_MEDIA_FACEBOOK;
-        mRegisteringUser = UserVO.initFromFacebookInfo(facebookLoginUser, imageUrl, coverImageUrl);
-
-        showRetrievedDataInRegistrationForm(mRegisteringUser);
+    @OnClick(R.id.iv_register_with_google)
+    public void onTapRegisterWithGoogle(View view) {
+        mUserSessionController.connectToGoogle(this);
     }
 
     private void showRetrievedDataInRegistrationForm(UserVO registeringUser) {
@@ -254,19 +246,23 @@ public class RegisterFragment extends BaseFragment {
                 getString(R.string.prompt_some_data_retrieved_for_registration));
     }
 
-    @OnClick(R.id.iv_register_with_google)
-    public void onTapRegisterWithGoogle(View view) {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_LOGIN_WITH_GOOGLE);
-    }
-
-    @Override
-    protected void onRetrieveGoogleInfo(GoogleSignInAccount signInAccount, Person registeringUser) {
-        super.onRetrieveGoogleInfo(signInAccount, registeringUser);
+    public void onRetrieveGoogleInfo(GoogleSignInAccount signInAccount, Person registeringUser) {
         mConnectedSocialMedia = CONNECTED_SOCIAL_MEDIA_GOOGLE;
         mRegisteringUser = UserVO.initFromGoogleInfo(signInAccount, registeringUser);
 
         showRetrievedDataInRegistrationForm(mRegisteringUser);
+    }
+
+    public void onRetrieveFacebookInfo(JSONObject facebookLoginUser, String imageUrl, String coverImageUrl) {
+        mConnectedSocialMedia = CONNECTED_SOCIAL_MEDIA_FACEBOOK;
+        mRegisteringUser = UserVO.initFromFacebookInfo(facebookLoginUser, imageUrl, coverImageUrl);
+
+        showRetrievedDataInRegistrationForm(mRegisteringUser);
+    }
+
+    @Override
+    public boolean isRegistering() {
+        return true;
     }
 
     //Success Register

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -36,6 +37,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.fragments.ListViewAttractionList
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.NotificationFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.TouropiaFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.services.RandomNumberGeneratorService;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodAccountControl;
@@ -119,6 +121,11 @@ public class HomeActivity extends BaseActivity
                     Toast.makeText(getApplicationContext(), "Sorry, the service for generating random number is NOT connected.", Toast.LENGTH_SHORT).show();
                 }
                 */
+
+                Snackbar.make(view, "Sorry. Search on Attractions is not being supported yet.", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+                GAUtils.getInstance().sendAppAction(GAUtils.ACTION_TAP_SEARCH);
             }
         });
 
@@ -146,6 +153,7 @@ public class HomeActivity extends BaseActivity
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_settings:
+                GAUtils.getInstance().sendAppAction(GAUtils.ACTION_TAP_SETTINGS);
                 return true;
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
@@ -195,6 +203,8 @@ public class HomeActivity extends BaseActivity
 
     @Override
     public void onTapAttraction(AttractionVO attraction, ImageView ivAttraction) {
+        GAUtils.getInstance().sendAppAction(GAUtils.ACTION_TAP_ATTRACTION, attraction.getTitle());
+
         Intent intent = AttractionDetailActivity.newIntent(attraction.getTitle());
         startActivity(intent);
         //overridePendingTransition(R.anim.enter, R.anim.exit);
@@ -224,6 +234,8 @@ public class HomeActivity extends BaseActivity
         SharedDialog.confirmYesNoWithTheme(this, getString(R.string.msg_confirm_logout), new SharedDialog.YesNoConfirmDelegate() {
             @Override
             public void onConfirmYes() {
+                GAUtils.getInstance().sendUserAccountAction(GAUtils.ACTION_LOGOUT);
+
                 LoginManager.getInstance().logOut();
                 UserModel.getInstance().logout();
             }

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.os.Handler;
 
 import com.bumptech.glide.Glide;
 import com.facebook.FacebookSdk;
@@ -25,10 +26,13 @@ public class MyanmarAttractionsApp extends Application {
     private static Bitmap appIcon;
     private static Bitmap attractionSight;
 
+    public static MyanmarAttractionsApp INSTANCE;
+
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        INSTANCE = this;
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
@@ -37,7 +41,12 @@ public class MyanmarAttractionsApp extends Application {
         AttractionSyncAdapter.initializeSyncAdapter(getContext());
 
         encodeAppIcon();
-        encodeAttractionSight();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                encodeAttractionSight();
+            }
+        }, 500);
     }
 
     public static Context getContext() {
@@ -53,7 +62,7 @@ public class MyanmarAttractionsApp extends Application {
     }
 
     private void encodeAppIcon() {
-        new AsyncTask<Void,Void,Void>() {
+        new AsyncTask<Void, Void, Void>() {
 
             @Override
             protected Void doInBackground(Void... voids) {
@@ -79,7 +88,7 @@ public class MyanmarAttractionsApp extends Application {
     }
 
     private void encodeAttractionSight() {
-        new AsyncTask<Void,Void,Void>() {
+        new AsyncTask<Void, Void, Void>() {
 
             @Override
             protected Void doInBackground(Void... voids) {

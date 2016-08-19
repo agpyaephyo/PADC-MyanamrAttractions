@@ -11,6 +11,7 @@ import android.widget.Button;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.NotificationUtils;
 
 /**
@@ -49,5 +50,10 @@ public class NotificationFragment extends BaseFragment {
     @OnClick(R.id.btn_notify_with_action)
     public void onTapNotifyWithAction(Button btnNotifyWithAction) {
         NotificationUtils.showNotificationWithAction();
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_NOTIFICATIONS);
     }
 }

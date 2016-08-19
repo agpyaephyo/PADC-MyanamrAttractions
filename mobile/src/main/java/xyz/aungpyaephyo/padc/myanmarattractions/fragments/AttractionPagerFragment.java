@@ -13,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.adapters.AttractionPagerAdapter;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 
 /**
@@ -55,5 +56,10 @@ public class AttractionPagerFragment extends BaseFragment {
         MMFontUtils.applyMMFontToTabLayout(tlAttractions);
 
         return rootView;
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_ATTRACTION_LIST_TAB_LAYOUT);
     }
 }

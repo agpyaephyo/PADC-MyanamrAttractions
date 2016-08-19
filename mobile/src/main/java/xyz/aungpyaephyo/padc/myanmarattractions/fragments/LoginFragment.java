@@ -36,15 +36,20 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.activities.AccountControlActivity;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.CommonUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.FacebookUtils;
+import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.PasswordVisibilityListener;
 
 /**
  * Created by aung on 7/15/16.
  */
-public class LoginFragment extends BaseFragment {
+public class LoginFragment extends BaseFragment
+        implements AccountControlActivity.SocialMediaInfoDelegate {
+
+    public static final String FRAGMENT_TRANSITION_TAG = "LoginFragment";
 
     @BindView(R.id.lbl_recover_password)
     TextView lblRecoverPassword;
@@ -111,32 +116,21 @@ public class LoginFragment extends BaseFragment {
 
     @OnClick(R.id.iv_login_with_facebook)
     public void onTapLoginWithFacebook(View view) {
-        if (AccessToken.getCurrentAccessToken() == null) {
-            //Haven't login
-            Toast.makeText(getContext(), "Logging In ...", Toast.LENGTH_SHORT).show();
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(FacebookUtils.FACEBOOK_LOGIN_PERMISSIONS));
-        } else {
-            //Logout - just to test it.
-            Toast.makeText(getContext(), "Logging Out ...", Toast.LENGTH_SHORT).show();
-            LoginManager.getInstance().logOut();
-        }
-    }
-
-    @Override
-    protected void onRetrieveFacebookInfo(JSONObject facebookLoginUser, String imageUrl, String coverImageUrl) {
-        super.onRetrieveFacebookInfo(facebookLoginUser, imageUrl, coverImageUrl);
-        mController.onLoginWithFacebook(facebookLoginUser, imageUrl, coverImageUrl);
+        mController.connectToFacebook(this);
     }
 
     @OnClick(R.id.iv_login_with_google)
     public void onTapLoginWithGoogle(View view) {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_LOGIN_WITH_GOOGLE);
+        mController.connectToGoogle(this);
     }
 
     @Override
-    protected void onRetrieveGoogleInfo(GoogleSignInAccount signInAccount, Person registeringUser) {
-        super.onRetrieveGoogleInfo(signInAccount, registeringUser);
-        mController.onLoginWithGoogle(signInAccount, registeringUser);
+    public boolean isRegistering() {
+        return false;
+    }
+
+    @Override
+    protected void onSendScreenHit() {
+        GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_LOGIN);
     }
 }

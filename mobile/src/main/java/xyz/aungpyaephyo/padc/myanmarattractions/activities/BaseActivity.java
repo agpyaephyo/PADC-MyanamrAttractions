@@ -64,6 +64,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        onSendScreenHit();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
@@ -347,6 +353,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void onPictureTaken(String localPath) {
+
+    }
+
+    protected void onSendScreenHit() {
 
     }
 }
