@@ -37,8 +37,9 @@ public class MyanmarAttractionsApp extends Application {
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
 
+        AttractionModel.getInstance().loadAttractions();
         //AttractionSyncAdapter.syncImmediately(getContext());
-        AttractionSyncAdapter.initializeSyncAdapter(getContext());
+        //AttractionSyncAdapter.initializeSyncAdapter(getContext());
 
         encodeAppIcon();
         new Handler().postDelayed(new Runnable() {
