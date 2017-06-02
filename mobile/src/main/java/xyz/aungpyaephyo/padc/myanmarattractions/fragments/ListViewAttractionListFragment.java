@@ -106,7 +106,6 @@ public class ListViewAttractionListFragment extends BaseFragment
 
     }
 
-
     @Override
     protected void onSendScreenHit() {
         GAUtils.getInstance().sendScreenHit(GAUtils.SCREEN_ATTRACTION_LIST_LIST_VIEW);

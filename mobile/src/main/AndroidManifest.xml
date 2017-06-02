@@ -3,7 +3,7 @@
     package="xyz.aungpyaephyo.padc.myanmarattractions">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!-- Permission required by the SyncAdapter -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
@@ -28,13 +28,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
-
         <activity
             android:name=".activities.AttractionDetailActivity"
             android:parentActivityName=".activities.HomeActivity"
@@ -43,21 +37,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="xyz.aungpyaephyo.padc.myanmarattractions.activities.HomeActivity" />
         </activity>
-
         <activity
             android:name=".activities.AccountControlActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".activities.UserProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
         <activity
             android:name=".activities.FacebookLoginChromeTabActivity"
             android:exported="true">
@@ -76,7 +66,6 @@
             android:authorities="@string/content_authority"
             android:exported="false"
             android:syncable="true" />
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="xyz.aungpyaephyo.padc.myanmarattractions.fileprovider"
@@ -84,7 +73,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <receiver android:name=".receivers.system.InternetConnectivityStateReceiver">
@@ -94,12 +83,10 @@
         </receiver>
 
         <service android:name=".services.AttractionService" />
-
         <service android:name=".services.AttractionIntentService" />
-
         <service android:name=".services.RandomNumberGeneratorService" />
 
-        <!-- SyncAdapter's dummy authentication service !-->
+        <!-- SyncAdapter's dummy authentication service ! -->
         <service android:name=".sync.AttractionAuthenticatorService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
@@ -122,7 +109,6 @@
                 android:name="android.content.SyncAdapter"
                 android:resource="@xml/syncadapter" />
         </service>
-
         <service
             android:name=".services.MyanmarAttractionsFirebaseInstanceIdService"
             android:exported="false">
@@ -130,7 +116,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".services.MyanmarAttractionsFirebaseMessagingService"
             android:exported="false">
@@ -143,6 +128,13 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
+        <activity android:name=".activities.ServiceDetailActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

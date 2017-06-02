@@ -51,6 +51,7 @@ public class FacebookUtils {
             Bundle params = new Bundle();
             params.putString("fields", "id, name, email");
             request.setParameters(params);
+
             request.executeAsync();
         }
     }

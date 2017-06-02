@@ -71,6 +71,7 @@ public class AccountControlActivity extends BaseActivity
 
     protected static final int RC_GOOGLE_SIGN_IN = 1236;
 
+    //2.
     private CallbackManager mCallbackManager;
     private AccessTokenTracker mAccessTokenTracker;
 
@@ -106,6 +107,7 @@ public class AccountControlActivity extends BaseActivity
             }
         };
 
+        //3.
         LoginManager.getInstance().registerCallback(mCallbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
@@ -125,6 +127,7 @@ public class AccountControlActivity extends BaseActivity
                     }
                 });
 
+        //2.
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestScopes(new Scope(Scopes.PLUS_LOGIN))
                 .requestEmail()
@@ -175,6 +178,7 @@ public class AccountControlActivity extends BaseActivity
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
 
+        //3.
         if (requestCode == RC_GOOGLE_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 
@@ -220,6 +224,8 @@ public class AccountControlActivity extends BaseActivity
     @Override
     public void connectToGoogle(SocialMediaInfoDelegate socialMediaInfoDelegate) {
         mSocialMediaInfoDelegate = socialMediaInfoDelegate;
+
+        //1.
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
     }
@@ -238,7 +244,7 @@ public class AccountControlActivity extends BaseActivity
         if (AccessToken.getCurrentAccessToken() == null) {
             //Haven't login
             Toast.makeText(getApplicationContext(), "Logging In ...", Toast.LENGTH_SHORT).show();
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(FacebookUtils.FACEBOOK_LOGIN_PERMISSIONS));
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList(FacebookUtils.FACEBOOK_LOGIN_PERMISSIONS)); //1.
         } else {
             //Logout - just to test it.
             Toast.makeText(getApplicationContext(), "Logging Out ...", Toast.LENGTH_SHORT).show();

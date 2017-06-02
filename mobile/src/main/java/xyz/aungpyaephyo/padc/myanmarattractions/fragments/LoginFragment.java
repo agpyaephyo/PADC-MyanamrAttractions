@@ -94,6 +94,11 @@ public class LoginFragment extends BaseFragment
         return rootView;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     @OnClick(R.id.btn_login)
     public void onTapLogin(Button btnLogin) {
         String email = etEmail.getText().toString();

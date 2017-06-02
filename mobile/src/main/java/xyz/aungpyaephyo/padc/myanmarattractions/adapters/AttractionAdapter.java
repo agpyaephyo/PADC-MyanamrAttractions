@@ -41,7 +41,7 @@ public class AttractionAdapter extends RecyclerView.Adapter<AttractionViewHolder
 
     @Override
     public int getItemCount() {
-        return mAttractionList.size();
+        return mAttractionList.size(); //20
     }
 
     public void setNewData(List<AttractionVO> newAttractionList) {

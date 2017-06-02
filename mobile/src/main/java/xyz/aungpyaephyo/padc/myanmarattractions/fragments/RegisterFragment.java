@@ -162,10 +162,10 @@ public class RegisterFragment extends BaseFragment
         String name = etName.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
-        String dateOfBith = tvDateOfBirth.getText().toString();
+        String dateOfBirth = tvDateOfBirth.getText().toString();
         String country = String.valueOf(spCountryList.getSelectedItem());
 
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(dateOfBith)) {
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(dateOfBirth)) {
             //One of the required data is empty
             if (TextUtils.isEmpty(name)) {
                 etName.setError(getString(R.string.error_missing_name));
@@ -178,7 +178,7 @@ public class RegisterFragment extends BaseFragment
                 etPassword.setError(getString(R.string.error_missing_password));
             }
 
-            if (TextUtils.isEmpty(dateOfBith)) {
+            if (TextUtils.isEmpty(dateOfBirth)) {
                 tvDateOfBirth.setError(getString(R.string.error_missing_date_of_birth));
             }
         } else if (!CommonUtils.isEmailValid(email)) {
@@ -187,9 +187,9 @@ public class RegisterFragment extends BaseFragment
         } else {
             //Checking on client side is done here.
             if (mRegisteringUser == null) { //Regular Registration
-                mUserSessionController.onRegister(name, email, password, dateOfBith, country);
+                mUserSessionController.onRegister(name, email, password, dateOfBirth, country);
             } else { //Registration with Social Media.
-                mRegisteringUser.setDateOfBirthText(dateOfBith);
+                mRegisteringUser.setDateOfBirthText(dateOfBirth);
                 mRegisteringUser.setCountryOfOrigin(country);
 
                 if (mConnectedSocialMedia == CONNECTED_SOCIAL_MEDIA_FACEBOOK) {
