@@ -12,6 +12,8 @@
         android:text="Mandalay"
         android:textSize="@dimen/text_heading_1x"
         android:textColor="@color/primary_text"
+        android:gravity="center"
+        android:layout_gravity="center"
         />
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.DynamicHeightImageView

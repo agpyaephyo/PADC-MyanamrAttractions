@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -78,7 +77,8 @@ public class AttractionListFragment extends BaseFragment
         ButterKnife.bind(this, rootView);
 
         List<AttractionVO> attractionList = AttractionModel.getInstance().getAttractionList();
-        mAttractionAdapter = new AttractionAdapter(attractionList, controllerAttractionItem);
+        mAttractionAdapter = new AttractionAdapter(getContext(), controllerAttractionItem);
+        mAttractionAdapter.setNewData(attractionList);
         rvAttractions.setAdapter(mAttractionAdapter);
 
         int gridColumnSpanCount = getResources().getInteger(R.integer.attraction_list_grid);

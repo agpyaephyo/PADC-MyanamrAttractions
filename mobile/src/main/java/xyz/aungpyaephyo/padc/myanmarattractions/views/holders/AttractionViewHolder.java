@@ -18,7 +18,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstant
 /**
  * Created by aung on 7/6/16.
  */
-public class AttractionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class AttractionViewHolder extends BaseViewHolder<AttractionVO> implements View.OnClickListener {
 
     @BindView(R.id.tv_attraction_title)
     TextView tvAttractionTitle;
@@ -39,12 +39,18 @@ public class AttractionViewHolder extends RecyclerView.ViewHolder implements Vie
         mController = controller;
     }
 
-    public void bindData(AttractionVO attraction) {
-        mAttraction = attraction;
-        tvAttractionTitle.setText(attraction.getTitle());
-        tvAttractionDesc.setText(attraction.getDesc());
+    @Override
+    public void onClick(View view) {
+        mController.onTapAttraction(mAttraction, ivAttraction);
+    }
 
-        String imageUrl = MyanmarAttractionsConstants.IMAGE_ROOT_DIR + attraction.getImages()[0];
+    @Override
+    public void bind(AttractionVO data) {
+        mAttraction = data;
+        tvAttractionTitle.setText(data.getTitle());
+        tvAttractionDesc.setText(data.getDesc());
+
+        String imageUrl = MyanmarAttractionsConstants.IMAGE_ROOT_DIR + data.getImages()[0];
 
         Glide.with(ivAttraction.getContext())
                 .load(imageUrl)
@@ -52,11 +58,6 @@ public class AttractionViewHolder extends RecyclerView.ViewHolder implements Vie
                 .placeholder(R.drawable.stock_photo_placeholder)
                 .error(R.drawable.stock_photo_placeholder)
                 .into(ivAttraction);
-    }
-
-    @Override
-    public void onClick(View view) {
-        mController.onTapAttraction(mAttraction, ivAttraction);
     }
 
     public interface ControllerAttractionItem {

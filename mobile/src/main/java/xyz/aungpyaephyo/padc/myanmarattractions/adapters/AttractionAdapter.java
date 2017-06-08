@@ -1,11 +1,9 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.adapters;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
@@ -16,36 +14,23 @@ import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHold
 /**
  * Created by aung on 7/6/16.
  */
-public class AttractionAdapter extends RecyclerView.Adapter<AttractionViewHolder> {
+public class AttractionAdapter extends BaseRecyclerAdapter<AttractionViewHolder, AttractionVO> {
 
-    private LayoutInflater mInflater;
-    private List<AttractionVO> mAttractionList;
     private AttractionViewHolder.ControllerAttractionItem mControllerAttractionItem;
 
-    public AttractionAdapter(List<AttractionVO> attractionList, AttractionViewHolder.ControllerAttractionItem controllerAttractionItem) {
-        mInflater = LayoutInflater.from(MyanmarAttractionsApp.getContext());
-        mAttractionList = attractionList;
+    public AttractionAdapter(Context context, AttractionViewHolder.ControllerAttractionItem controllerAttractionItem) {
+        super(context);
         mControllerAttractionItem = controllerAttractionItem;
     }
 
     @Override
     public AttractionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.view_item_attraction, parent, false);
+        View itemView = mLayoutInflater.inflate(R.layout.view_item_attraction, parent, false);
         return new AttractionViewHolder(itemView, mControllerAttractionItem);
     }
 
     @Override
     public void onBindViewHolder(AttractionViewHolder holder, int position) {
-        holder.bindData(mAttractionList.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return mAttractionList.size(); //20
-    }
-
-    public void setNewData(List<AttractionVO> newAttractionList) {
-        mAttractionList = newAttractionList;
-        notifyDataSetChanged();
+        holder.bind(mData.get(position));
     }
 }

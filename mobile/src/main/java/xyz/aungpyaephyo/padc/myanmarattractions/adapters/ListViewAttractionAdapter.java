@@ -58,7 +58,7 @@ public class ListViewAttractionAdapter extends BaseAdapter {
             viewHolder = (AttractionViewHolder) convertView.getTag();
         }
 
-        viewHolder.bindData(getItem(position));
+        viewHolder.bind(getItem(position));
         return convertView;
     }
 
