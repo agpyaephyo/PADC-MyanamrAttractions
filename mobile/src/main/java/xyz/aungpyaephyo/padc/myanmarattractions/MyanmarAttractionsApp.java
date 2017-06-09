@@ -113,4 +113,5 @@ public class MyanmarAttractionsApp extends Application {
             }
         }.execute();
     }
+	//rebase testing
 }
