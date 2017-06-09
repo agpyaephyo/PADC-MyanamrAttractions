@@ -113,12 +113,9 @@ public class MyanmarAttractionsApp extends Application {
             }
         }.execute();
     }
-<<<<<<< HEAD
 
     /*
     This is to test out the conflict resolution process.
      */
-=======
 	//rebase testing
->>>>>>> rebase testing
 }
