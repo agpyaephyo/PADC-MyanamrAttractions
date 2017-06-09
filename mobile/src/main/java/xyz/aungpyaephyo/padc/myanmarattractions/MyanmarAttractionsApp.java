@@ -113,4 +113,8 @@ public class MyanmarAttractionsApp extends Application {
             }
         }.execute();
     }
+
+    /*
+    This is to test out the conflict resolution process.
+     */
 }
