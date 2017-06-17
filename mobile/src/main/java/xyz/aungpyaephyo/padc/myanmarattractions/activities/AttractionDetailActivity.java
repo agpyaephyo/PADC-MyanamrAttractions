@@ -187,7 +187,9 @@ public class AttractionDetailActivity extends BaseActivity
 
         String msg = getString(R.string.format_contact_option_confirmation, mAttraction.getTitle());
         SharedDialog.confirmYesNoWithTheme(this, msg,
-                getString(R.string.booking_phone), getString(R.string.booking_email), new SharedDialog.YesNoConfirmDelegate() {
+                getString(R.string.booking_phone),
+                getString(R.string.booking_email),
+                new SharedDialog.YesNoConfirmDelegate() {
             @Override
             public void onConfirmYes() {
                 GAUtils.getInstance().sendAppAction(GAUtils.ACTION_BOOK_ATTRACTION_OVER_PHONE,

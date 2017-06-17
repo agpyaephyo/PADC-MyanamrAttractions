@@ -7,7 +7,10 @@ import android.widget.FrameLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserController;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
@@ -63,6 +66,7 @@ public class ViewPodAccountControl extends FrameLayout {
         vpLoginUser.setController(userController);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(DataEvent.RefreshUserLoginStatusEvent event) {
         refreshUserLoginStatus();
     }

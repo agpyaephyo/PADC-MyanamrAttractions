@@ -13,6 +13,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,15 +22,20 @@ import android.widget.ImageView;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
+import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserController;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.dialogs.SharedDialog;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
+import xyz.aungpyaephyo.padc.myanmarattractions.events.SearchButtonClickedEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionListFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.AttractionPagerFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.GridViewAttractionListFragment;
@@ -126,6 +132,8 @@ public class HomeActivity extends BaseActivity
                         .setAction("Action", null).show();
 
                 GAUtils.getInstance().sendAppAction(GAUtils.ACTION_TAP_SEARCH);
+
+                EventBus.getDefault().post(new SearchButtonClickedEvent(12345, 67890));
             }
         });
 
@@ -190,6 +198,10 @@ public class HomeActivity extends BaseActivity
 
         Intent intent = RandomNumberGeneratorService.newIntent();
         bindService(intent, mBindingServiceConnection, Context.BIND_AUTO_CREATE);
+
+        if(!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
@@ -198,6 +210,10 @@ public class HomeActivity extends BaseActivity
         if (isServiceBound) {
             unbindService(mBindingServiceConnection);
             isServiceBound = false;
+        }
+
+        if(EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
         }
     }
 
@@ -317,4 +333,19 @@ public class HomeActivity extends BaseActivity
                 .replace(R.id.fl_container, TouropiaFragment.newInstance())
                 .commit();
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onReceivedSearchButtonClickedEvent(SearchButtonClickedEvent event) {
+        Log.d(MyanmarAttractionsApp.TAG, "onReceivedSearchButtonClickedEvent");
+    }
+
+
+
+
+
+
+
+
+
+
 }

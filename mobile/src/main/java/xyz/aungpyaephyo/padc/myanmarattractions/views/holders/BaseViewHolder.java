@@ -4,13 +4,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by aung on 10/19/16.
  */
 
-public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder implements View.OnClickListener {
+public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder
+        implements View.OnClickListener {
 
     protected boolean mDetechedFromWindow;
 
@@ -40,7 +43,13 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder implemen
 
     public abstract void bind(T data);
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Object obj) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

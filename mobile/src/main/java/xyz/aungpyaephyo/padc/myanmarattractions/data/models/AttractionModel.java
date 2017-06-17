@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.AttractionDataAgent;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.HttpUrlConnectionDataAgent;
@@ -93,7 +93,8 @@ public class AttractionModel extends BaseModel {
     }
 
     private void broadcastAttractionLoadedWithEventBus() {
-        EventBus.getDefault().post(new DataEvent.AttractionDataLoadedEvent("extra-in-broadcast", mAttractionList));
+        EventBus.getDefault().post(
+                new DataEvent.AttractionDataLoadedEvent("extra-in-broadcast", mAttractionList));
     }
 
     public void setStoredData(List<AttractionVO> attractionList) {

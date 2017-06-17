@@ -1,6 +1,9 @@
 package xyz.aungpyaephyo.padc.myanmarattractions.data.models;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.AttractionDataAgent;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.HttpUrlConnectionDataAgent;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.OfflineDataAgent;
@@ -45,6 +48,7 @@ public abstract class BaseModel {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(Object obj) {
 
     }

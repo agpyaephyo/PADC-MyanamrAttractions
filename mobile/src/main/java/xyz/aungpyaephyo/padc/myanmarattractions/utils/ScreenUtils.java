@@ -15,6 +15,7 @@ import android.widget.EditText;
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 
 public class ScreenUtils {
+
     private static ScreenUtils objInstance;
 
     private Context context;

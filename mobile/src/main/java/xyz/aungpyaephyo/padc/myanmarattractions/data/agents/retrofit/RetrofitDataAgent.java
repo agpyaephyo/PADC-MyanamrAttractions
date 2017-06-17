@@ -2,7 +2,7 @@ package xyz.aungpyaephyo.padc.myanmarattractions.data.agents.retrofit;
 
 import java.util.concurrent.TimeUnit;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;

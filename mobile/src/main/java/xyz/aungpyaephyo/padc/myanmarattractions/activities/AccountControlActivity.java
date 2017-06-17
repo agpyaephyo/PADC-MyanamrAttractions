@@ -29,13 +29,15 @@ import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONObject;
 
 import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserSessionController;
@@ -261,6 +263,11 @@ public class AccountControlActivity extends BaseActivity
     }
 
     @Override
+    public void onForgotPassword() {
+
+    }
+
+    @Override
     public void onLogin(String email, String password) {
         GAUtils.getInstance().sendUserAccountAction(GAUtils.ACTION_LOGIN);
 
@@ -281,6 +288,7 @@ public class AccountControlActivity extends BaseActivity
     }
 
     //Success Register
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(UserEvent.SuccessRegistrationEvent event) {
         Intent returningIntent = new Intent();
         returningIntent.putExtra(IR_IS_REGISTER_SUCCESS, true);
@@ -291,12 +299,14 @@ public class AccountControlActivity extends BaseActivity
     }
 
     //Failed to Register
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(UserEvent.FailedRegistrationEvent event) {
         dismissProgressDialog();
         SharedDialog.promptMsgWithTheme(this, event.getMessage());
     }
 
     //Success Login
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(UserEvent.SuccessLoginEvent event) {
         Intent returningIntent = new Intent();
         returningIntent.putExtra(IR_IS_LOGIN_SUCCESS, true);
@@ -307,6 +317,7 @@ public class AccountControlActivity extends BaseActivity
     }
 
     //Failed to Login
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(UserEvent.FailedLoginEvent event) {
         dismissProgressDialog();
         SharedDialog.promptMsgWithTheme(this, event.getMessage());

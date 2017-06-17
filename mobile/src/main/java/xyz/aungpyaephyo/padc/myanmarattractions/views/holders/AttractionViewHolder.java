@@ -18,7 +18,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstant
 /**
  * Created by aung on 7/6/16.
  */
-public class AttractionViewHolder extends BaseViewHolder<AttractionVO> implements View.OnClickListener {
+public class AttractionViewHolder extends BaseViewHolder<AttractionVO> {
 
     @BindView(R.id.tv_attraction_title)
     TextView tvAttractionTitle;
@@ -34,8 +34,6 @@ public class AttractionViewHolder extends BaseViewHolder<AttractionVO> implement
 
     public AttractionViewHolder(View itemView, ControllerAttractionItem controller) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
-        itemView.setOnClickListener(this);
         mController = controller;
     }
 

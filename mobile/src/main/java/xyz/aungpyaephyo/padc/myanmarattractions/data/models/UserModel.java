@@ -3,11 +3,13 @@ package xyz.aungpyaephyo.padc.myanmarattractions.data.models;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.plus.model.people.Person;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONObject;
 
 import java.util.Date;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.UserEvent;
@@ -86,6 +88,7 @@ public class UserModel extends BaseModel {
     }
 
     //Success Register
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(UserEvent.SuccessRegistrationEvent event) {
         if (loginUser == null) {
             loginUser = event.getLoginUser();
@@ -102,11 +105,13 @@ public class UserModel extends BaseModel {
     }
 
     //Failed to Register
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(UserEvent.FailedRegistrationEvent event) {
         //Do nothing on persistent layer.
     }
 
     //Success Login
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(UserEvent.SuccessLoginEvent event) {
         if (loginUser == null) {
             loginUser = event.getLoginUser();
@@ -122,6 +127,7 @@ public class UserModel extends BaseModel {
     }
 
     //Failed to Login
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(UserEvent.FailedLoginEvent event) {
         //Do nothing on persistent layer.
     }

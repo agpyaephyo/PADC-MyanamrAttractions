@@ -13,7 +13,8 @@ import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.BaseViewHolder;
  * Created by aung on 10/19/16.
  */
 
-public abstract class BaseRecyclerAdapter<T extends BaseViewHolder, W> extends RecyclerView.Adapter<T> {
+public abstract class BaseRecyclerAdapter<T extends BaseViewHolder, W>
+        extends RecyclerView.Adapter<T> {
 
     protected LayoutInflater mLayoutInflater;
 

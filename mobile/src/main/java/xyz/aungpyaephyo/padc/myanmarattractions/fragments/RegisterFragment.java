@@ -23,6 +23,8 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.plus.model.people.Person;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.activities.AccountControlActivity;
 import xyz.aungpyaephyo.padc.myanmarattractions.adapters.CountryListAdapter;
@@ -266,6 +268,7 @@ public class RegisterFragment extends BaseFragment
     }
 
     //Success Register
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(DataEvent.DatePickedEvent event) {
         tvDateOfBirth.setText(event.getDateOfBrith());
     }

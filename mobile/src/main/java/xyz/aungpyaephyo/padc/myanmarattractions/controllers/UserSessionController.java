@@ -18,5 +18,7 @@ public interface UserSessionController extends SocialMediaController {
     void onRegisterWithGoogle(UserVO registeringUser, String password);
 
     void onRegisterWithFacebook(UserVO registeringUser, String password);
+
+    void onForgotPassword();
 }
 

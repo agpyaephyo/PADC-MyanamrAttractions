@@ -24,9 +24,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.activities.HomeActivity;
 import xyz.aungpyaephyo.padc.myanmarattractions.adapters.AttractionAdapter;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.AttractionModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.persistence.AttractionsContract;
@@ -96,7 +100,8 @@ public class AttractionListFragment extends BaseFragment
     @Override
     public void onStart() {
         super.onStart();
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(mDataLoadedBroadcastReceiver, new IntentFilter(AttractionModel.BROADCAST_DATA_LOADED));
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(mDataLoadedBroadcastReceiver,
+                new IntentFilter(AttractionModel.BROADCAST_DATA_LOADED));
 
         EventBus eventBus = EventBus.getDefault();
         if (!eventBus.isRegistered(this)) {
@@ -150,6 +155,7 @@ public class AttractionListFragment extends BaseFragment
 
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(DataEvent.AttractionDataLoadedEvent event) {
         String extra = event.getExtraMessage();
         Toast.makeText(getContext(), "Extra : " + extra, Toast.LENGTH_SHORT).show();
