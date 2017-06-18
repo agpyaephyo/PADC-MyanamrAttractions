@@ -15,6 +15,7 @@ import xyz.aungpyaephyo.padc.myanmarattractions.data.responses.AttractionListRes
 import xyz.aungpyaephyo.padc.myanmarattractions.data.responses.LoginResponse;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.responses.RegisterResponse;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.UserVO;
+import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.UserEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.CommonInstances;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
@@ -59,9 +60,10 @@ public class RetrofitDataAgent implements AttractionDataAgent {
             public void onResponse(Call<AttractionListResponse> call, Response<AttractionListResponse> response) {
                 AttractionListResponse attractionListResponse = response.body();
                 if (attractionListResponse == null) {
-                    AttractionModel.getInstance().notifyErrorInLoadingAttractions(response.message());
+                    //AttractionModel.getInstance().notifyErrorInLoadingAttractions(response.message());
                 } else {
-                    AttractionModel.getInstance().notifyAttractionsLoaded(attractionListResponse.getAttractionList());
+                    EventBus.getDefault().post(new DataEvent.AttractionLoadedEvent(attractionListResponse.getAttractionList()));
+                    //AttractionModel.getInstance().notifyAttractionsLoaded(attractionListResponse.getAttractionList());
                 }
             }
 

@@ -3,17 +3,15 @@ package xyz.aungpyaephyo.padc.myanmarattractions.data.models;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.greenrobot.eventbus.EventBus;
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
-import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.AttractionDataAgent;
-import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.HttpUrlConnectionDataAgent;
-import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.OfflineDataAgent;
-import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.OkHttpDataAgent;
-import xyz.aungpyaephyo.padc.myanmarattractions.data.agents.retrofit.RetrofitDataAgent;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
 import xyz.aungpyaephyo.padc.myanmarattractions.events.DataEvent;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.MyanmarAttractionsConstants;
@@ -33,6 +31,10 @@ public class AttractionModel extends BaseModel {
         super();
         mAttractionList = new ArrayList<>();
         //loadAttractions();
+
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     public static AttractionModel getInstance() {
@@ -99,5 +101,10 @@ public class AttractionModel extends BaseModel {
 
     public void setStoredData(List<AttractionVO> attractionList) {
         mAttractionList = attractionList;
+    }
+
+    @Subscribe(threadMode = ThreadMode.BACKGROUND)
+    public void receiveAttactionList(DataEvent.AttractionLoadedEvent event) {
+        event.getAttractionList();
     }
 }

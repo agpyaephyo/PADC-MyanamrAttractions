@@ -43,4 +43,17 @@ public class DataEvent {
     public static class RefreshUserLoginStatusEvent {
 
     }
+
+    public static class AttractionLoadedEvent {
+
+        private List<AttractionVO> attractionList;
+
+        public AttractionLoadedEvent(List<AttractionVO> attractionList) {
+            this.attractionList = attractionList;
+        }
+
+        public List<AttractionVO> getAttractionList() {
+            return attractionList;
+        }
+    }
 }
