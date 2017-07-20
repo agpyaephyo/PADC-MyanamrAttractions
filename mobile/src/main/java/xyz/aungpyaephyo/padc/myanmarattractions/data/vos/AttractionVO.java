@@ -55,7 +55,9 @@ public class AttractionVO {
         }
 
         //Bulk insert into attractions.
-        int insertedCount = context.getContentResolver().bulkInsert(AttractionsContract.AttractionEntry.CONTENT_URI, attractionCVs);
+        int insertedCount = context.getContentResolver()
+                .bulkInsert(AttractionsContract.AttractionEntry.CONTENT_URI,
+                        attractionCVs);
 
         Log.d(MyanmarAttractionsApp.TAG, "Bulk inserted into attraction table : " + insertedCount);
     }
@@ -87,8 +89,10 @@ public class AttractionVO {
 
     public static AttractionVO parseFromCursor(Cursor data) {
         AttractionVO attraction = new AttractionVO();
-        attraction.title = data.getString(data.getColumnIndex(AttractionsContract.AttractionEntry.COLUMN_TITLE));
-        attraction.desc = data.getString(data.getColumnIndex(AttractionsContract.AttractionEntry.COLUMN_DESC));
+        attraction.title = data.getString(data.getColumnIndex(
+                AttractionsContract.AttractionEntry.COLUMN_TITLE));
+        attraction.desc = data.getString(data.getColumnIndex(
+                AttractionsContract.AttractionEntry.COLUMN_DESC));
         return attraction;
     }
 
@@ -96,12 +100,15 @@ public class AttractionVO {
         Context context = MyanmarAttractionsApp.getContext();
         ArrayList<String> images = new ArrayList<>();
 
-        Cursor cursor = context.getContentResolver().query(AttractionsContract.AttractionImageEntry.buildAttractionImageUriWithTitle(title),
+        Cursor cursor = context.getContentResolver()
+                .query(AttractionsContract.AttractionImageEntry
+                                .buildAttractionImageUriWithTitle(title),
                 null, null, null, null);
 
         if(cursor != null && cursor.moveToFirst()) {
             do {
-                images.add(cursor.getString(cursor.getColumnIndex(AttractionsContract.AttractionImageEntry.COLUMN_IMAGE)));
+                images.add(cursor.getString(cursor
+                        .getColumnIndex(AttractionsContract.AttractionImageEntry.COLUMN_IMAGE)));
             } while (cursor.moveToNext());
         }
 

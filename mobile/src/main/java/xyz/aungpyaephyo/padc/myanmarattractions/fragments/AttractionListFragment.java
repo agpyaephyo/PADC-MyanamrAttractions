@@ -94,7 +94,12 @@ public class AttractionListFragment extends BaseFragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().getSupportLoaderManager().initLoader(MyanmarAttractionsConstants.ATTRACTION_LIST_LOADER, null, this);
+        getActivity().getSupportLoaderManager()
+                .initLoader(
+                        MyanmarAttractionsConstants.ATTRACTION_LIST_LOADER, null, this);
+
+        getActivity().getSupportLoaderManager()
+                .restartLoader(MyanmarAttractionsConstants.ATTRACTION_LIST_LOADER, null, this);
     }
 
     @Override
@@ -144,10 +149,11 @@ public class AttractionListFragment extends BaseFragment
             } while (data.moveToNext());
         }
 
-        Log.d(MyanmarAttractionsApp.TAG, "Retrieved attractions DESC : " + attractionList.size());
+        Log.d(MyanmarAttractionsApp.TAG, "Retrieved attractions DESC : "
+                + attractionList.size());
         mAttractionAdapter.setNewData(attractionList);
 
-        AttractionModel.getInstance().setStoredData(attractionList);
+        //AttractionModel.getInstance().setStoredData(attractionList);
     }
 
     @Override

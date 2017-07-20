@@ -97,7 +97,9 @@ public class AttractionDetailActivity extends BaseActivity
         }
         */
 
-        getSupportLoaderManager().initLoader(MyanmarAttractionsConstants.ATTRACTION_DETAIL_LOADER, null, this);
+        getSupportLoaderManager()
+                .initLoader(MyanmarAttractionsConstants.ATTRACTION_DETAIL_LOADER,
+                        null, this);
     }
 
     @Override
@@ -109,7 +111,8 @@ public class AttractionDetailActivity extends BaseActivity
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(this,
-                AttractionsContract.AttractionEntry.buildAttractionUriWithTitle(mAttractionTitle),
+                AttractionsContract.AttractionEntry
+                        .buildAttractionUriWithTitle(mAttractionTitle),
                 null,
                 null,
                 null,

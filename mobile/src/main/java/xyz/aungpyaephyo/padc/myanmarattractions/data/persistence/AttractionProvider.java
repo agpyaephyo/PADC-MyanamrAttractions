@@ -45,7 +45,8 @@ public class AttractionProvider extends ContentProvider {
                     selection = sAttractionTitleSelection;
                     selectionArgs = new String[]{attractionTitle};
                 }
-                queryCursor = mAttractionDBHelper.getReadableDatabase().query(AttractionsContract.AttractionEntry.TABLE_NAME,
+                queryCursor = mAttractionDBHelper.getReadableDatabase()
+                        .query(AttractionsContract.AttractionEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -98,7 +99,7 @@ public class AttractionProvider extends ContentProvider {
             case ATTRACTION_IMAGE:
                 return AttractionsContract.AttractionImageEntry.DIR_TYPE;
             case LOGIN_USER:
-                return AttractionsContract.AttractionImageEntry.ITEM_TYPE;
+                return AttractionsContract.LoginUserEntry.ITEM_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -113,7 +114,8 @@ public class AttractionProvider extends ContentProvider {
 
         switch (matchUri) {
             case ATTRACTION: {
-                long _id = db.insert(AttractionsContract.AttractionEntry.TABLE_NAME, null, contentValues);
+                long _id = db.insert(AttractionsContract.AttractionEntry.TABLE_NAME,
+                        null, contentValues);
                 if (_id > 0) {
                     insertedUri = AttractionsContract.AttractionEntry.buildAttractionUri(_id);
                 } else {
@@ -122,7 +124,8 @@ public class AttractionProvider extends ContentProvider {
                 break;
             }
             case ATTRACTION_IMAGE: {
-                long _id = db.insert(AttractionsContract.AttractionImageEntry.TABLE_NAME, null, contentValues);
+                long _id = db.insert(AttractionsContract.AttractionImageEntry.TABLE_NAME,
+                        null, contentValues);
                 if (_id > 0) {
                     insertedUri = AttractionsContract.AttractionImageEntry.buildAttractionImageUri(_id);
                 } else {
@@ -165,6 +168,7 @@ public class AttractionProvider extends ContentProvider {
                     insertedCount++;
                 }
             }
+
             db.setTransactionSuccessful();
         } finally {
             db.endTransaction();

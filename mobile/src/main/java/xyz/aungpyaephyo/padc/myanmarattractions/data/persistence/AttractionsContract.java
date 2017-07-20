@@ -72,7 +72,8 @@ public class AttractionsContract {
         }
 
         public static Uri buildAttractionImageUriWithTitle(String attractionTitle) {
-            //content://xyz.aungpyaephyo.padc.myanmarattractions/attraction_images?attraction_title=Yangon
+            //content://xyz.aungpyaephyo.padc.myanmarattractions
+            // /attraction_images?attraction_title=Yangon
             return CONTENT_URI.buildUpon()
                     .appendQueryParameter(COLUMN_ATTRACTION_TITLE, attractionTitle)
                     .build();
