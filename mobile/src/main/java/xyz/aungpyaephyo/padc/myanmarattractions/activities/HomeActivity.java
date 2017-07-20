@@ -30,6 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
+import xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.controllers.UserController;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.models.UserModel;
 import xyz.aungpyaephyo.padc.myanmarattractions.data.vos.AttractionVO;
@@ -44,7 +45,6 @@ import xyz.aungpyaephyo.padc.myanmarattractions.fragments.NotificationFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.fragments.TouropiaFragment;
 import xyz.aungpyaephyo.padc.myanmarattractions.services.RandomNumberGeneratorService;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
-import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.holders.AttractionViewHolder;
 import xyz.aungpyaephyo.padc.myanmarattractions.views.pods.ViewPodAccountControl;
 

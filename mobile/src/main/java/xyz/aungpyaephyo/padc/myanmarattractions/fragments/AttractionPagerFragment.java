@@ -3,7 +3,6 @@ package xyz.aungpyaephyo.padc.myanmarattractions.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +12,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import xyz.aungpyaephyo.padc.myanmarattractions.R;
 import xyz.aungpyaephyo.padc.myanmarattractions.adapters.AttractionPagerAdapter;
+import xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMFontUtils;
 import xyz.aungpyaephyo.padc.myanmarattractions.utils.GAUtils;
-import xyz.aungpyaephyo.padc.myanmarattractions.utils.MMFontUtils;
 
 /**
  * Created by aung on 7/20/16.

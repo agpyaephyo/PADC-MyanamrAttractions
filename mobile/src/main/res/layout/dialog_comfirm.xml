@@ -17,7 +17,7 @@
         android:layout_marginTop="@dimen/margin_medium"
         android:src="@drawable/ic_attraction_launcher_icon" />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMTextView
         android:id="@+id/tv_confirm_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:layout_marginTop="@dimen/margin_medium_2"
         android:padding="@dimen/margin_medium">
 
-        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMButton
             android:id="@+id/tv_confirm_no"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dialog_button_height"
@@ -51,7 +51,7 @@
             android:textColor="@color/text_black_ish"
             android:textSize="14sp" />
 
-        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMButton
             android:id="@+id/btn_confirm_yes"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dialog_button_height"

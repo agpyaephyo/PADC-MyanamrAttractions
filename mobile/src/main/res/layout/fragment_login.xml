@@ -7,7 +7,7 @@
     android:background="@drawable/bg_rounded"
     android:layout_gravity="center">
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMTextView
         android:id="@+id/lbl_login_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         android:padding="1dp"
         />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMEditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         android:backgroundTint="?attr/colorAccent"
         />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMEditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
         android:backgroundTint="?attr/colorAccent"
         />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMButton
         android:id="@+id/btn_login"
         style="@style/AccentButton"
         android:layout_width="match_parent"
@@ -88,7 +88,7 @@
         android:layout_marginRight="@dimen/margin_medium_2"
         android:text="@string/lbl_login_action" />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMTextView
         android:id="@+id/lbl_recover_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
         android:textColor="@color/accent_dark"
         />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMTextView
         android:id="@+id/lbl_navigate_to_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

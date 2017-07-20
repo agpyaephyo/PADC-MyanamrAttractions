@@ -1,4 +1,4 @@
-package xyz.aungpyaephyo.padc.myanmarattractions.components;
+package xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -6,7 +6,7 @@ import android.text.TextPaint;
 import android.text.style.TypefaceSpan;
 
 /**
- * Created by aung on 6/25/16.
+ * Created by aung on 6/13/17.
  */
 public class CustomTypefaceSpan extends TypefaceSpan {
 

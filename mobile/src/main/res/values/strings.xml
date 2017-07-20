@@ -9,20 +9,20 @@
     <string name="sync_account_type">myanmarattractions.padc.aungpyaephyo.xyz</string>
     <string name="content_authority">xyz.aungpyaephyo.padc.myanmarattractions</string>
 
-    <string name="home_screen_title">ျမန္မာ့ အလွအပမ်ား </string>
+    <string name="home_screen_title">မြန်မာ့ အလှအပများ </string>
 
     <string name="attraction_list_detail_transition_name">attraction_list_detail_transition_name</string>
     <string name="action_share">Share</string>
     <string name="action_send_email">Book the Trip via Email</string>
-    <string name="lbl_login">Login ၀င္ရန္</string>
-    <string name="lbl_register">Register ျပဳလုုပ္ရန္</string>
+    <string name="lbl_login">Login ၀င်ရန်</string>
+    <string name="lbl_register">Register ပြုလုုပ်ရန်</string>
     <string name="lbl_register_action">Register</string>
     <string name="lbl_logout">Logout</string>
-    <string name="myanmar_attractions_recycler_view">ျမန္မာ့ အလွအပမ်ား (RecyclerView)</string>
-    <string name="myanmar_attractions_list_view">ျမန္မာ့ အလွအပမ်ား (ListView)</string>
-    <string name="myanmar_attractions_grid_view">ျမန္မာ့ အလွအပမ်ား (GridView)</string>
-    <string name="lbl_registration_title"><![CDATA[<b> ျမန္မာ့ အလွ </b>တြင္ စိတ္ျကိုုက္ပါဝင္နိုုင္ရန္ ေအာက္ပါ တိုု့ကိုု ျဖည့္စြက္၍ Register ျပဳလုုပ္ပါ ။]]></string>
-    <string name="lbl_login_title"><![CDATA[လြန္ခဲ့ေသာ ၃ ရက္အတြင္း <b> ျမန္မာ့ အလွ</b> သိုု့ Travel Destination ၇ ခုု အသစ္ေရာက္ရွိလာပါသည္ ]]></string>
+    <string name="myanmar_attractions_recycler_view">မြန်မာ့ အလှအပများ (RecyclerView)</string>
+    <string name="myanmar_attractions_list_view">မြန်မာ့ အလှအပများ (ListView)</string>
+    <string name="myanmar_attractions_grid_view">မြန်မာ့ အလှအပများ (GridView)</string>
+    <string name="lbl_registration_title"><![CDATA[<b> မြန်မာ့ အလှ </b>တွင် စိတ်ကြိုုက်ပါဝင်နိုုင်ရန် အောက်ပါ တိုု့ကိုု ဖြည့်စွက်၍ Register ပြုလုုပ်ပါ ။]]></string>
+    <string name="lbl_login_title"><![CDATA[လွန်ခဲ့သော ၃ ရက်အတွင်း <b> မြန်မာ့ အလှ</b> သိုု့ Travel Destination ရ ခုု အသစ်ရောက်ရှိလာပါသည် ]]></string>
 
     <string-array name="current_residing_country">
         <item>Myanmar</item>
@@ -36,12 +36,12 @@
         <item>United States</item>
     </string-array>
 
-    <string name="msg_enter_name">မိတ္ေဆြရဲ့ အမည္</string>
-    <string name="msg_enter_email">မိတ္ေဆြရဲ့ email</string>
-    <string name="msg_enter_password">မိတ္ေဆြရဲ့ Password</string>
-    <string name="msg_enter_password_register">Password တစ္ခုု သတ္မွတ္ေပးပါ</string>
-    <string name="msg_date_of_birth">မိတ္ေဆြ ရဲ့ ေမြးေန့</string>
-    <string name="msg_select_your_current_residing_country">မိတ္ေဆြ လက္ရွိေနထိုုင္ေသာ Country အား ေရြးခ်ယ္ပါ</string>
+    <string name="msg_enter_name">မိတ်ဆွေရဲ့ အမည်</string>
+    <string name="msg_enter_email">မိတ်ဆွေရဲ့ email</string>
+    <string name="msg_enter_password">မိတ်ဆွေရဲ့ Password</string>
+    <string name="msg_enter_password_register">Password တစ်ခုု သတ်မှတ်ပေးပါ</string>
+    <string name="msg_date_of_birth">မိတ်ဆွေ ရဲ့ မွေးနေ့</string>
+    <string name="msg_select_your_current_residing_country">မိတ်ဆွေ လက်ရှိနေထိုုင်သော Country အား ရွေးချယ်ပါ</string>
 
     <string name="error_missing_name">Need to enter your name</string>
     <string name="error_missing_email">Need to enter your email address</string>
@@ -49,40 +49,40 @@
     <string name="error_missing_date_of_birth">Need to select your date of birth.</string>
     <string name="error_email_is_not_valid">Your email doesn\'t seem valid. Please check.</string>
 
-    <string name="confirm_yes">ေသခ်ာပါသည္</string>
-    <string name="confirm_no">မျပဳလုပ္ေတာ့ပါ</string>
-    <string name="confirm_ok">ေကာင္းပါျပီ</string>
+    <string name="confirm_yes">သေချာပါသည်</string>
+    <string name="confirm_no">မပြုလုပ်တော့ပါ</string>
+    <string name="confirm_ok">ကောင်းပါပြီ</string>
     <string name="confirm_recover_password">Recover Password</string>
     <string name="confirm_try_again">Try Again</string>
     <string name="confirm_request_new_otp">Request New OTP</string>
 
-    <string name="msg_welcome_new_user">အခုုလိုု က်ြန္ေတာ္တိုု့ ျမန္မာ့့ အလွ Mobile App ေလးမွာ Register လုုပ္တဲ့ အတြက္ ေက်းဇူးအမ်ားျကီးတင္ပါတယ္ ။ အခုုဆိုုရင္ မိတ္ေဆြစိတ္ျကိုုက္ Travel Destination မ်ားကိုု မွတ္သားနိုုင္ အသစ္ထပ္ထည့္နိုုင္ ေဝဖန္ အျကံျပဳနိုုင္ပါျပီ ။</string>
-    <string name="msg_welcome_returning_user"><b> ျမန္မာ့ အလွ </b> မွ ျပန္လည္ ျကိုုဆိုုပါတယ္ မိတ္ေဆြ</string>
+    <string name="msg_welcome_new_user">အခုုလိုု ကျွန်တော်တိုု့ မြန်မာ့့ အလှ Mobile App လေးမှာ Register လုုပ်တဲ့ အတွက် ကျေးဇူးအများကြီးတင်ပါတယ် ။ အခုုဆိုုရင် မိတ်ဆွေစိတ်ကြိုုက် Travel Destination များကိုု မှတ်သားနိုုင် အသစ်ထပ်ထည့်နိုုင် ဝေဖန် အကြံပြုနိုုင်ပါပြီ ။</string>
+    <string name="msg_welcome_returning_user"><b> မြန်မာ့ အလှ </b> မှ ပြန်လည် ကြိုုဆိုုပါတယ် မိတ်ဆွေ</string>
 
-    <string name="msg_confirm_logout">ျမန္မာ့ အလွ Mobile App မွ Logout ျပဳလုုပ္ရန္ ေသခ်ာပါသလား</string>
+    <string name="msg_confirm_logout">မြန်မာ့ အလှ Mobile App မှ Logout ပြုလုုပ်ရန် သေချာပါသလား</string>
     <string name="lbl_login_action">Login</string>
 
-    <string name="lbl_recover_password"><![CDATA[<u>Password ေမ့သြားလိုု့လား</u>]]></string>
-    <string name="lbl_navigate_to_register"><![CDATA[<u>Register မလုုပ္ရေသးပါက ျပဳလုုပ္ရန္</u>]]></string>
+    <string name="lbl_recover_password"><![CDATA[<u>Password မေ့သွားလိုု့လား</u>]]></string>
+    <string name="lbl_navigate_to_register"><![CDATA[<u>Register မလုုပ်ရသေးပါက ပြုလုုပ်ရန်</u>]]></string>
 
     <string name="error_missing_email_login">Need to enter the email address you used to register.</string>
     <string name="error_missing_password_login">Need to enter the password.</string>
-    <string name="myanmar_attractions_tab_layout">ျမန္မာ့ အလွအပမ်ား (TabLayout)</string>
-    <string name="myanmar_attractions_notification">Notification မ်ား</string>
+    <string name="myanmar_attractions_tab_layout">မြန်မာ့ အလှအပများ (TabLayout)</string>
+    <string name="myanmar_attractions_notification">Notification များ</string>
     <string name="msg_notification">Find out Attraction Places around you. It\'s for free. You can also add new attraction places where your friends should go and find out when they are around.</string>
 
     <string name="lbl_map">Map</string>
-    <string name="myanmar_attractions_contact_us">ဆက္သြယ္ရန္</string>
-    <string name="format_contact_option_confirmation"><xliff:g id="picked_attraction">%1$s</xliff:g> သိုု့ သြားေရာက္ လည္ပတ္ႏိုုင္ရန္ ဖုုန္းျဖင့္ေသာ္လည္းေကာင္း email ျဖင့္ေသာ္လည္းေကာင္း booking ျပဳလုုပ္ႏိုုင္ပါတယ္ </string>
-    <string name="booking_phone">ဖုုန္းျဖင့္ booking လုုပ္မည္</string>
-    <string name="booking_email">email ျဖင့္ booking လုုပ္မည္</string>
+    <string name="myanmar_attractions_contact_us">ဆက်သွယ်ရန်</string>
+    <string name="format_contact_option_confirmation"><xliff:g id="picked_attraction">%1$s</xliff:g> သိုု့ သွားရောက် လည်ပတ်နိုုင်ရန် ဖုုန်းဖြင့်သော်လည်းကောင်း email ဖြင့်သော်လည်းကောင်း booking ပြုလုုပ်နိုုင်ပါတယ် </string>
+    <string name="booking_phone">ဖုုန်းဖြင့် booking လုုပ်မည်</string>
+    <string name="booking_email">email ဖြင့် booking လုုပ်မည်</string>
 
     <string name="book_the_trip_subject">Booking a trip</string>
     <string name="format_book_the_trip_msg">I would like to book a trip to <xliff:g id="picked_attraction">%1$s</xliff:g></string>
-    <string name="confirm_change_profile_take_or_select">Profile Picture change ရန္ ဓါတ္ပုုံအသစ္ရိုုက္လိုုပါသလား ၊ ဒါမွမဟုုတ္ ရွိျပီးသား ဓါတ္ပုုံေတြထဲက ေရြးခ်ယ္လိုုပါသလား</string>
-    <string name="change_profile_take_pic">ဓါတ္ပုုံအသစ္ရိုုက္မည္</string>
-    <string name="change_profile_select">ရွိျပီးသားထဲကပဲ ေရြးမည္</string>
+    <string name="confirm_change_profile_take_or_select">Profile Picture change ရန် ဓါတ်ပုုံအသစ်ရိုုက်လိုုပါသလား ၊ ဒါမှမဟုုတ် ရှိပြီးသား ဓါတ်ပုုံတွေထဲက ရွေးချယ်လိုုပါသလား</string>
+    <string name="change_profile_take_pic">ဓါတ်ပုုံအသစ်ရိုုက်မည်</string>
+    <string name="change_profile_select">ရှိပြီးသားထဲကပဲ ရွေးမည်</string>
     <string name="select_picture">Select Picture</string>
     <string name="myanmar_attractions_touropia">Touropia သိုု့</string>
-    <string name="prompt_some_data_retrieved_for_registration">Registration ျပဳလုုပ္ႏိုုင္ရန္ မိတ္ေဆြရဲ့ Social Media Account မွ တဆင့္ အခ်ိဳ့အခ်က္အလက္မ်ားကိုု ထုုတ္ယူ၍ Form တြင္ ျဖည့္စြက္ျပီး ျဖစ္ပါတယ္ ။ က်န္လိုုအပ္သည့္အခ်က္အလက္မ်ားကိုု ဆက္လက္ ျဖည့္ဆည္း ေပးပါ ။</string>
+    <string name="prompt_some_data_retrieved_for_registration">Registration ပြုလုုပ်နိုုင်ရန် မိတ်ဆွေရဲ့ Social Media Account မှ တဆင့် အချို့အချက်အလက်များကိုု ထုုတ်ယူ၍ Form တွင် ဖြည့်စွက်ပြီး ဖြစ်ပါတယ် ။ ကျန်လိုုအပ်သည့်အချက်အလက်များကိုု ဆက်လက် ဖြည့်ဆည်း ပေးပါ ။</string>
 </resources>

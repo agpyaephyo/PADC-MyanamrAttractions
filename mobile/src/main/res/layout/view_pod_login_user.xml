@@ -51,7 +51,7 @@
         android:text="aungpyaephyo24@gmail.com"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMButton
         android:id="@+id/btn_logout"
         style="@style/AccentButton"
         android:layout_width="wrap_content"

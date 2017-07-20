@@ -24,7 +24,7 @@
                 android:background="?attr/colorPrimary"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
-                <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+                <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMTextView
                     android:id="@+id/tv_screen_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
         app:itemTextColor="@drawable/state_left_menu_item"
         app:menu="@menu/left_menu">
 
-        <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+        <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMTextView
             android:id="@+id/tv_app_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -9,7 +9,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/drawer_background" />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMButton
         android:id="@+id/btn_register"
         style="@style/AccentButton"
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
         android:layout_marginRight="@dimen/margin_medium_2"
         android:text="@string/lbl_register" />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMButton
         android:id="@+id/btn_login"
         style="@style/AccentButton"
         android:layout_width="wrap_content"

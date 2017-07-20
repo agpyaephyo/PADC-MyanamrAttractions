@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMTextView
         android:id="@+id/lbl_registration_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         android:visibility="gone"
         android:src="@drawable/dummy_avatar" />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMEditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,9 +78,9 @@
 
         <requestFocus />
 
-    </xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText>
+    </xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMEditText>
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMEditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
         android:textColorHint="@color/hint_secondary_text"
         android:textSize="@dimen/text_regular_2x" />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMEditText
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMEditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
         android:textColorHint="@color/hint_secondary_text"
         android:textSize="@dimen/text_regular_2x" />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMTextView
         android:id="@+id/tv_date_of_birth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
         android:textColorHint="@color/hint_secondary_text"
         android:textSize="@dimen/text_regular_2x" />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMTextView
         android:id="@+id/lbl_current_residing_country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
         android:layout_marginLeft="@dimen/margin_medium"
         android:layout_marginRight="@dimen/margin_medium" />
 
-    <xyz.aungpyaephyo.padc.myanmarattractions.components.MMButton
+    <xyz.aungpyaephyo.padc.myanmarattractions.components.mmfont.MMButton
         android:id="@+id/btn_register"
         style="@style/AccentButton"
         android:layout_width="match_parent"
