@@ -38,3 +38,16 @@ captures/
 
 # Keystore files
 *.jks
+.idea/libraries/animated_vector_drawable_24_0_0.xml
+.idea/libraries/appcompat_v7_24_0_0.xml
+.idea/libraries/cardview_v7_24_0_0.xml
+.idea/libraries/design_24_0_0.xml
+.idea/libraries/facebook_android_sdk_4_6_0.xml
+.idea/libraries/firebase_analytics_9_4_0.xml
+.idea/libraries/leanback_v17_24_0_0.xml
+.idea/libraries/play_services_analytics_impl_9_4_0.xml
+.idea/libraries/play_services_tasks_9_2_0.xml
+.idea/libraries/play_services_tasks_9_4_0.xml
+.idea/libraries/recyclerview_v7_24_0_0.xml
+.idea/libraries/support_v4_24_0_0.xml
+.idea/libraries/support_vector_drawable_24_0_0.xml
