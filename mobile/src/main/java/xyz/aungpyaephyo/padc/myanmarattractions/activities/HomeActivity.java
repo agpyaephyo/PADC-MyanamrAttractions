@@ -109,25 +109,6 @@ public class HomeActivity extends BaseActivity
         fabSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Intent intent = AttractionService.newIntent(new Date().toString());
-                startService(intent);
-                */
-
-                /*
-                Intent intent = AttractionIntentService.newIntent(new Date().toString());
-                startService(intent);
-                */
-
-                /*
-                if (isServiceBound) {
-                    int randomNumber = mBindingService.getRandomNumber();
-                    Toast.makeText(getApplicationContext(), "Random Number from RandomNumberGeneratorService : " + randomNumber, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Sorry, the service for generating random number is NOT connected.", Toast.LENGTH_SHORT).show();
-                }
-                */
-
                 Snackbar.make(view, "Sorry. Search on Attractions is not being supported yet.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 

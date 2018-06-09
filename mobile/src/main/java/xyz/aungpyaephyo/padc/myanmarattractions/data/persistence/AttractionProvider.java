@@ -34,7 +34,8 @@ public class AttractionProvider extends ContentProvider {
 
     @Nullable
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
+                        String sortOrder) {
         Cursor queryCursor;
 
         int matchUri = sUriMatcher.match(uri);
@@ -214,9 +215,12 @@ public class AttractionProvider extends ContentProvider {
     private static UriMatcher buildUriMatcher() {
         final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
-        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY, AttractionsContract.PATH_ATTRACTIONS, ATTRACTION);
-        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY, AttractionsContract.PATH_ATTRACTION_IMAGES, ATTRACTION_IMAGE);
-        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY, AttractionsContract.PATH_LOGIN_USER, LOGIN_USER);
+        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY,
+                AttractionsContract.PATH_ATTRACTIONS, ATTRACTION);
+        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY,
+                AttractionsContract.PATH_ATTRACTION_IMAGES, ATTRACTION_IMAGE);
+        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY,
+                AttractionsContract.PATH_LOGIN_USER, LOGIN_USER);
 
         return uriMatcher;
     }

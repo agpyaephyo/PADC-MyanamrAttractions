@@ -27,6 +27,7 @@ public class AttractionVO {
     @SerializedName("images")
     private String[] images;
 
+
     public String getTitle() {
         return title;
     }

@@ -23,7 +23,9 @@ public abstract class BaseModel {
     protected AttractionDataAgent dataAgent;
 
     public BaseModel() {
-        initDataAgent(INIT_DATA_AGENT_RETROFIT);
+        //initDataAgent(INIT_DATA_AGENT_RETROFIT);
+        //dataAgent = OfflineDataAgent.getInstance();
+        dataAgent = RetrofitDataAgent.getInstance();
 
         EventBus eventBus = EventBus.getDefault();
         if (!eventBus.isRegistered(this)) {
@@ -31,6 +33,7 @@ public abstract class BaseModel {
         }
     }
 
+    /*
     private void initDataAgent(int initType) {
         switch (initType) {
             case INIT_DATA_AGENT_OFFLINE:
@@ -47,6 +50,7 @@ public abstract class BaseModel {
                 break;
         }
     }
+    */
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(Object obj) {

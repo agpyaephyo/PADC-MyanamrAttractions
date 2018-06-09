@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: __local_aars__:/Users/aung/PADC/Before-PADC-3/PADC-Samples/PADC-MyanamrAttractions/mobile/libs/apache-httpcomponents-httpcore.jar:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/mobile/libs/apache-httpcomponents-httpcore.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
