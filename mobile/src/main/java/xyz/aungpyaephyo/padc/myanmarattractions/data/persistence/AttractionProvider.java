@@ -34,7 +34,8 @@ public class AttractionProvider extends ContentProvider {
 
     @Nullable
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
+                        String sortOrder) {
         Cursor queryCursor;
 
         int matchUri = sUriMatcher.match(uri);
@@ -98,7 +99,7 @@ public class AttractionProvider extends ContentProvider {
             case ATTRACTION_IMAGE:
                 return AttractionsContract.AttractionImageEntry.DIR_TYPE;
             case LOGIN_USER:
-                return AttractionsContract.AttractionImageEntry.ITEM_TYPE;
+                return AttractionsContract.LoginUserEntry.ITEM_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri : " + uri);
         }
@@ -113,7 +114,8 @@ public class AttractionProvider extends ContentProvider {
 
         switch (matchUri) {
             case ATTRACTION: {
-                long _id = db.insert(AttractionsContract.AttractionEntry.TABLE_NAME, null, contentValues);
+                long _id = db.insert(AttractionsContract.AttractionEntry.TABLE_NAME,
+                        null, contentValues);
                 if (_id > 0) {
                     insertedUri = AttractionsContract.AttractionEntry.buildAttractionUri(_id);
                 } else {
@@ -210,9 +212,12 @@ public class AttractionProvider extends ContentProvider {
     private static UriMatcher buildUriMatcher() {
         final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
-        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY, AttractionsContract.PATH_ATTRACTIONS, ATTRACTION);
-        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY, AttractionsContract.PATH_ATTRACTION_IMAGES, ATTRACTION_IMAGE);
-        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY, AttractionsContract.PATH_LOGIN_USER, LOGIN_USER);
+        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY,
+                AttractionsContract.PATH_ATTRACTIONS, ATTRACTION);
+        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY,
+                AttractionsContract.PATH_ATTRACTION_IMAGES, ATTRACTION_IMAGE);
+        uriMatcher.addURI(AttractionsContract.CONTENT_AUTHORITY,
+                AttractionsContract.PATH_LOGIN_USER, LOGIN_USER);
 
         return uriMatcher;
     }

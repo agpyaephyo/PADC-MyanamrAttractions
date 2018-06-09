@@ -16,7 +16,8 @@ public class AttractionDBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 7;
     public static final String DATABASE_NAME = "attractions.db";
 
-    private static final String SQL_CREATE_ATTRACTION_TABLE = "CREATE TABLE " + AttractionEntry.TABLE_NAME + " (" +
+    private static final String SQL_CREATE_ATTRACTION_TABLE = "CREATE TABLE "
+            + AttractionEntry.TABLE_NAME + " (" +
             AttractionEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             AttractionEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
             AttractionEntry.COLUMN_DESC + " TEXT NOT NULL, " +
@@ -61,7 +62,7 @@ public class AttractionDBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + AttractionImageEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + AttractionEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + LoginUserEntry.TABLE_NAME);

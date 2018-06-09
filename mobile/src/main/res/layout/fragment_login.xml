@@ -86,6 +86,7 @@
         android:layout_marginTop="@dimen/margin_medium_2"
         android:layout_marginLeft="@dimen/margin_medium_2"
         android:layout_marginRight="@dimen/margin_medium_2"
+        android:gravity="center_horizontal|bottom"
         android:text="@string/lbl_login_action" />
 
     <xyz.aungpyaephyo.padc.myanmarattractions.components.MMTextView

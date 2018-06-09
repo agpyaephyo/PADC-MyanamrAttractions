@@ -13,7 +13,10 @@ import xyz.aungpyaephyo.padc.myanmarattractions.MyanmarAttractionsApp;
 public class AttractionsContract {
 
     public static final String CONTENT_AUTHORITY = MyanmarAttractionsApp.class.getPackage().getName();
+    //xyz.aungpyaephyo.padc.myanmarattractions
+
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+    //content://xyz.aungpyaephyo.padc.myanmarattractions
 
     public static final String PATH_ATTRACTIONS = "attractions";
     public static final String PATH_ATTRACTION_IMAGES = "attraction_images";
@@ -22,6 +25,7 @@ public class AttractionsContract {
     public static final class AttractionEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_ATTRACTIONS).build();
+        //content://xyz.aungpyaephyo.padc.myanmarattractions/attractions/
 
         public static final String DIR_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ATTRACTIONS;
@@ -47,11 +51,13 @@ public class AttractionsContract {
         }
 
         public static String getTitleFromParam(Uri uri) {
-            return uri.getQueryParameter(COLUMN_TITLE);
+            //content://xyz.aungpyaephyo.padc.myanmarattractions/attractions?title="Yangon"
+            return uri.getQueryParameter(COLUMN_TITLE); //-> "Yangon"
         }
     }
 
     public static final class AttractionImageEntry implements BaseColumns {
+
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_ATTRACTION_IMAGES).build();
 
@@ -86,6 +92,7 @@ public class AttractionsContract {
     public static final class LoginUserEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_LOGIN_USER).build();
+        //content://xyz.aungpyaephyo.padc.myanmarattractions/login_user
 
         public static final String DIR_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_LOGIN_USER;
