@@ -117,4 +117,5 @@ public class MyanmarAttractionsApp extends Application {
     /*
     This is to test out the conflict resolution process.
      */
+	//rebase testing
 }
