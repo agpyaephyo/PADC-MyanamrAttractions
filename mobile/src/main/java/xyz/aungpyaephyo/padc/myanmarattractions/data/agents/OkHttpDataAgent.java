@@ -46,48 +46,7 @@ public class OkHttpDataAgent implements AttractionDataAgent {
 
     @Override
     public void loadAttractions() {
-        new AsyncTask<Void, Void, List<AttractionVO>>() {
-
-            @Override
-            protected List<AttractionVO> doInBackground(Void... voids) {
-                RequestBody formBody = new FormBody.Builder() //2.
-                        .add(MyanmarAttractionsConstants.PARAM_ACCESS_TOKEN, MyanmarAttractionsConstants.ACCESS_TOKEN)
-                        .build();
-
-                Request request = new Request.Builder() //3
-                        .url(MyanmarAttractionsConstants.ATTRACTION_BASE_URL + MyanmarAttractionsConstants.API_GET_ATTRACTION_LIST)
-                        .post(formBody)
-                        .build();
-
-                try {
-                    Response response = mHttpClient.newCall(request).execute(); //4.
-                    if (response.isSuccessful()) {
-                        String responseString = response.body().string();
-
-
-
-                        AttractionListResponse responseAttractionList = CommonInstances.getGsonInstance().fromJson(responseString, AttractionListResponse.class);
-                        List<AttractionVO> attractionList = responseAttractionList.getAttractionList();
-                        return attractionList;
-                    } else {
-                        AttractionModel.getInstance().notifyErrorInLoadingAttractions(response.message());
-                    }
-                } catch (IOException e) {
-                    Log.e(MyanmarAttractionsApp.TAG, e.getMessage());
-                    AttractionModel.getInstance().notifyErrorInLoadingAttractions(e.getMessage());
-                }
-
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(List<AttractionVO> attractionList) {
-                super.onPostExecute(attractionList);
-                if (attractionList != null && attractionList.size() > 0) {
-                    AttractionModel.getInstance().notifyAttractionsLoaded(attractionList);
-                }
-            }
-        }.execute();
+        new AsyncApiInvoker(mHttpClient).execute();
     }
 
     @Override
@@ -118,5 +77,54 @@ public class OkHttpDataAgent implements AttractionDataAgent {
     @Override
     public void loginWithGoogle(UserVO loginUser) {
 
+    }
+
+    private static class AsyncApiInvoker extends AsyncTask<Void, Void, List<AttractionVO>> {
+
+        private OkHttpClient mHttpClient;
+
+        private AsyncApiInvoker(OkHttpClient httpClient) {
+            super();
+            mHttpClient = httpClient;
+        }
+
+        @Override
+        protected List<AttractionVO> doInBackground(Void... voids) {
+            RequestBody formBody = new FormBody.Builder() //2.
+                    .add(MyanmarAttractionsConstants.PARAM_ACCESS_TOKEN, MyanmarAttractionsConstants.ACCESS_TOKEN)
+                    .build();
+
+            Request request = new Request.Builder() //3
+                    .url(MyanmarAttractionsConstants.ATTRACTION_BASE_URL + MyanmarAttractionsConstants.API_GET_ATTRACTION_LIST)
+                    .post(formBody)
+                    .build();
+
+            try {
+                Response response = mHttpClient.newCall(request).execute(); //4.
+                if (response.isSuccessful()) {
+                    String responseString = response.body().string();
+
+
+                    AttractionListResponse responseAttractionList = CommonInstances.getGsonInstance().fromJson(responseString, AttractionListResponse.class);
+                    List<AttractionVO> attractionList = responseAttractionList.getAttractionList();
+                    return attractionList;
+                } else {
+                    AttractionModel.getInstance().notifyErrorInLoadingAttractions(response.message());
+                }
+            } catch (IOException e) {
+                Log.e(MyanmarAttractionsApp.TAG, e.getMessage());
+                AttractionModel.getInstance().notifyErrorInLoadingAttractions(e.getMessage());
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<AttractionVO> attractionList) {
+            super.onPostExecute(attractionList);
+            if (attractionList != null && attractionList.size() > 0) {
+                AttractionModel.getInstance().notifyAttractionsLoaded(attractionList);
+            }
+        }
     }
 }
