@@ -5,9 +5,9 @@ package xyz.aungpyaephyo.padc.myanmarattractions.utils;
  */
 public class MyanmarAttractionsConstants {
 
-    public static final String IMAGE_ROOT_DIR = "http://padcmyanmar.com/padc-3/myanmar_attractions/images";
+    public static final String IMAGE_ROOT_DIR = "http://padcmyanmar.com/padc-3/myanmar-attractions/images/";
 
-    public static final String ATTRACTION_BASE_URL = "http://padcmyanmar.com/padc-3/myanmar_attractions/apis/v1/";
+    public static final String ATTRACTION_BASE_URL = "http://padcmyanmar.com/padc-3/myanmar-attractions/apis/v1/";
     public static final String API_GET_ATTRACTION_LIST = "getAttractionsList.php";
     public static final String API_REGISTER = "register.php";
     public static final String API_REGISTER_WITH_FACEBOOK = "registerWithFacebook.php";

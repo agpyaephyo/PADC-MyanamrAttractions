@@ -63,6 +63,9 @@ public class OkHttpDataAgent implements AttractionDataAgent {
                     Response response = mHttpClient.newCall(request).execute(); //4.
                     if (response.isSuccessful()) {
                         String responseString = response.body().string();
+
+
+
                         AttractionListResponse responseAttractionList = CommonInstances.getGsonInstance().fromJson(responseString, AttractionListResponse.class);
                         List<AttractionVO> attractionList = responseAttractionList.getAttractionList();
                         return attractionList;

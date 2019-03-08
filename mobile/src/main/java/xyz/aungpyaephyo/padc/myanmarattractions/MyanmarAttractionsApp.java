@@ -39,15 +39,17 @@ public class MyanmarAttractionsApp extends Application {
 
         AttractionModel.getInstance().loadAttractions();
         //AttractionSyncAdapter.syncImmediately(getContext());
-        //AttractionSyncAdapter.initializeSyncAdapter(getContext());
+        AttractionSyncAdapter.initializeSyncAdapter(getContext());
 
-        encodeAppIcon();
+        //encodeAppIcon();
+        /*
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 encodeAttractionSight();
             }
         }, 500);
+        */
     }
 
     public static Context getContext() {

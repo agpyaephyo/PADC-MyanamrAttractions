@@ -24,8 +24,8 @@ public abstract class BaseModel {
 
     public BaseModel() {
         //initDataAgent(INIT_DATA_AGENT_RETROFIT);
-        //dataAgent = OfflineDataAgent.getInstance();
-        dataAgent = RetrofitDataAgent.getInstance();
+        dataAgent = OfflineDataAgent.getInstance();
+        //dataAgent = RetrofitDataAgent.getInstance();
 
         EventBus eventBus = EventBus.getDefault();
         if (!eventBus.isRegistered(this)) {

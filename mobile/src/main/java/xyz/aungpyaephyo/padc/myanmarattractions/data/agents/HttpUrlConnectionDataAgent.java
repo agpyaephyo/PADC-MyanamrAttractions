@@ -75,7 +75,8 @@ public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
 
                     //put the request parameter into NameValuePair list.
                     List<NameValuePair> params = new ArrayList<>(); //6.
-                    params.add(new BasicNameValuePair(MyanmarAttractionsConstants.PARAM_ACCESS_TOKEN, MyanmarAttractionsConstants.ACCESS_TOKEN));
+                    params.add(new BasicNameValuePair(MyanmarAttractionsConstants.PARAM_ACCESS_TOKEN,
+                            MyanmarAttractionsConstants.ACCESS_TOKEN));
 
                     //write the parameters from NameValuePair list into connection obj.
                     OutputStream outputStream = connection.getOutputStream();
@@ -98,6 +99,7 @@ public class HttpUrlConnectionDataAgent implements AttractionDataAgent {
                     }
 
                     String responseString = stringBuilder.toString(); //9.
+
                     AttractionListResponse response = CommonInstances.getGsonInstance().fromJson(responseString, AttractionListResponse.class);
                     List<AttractionVO> attractionList = response.getAttractionList();
 
